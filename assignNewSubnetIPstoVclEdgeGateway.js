@@ -137,3 +137,14 @@ if (freeIPsArray.length < NO_OF_ADDRESSES) {
             }
 			System.log("Edge Gateway updation status: "+task.status);
 			taskStatus = task.status;
+        } catch (ex) {
+            throw "Failed to update Edge gateway. (Reason: " + ex + ")";
+        }
+        EDGE_GATEWAY.syncSyslogServer();
+    }
+}
+
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
+System.log("End Assign Subnet IPs to Edge Gateway");
