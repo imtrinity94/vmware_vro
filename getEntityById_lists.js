@@ -172,6 +172,8 @@ switch(entityLink.type) {
 		if (inputName.length >0) inputProperties.put(inputName, entityProviderVdc);		
 		break;
 
+		// id="urn:vcloud:vdcstorageProfile:59"
+     		// href="https://vcloud.example.com/api/vdcStorageProfile/59"
 	case "vcloud:lr.providervdcstorageclass" : //Bug 890059 
 		entityProviderVdcStorageProfile = vcdHost.getEntityById(VclFinderType.VDC_STORAGE_PROFILE, entityLink.id);
 		inputName = getWorkflowInputName(wf, "entityProviderVdcStorageProfile", System.getObjectType(entityProviderVdcStorageProfile));
