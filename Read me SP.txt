@@ -1,0 +1,21 @@
+ 
+1. Connect to the vRealize Automation IaaS SQL Database using SQL Management Studio.
+2. Install usp_CleanVirtualMachineReconfigure to IAAS SQL Server database
+
+   2.1) Open SQL Server Management Studio and login as VCAC/vRA database owner;
+   2.2) On "Object Explorer" window, click "Databases->VCAC/vRA database" to highlight VCAC/vRA database;
+   2.3) Click "File->Open->File..." menu and then select "usp_CleanVirtualMachineReconfigure" file on query window;
+   2.4) Click "Execute" button on menu bar or "F5" key to install the stored procedure on VCAC database; You should see "Command(s) completed successfully." in message window after stored procedure is created in VCAC database;
+
+3. Execute the SP usp_CleanVirtualMachineReconfigure with the VMname as parameter  
+   
+   3.1) In "Object Explorer" window, expand "VCAC database->Programmability->Stored Procedures" to list all stored procedures in VCAC database;
+   3.2) Find "usp_CleanVirtualMachineReconfigure" stored procedure, right click the stored procedure and select "Execute Stored Procedure...";
+   3.3) In "Execute Procedure" window, input the virtual machine name into "Value" column of "VirtualMachineName" parameter;
+        
+        Ex: EXEC [dbo].[usp_CleanVirtualMachineReconfigure] 'VirtualMachineName'
+
+   3.4) Click "OK" button to execute the procedure;
+
+4. Go to UI under Items tab for the VM and Cancel the Reconfigure request.
+
