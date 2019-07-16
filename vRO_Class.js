@@ -23,6 +23,6 @@ Shape.prototype.move = function (x, y) {
 };
 
 var S = new Shape(1,2,3);
-System.log(S.x + S.y);
+System.log(S.x + S.y); //5
 S.move(4,5);
-System.log(S.x + S.y);
+System.log(S.x + S.y); //9
