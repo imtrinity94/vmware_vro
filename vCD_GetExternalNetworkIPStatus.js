@@ -1,3 +1,8 @@
+/*Inputs
+net -> vCloud:ExternalNetwork
+site -> string
+needDetails -> boolean*/
+
 var vcd = System.getModule("org.telus.vCloud").getvCloudHost();
 var start=System.getCurrentTime();
 System.debug("Scanning for external IP Status in external network "+net.name);
