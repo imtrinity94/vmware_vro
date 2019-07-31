@@ -1,3 +1,23 @@
+for each (var i in JSON.parse(availableVMsInVCloud)){
+	if(i.AdditionalData){
+		var parsedData = JSON.parse(i.AdditionalData);
+		//System.log(parsedData.VAppId);
+		var vApp = vCDHost.getEntityById(VclFinderType.VAPP,parsedData.VAppId);
+		if(vApp != null){
+			var myvAppNetworks = vApp.getVAppNetworks();
+			for each(var NW in myvAppNetworks){
+				System.debug("Network found in VApp("+parsedData.VAppId+"): "+NW.name);
+				var parentNW = NW.configuration.parentNetwork;
+				var net = vCDHost.getEntityByReference(VclFinderType.ADMIN_ORG_VDC_NETWORK,parentNW);
+				if(net != null) System.log(net.name);
+			}
+		}
+		else System.warn("Unable to find VApp("+parsedData.VAppId+") in "+vCDHost.url);
+	}
+}
+
+------------
+
 System.sleep(5000);
 var inputName = ""; 
 var inputProperties = new Properties();
