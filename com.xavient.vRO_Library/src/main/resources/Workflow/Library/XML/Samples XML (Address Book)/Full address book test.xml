@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item5" object-name="Workflow:name=generic" id="51808080808080808080808080808080EC80808001175587494510271f02ffa1f" version="3.1.2" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Full address book test]]></display-name>
+  <description><![CDATA[Tests full address book cycle. Namely:
+- creates a directory
+- creates address book DTD, XML, and CSS
+- appends the stylesheet
+]]></description>
+  <position y="20.0" x="80.0"></position>
+  <input>
+    <param name="directory" type="Path">
+      <description><![CDATA[Directory in which to read and store files]]></description>
+    </param>
+  </input>
+  <workflow-item name="item5" out-name="item6" type="task" script-module="createDirectory">
+    <display-name><![CDATA[createDirectory]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+System.getModule("com.vmware.basic").createDirectory(directory) ;]]></script>
+    <in-binding>
+      <bind name="directory" type="Path" export-name="directory"></bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <description><![CDATA[Create a directory structure on the VS-O server.]]></description>
+    <position y="60.0" x="80.0"></position>
+  </workflow-item>
+  <workflow-item name="item4" type="end" end-mode="0">
+    <position y="250.0" x="120.0"></position>
+  </workflow-item>
+  <workflow-item name="item6" out-name="item7" type="link" linked-workflow-id="51808080808080808080808080808080E280808001175587494510271f02ffa1f">
+    <display-name><![CDATA[Create DTD]]></display-name>
+    <in-binding>
+      <bind name="directory" type="Path" export-name="directory">
+        <description><![CDATA[directory where files will be read/store]]></description>
+      </bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <description><![CDATA[Create Address Book Create DTD]]></description>
+    <position y="100.0" x="80.0"></position>
+  </workflow-item>
+  <workflow-item name="item7" out-name="item8" type="link" linked-workflow-id="51808080808080808080808080808080E780808001175587494510271f02ffa1f">
+    <display-name><![CDATA[Create XML]]></display-name>
+    <in-binding>
+      <bind name="directory" type="Path" export-name="directory">
+        <description><![CDATA[directory where files will be read/store]]></description>
+      </bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <description><![CDATA[Create Address Book Create XML]]></description>
+    <position y="140.0" x="80.0"></position>
+  </workflow-item>
+  <workflow-item name="item8" out-name="item9" type="link" linked-workflow-id="51808080808080808080808080808080DD80808001175587494510271f02ffa1f">
+    <display-name><![CDATA[Create CSS]]></display-name>
+    <in-binding>
+      <bind name="directory" type="Path" export-name="directory">
+        <description><![CDATA[directory where files will be read/store]]></description>
+      </bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <description><![CDATA[Create Address Book Create CSS]]></description>
+    <position y="180.0" x="80.0"></position>
+  </workflow-item>
+  <workflow-item name="item9" out-name="item4" type="link" linked-workflow-id="51808080808080808080808080808080D880808001175587494510271f02ffa1f">
+    <display-name><![CDATA[Append Stylesheet information]]></display-name>
+    <in-binding>
+      <bind name="directory" type="Path" export-name="directory">
+        <description><![CDATA[directory where files will be read/store]]></description>
+      </bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <description><![CDATA[Append Address Book Stylesheet]]></description>
+    <position y="220.0" x="80.0"></position>
+  </workflow-item>
+  <presentation>
+    <p-group>
+      <title><![CDATA[File path]]></title>
+      <desc><![CDATA[Please enter an absolute directory path where XML files will be read/stored (Example: C:/tmp/contacts).]]></desc>
+      <p-param name="directory">
+        <desc><![CDATA[Directory in which to read and store files]]></desc>
+        <p-qual kind="static" name="defaultValue" type="string"><![CDATA[c:/orchestrator]]></p-qual>
+      </p-param>
+    </p-group>
+  </presentation>
+</workflow>

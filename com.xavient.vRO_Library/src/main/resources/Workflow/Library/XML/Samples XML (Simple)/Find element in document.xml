@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item0" object-name="Workflow:name=generic" id="51808080808080808080808080808080B080808001175587494510271f02ffa1f" version="3.1.1" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Find element in document]]></display-name>
+  <description><![CDATA[Finds an element in an XML file and logs it.]]></description>
+  <position y="20.0" x="80.0"></position>
+  <input>
+    <param name="filePath" type="string">
+      <description><![CDATA[Absolute path and filename of the XML file]]></description>
+    </param>
+  </input>
+  <workflow-item name="item0" out-name="item1" type="task">
+    <display-name><![CDATA[Find And Log]]></display-name>
+    <script encoded="false"><![CDATA[var document = XMLManager.loadDocument(filePath,false) ;
+
+var nodeList = document.getElementsByTagName("user") ;
+
+for (var i = 0 ; i < nodeList.length ; i++) {
+	var node = nodeList.item(i) ;
+	if (node.getAttribute("ID") == "3") {
+		var name = node.getAttribute("name") ;
+		System.log("Found user with id 3 : '"+name+"'") ;
+	}
+}]]></script>
+    <in-binding>
+      <bind name="filePath" type="string" export-name="filePath"></bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <position y="60.0" x="80.0"></position>
+  </workflow-item>
+  <workflow-item name="item1" type="end" end-mode="0">
+    <position y="90.0" x="120.0"></position>
+  </workflow-item>
+  <presentation>
+    <p-param name="filePath">
+      <desc><![CDATA[Filename of the XML document you provide as input]]></desc>
+    </p-param>
+  </presentation>
+</workflow>

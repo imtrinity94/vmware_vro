@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item0" object-name="Workflow:name=generic" id="51808080808080808080808080808080D880808001175587494510271f02ffa1f" version="3.1.2" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Append address book stylesheet information]]></display-name>
+  <description><![CDATA[Appends stylesheet information for the address book example.]]></description>
+  <position y="20.0" x="80.0"></position>
+  <input>
+    <param name="directory" type="Path">
+      <description><![CDATA[Directory in which to read and store files]]></description>
+    </param>
+  </input>
+  <workflow-item name="item0" out-name="item1" type="task">
+    <display-name><![CDATA[Add stylesheet]]></display-name>
+    <script encoded="false"><![CDATA[var filePath = directory+"/"+"MyDunesAddressBook.xml" ;
+var filePath2 = directory+"/"+"MyDunesAddressBook-CSS.xml" ;
+
+var document = XMLManager.loadDocument(filePath,false) ;
+
+var root = document.getDocumentElement() ;
+var datas = "type=\"text/css\" href=\"DunesAddressBook.css\"" ;
+var processing = document.createProcessingInstruction("xml-stylesheet",datas) ;
+document.insertBefore(processing,root) ;
+
+System.log("Saving : "+filePath2) ;
+
+XMLManager.saveDocument(document,filePath2) ;
+]]></script>
+    <in-binding>
+      <bind name="directory" type="Path" export-name="directory"></bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <position y="60.0" x="80.0"></position>
+  </workflow-item>
+  <workflow-item name="item1" type="end" end-mode="0">
+    <position y="90.0" x="120.0"></position>
+  </workflow-item>
+  <presentation>
+    <p-group>
+      <title><![CDATA[File path]]></title>
+      <desc><![CDATA[Please enter an absolute directory path where XML files will be read/stored (Example: C:/tmp/contacts).]]></desc>
+      <p-param name="directory">
+        <desc><![CDATA[Directory in which to read and store files]]></desc>
+        <p-qual name="defaultValue" type="Path"><![CDATA[c:/tmp/contacts]]></p-qual>
+      </p-param>
+    </p-group>
+  </presentation>
+</workflow>
