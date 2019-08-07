@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item1" object-name="workflow:name=generic" id="1bdf03a9-9c0d-4c0a-a4f9-d608bbd8bd82" version="1.0.0" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Remove a Root Folder from SSH Host]]></display-name>
+  <description><![CDATA[Removes a Root Folder from a SSH Host.]]></description>
+  <position y="50.0" x="100.0"></position>
+  <input>
+    <param name="sshHost" type="SSH:Host">
+      <description><![CDATA[The SSH Host]]></description>
+    </param>
+    <param name="rootFolder" type="string">
+      <description><![CDATA[The Root Folder path to be removed]]></description>
+    </param>
+  </input>
+  <output>
+    <param name="updatedSshHost" type="SSH:Host">
+      <description><![CDATA[The updated SSH Host]]></description>
+    </param>
+  </output>
+  <workflow-item name="item0" type="end" end-mode="0">
+    <position y="45.40909090909091" x="384.5"></position>
+  </workflow-item>
+  <workflow-item name="item1" out-name="item0" type="task">
+    <display-name><![CDATA[Scriptable task]]></display-name>
+    <script encoded="false"><![CDATA[updatedSshHost = SSHHostManager.removeRootFolderFromHost(sshHost, rootFolder);]]></script>
+    <in-binding>
+      <bind name="sshHost" type="SSH:Host" export-name="sshHost">
+        <description><![CDATA[The SSH Host]]></description>
+      </bind>
+      <bind name="rootFolder" type="string" export-name="rootFolder">
+        <description><![CDATA[The Root Folder path to be removed]]></description>
+      </bind>
+    </in-binding>
+    <out-binding>
+      <bind name="updatedSshHost" type="SSH:Host" export-name="updatedSshHost">
+        <description><![CDATA[The updated SSH Host]]></description>
+      </bind>
+    </out-binding>
+    <position y="55.40909090909091" x="204.5"></position>
+  </workflow-item>
+  <presentation>
+    <p-param name="sshHost">
+      <desc><![CDATA[The SSH Host]]></desc>
+      <p-qual kind="static" name="mandatory" type="boolean"><![CDATA[true]]></p-qual>
+    </p-param>
+    <p-param name="rootFolder">
+      <desc><![CDATA[The Root Folder path to be removed]]></desc>
+      <p-qual kind="static" name="mandatory" type="boolean"><![CDATA[true]]></p-qual>
+    </p-param>
+  </presentation>
+</workflow>

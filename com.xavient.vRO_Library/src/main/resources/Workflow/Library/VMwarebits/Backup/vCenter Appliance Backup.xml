@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item2" object-name="workflow:name=generic" id="e42af9c3-c514-4546-89dc-4e284946faad" version="1.0.23" api-version="6.0.0" allowed-operations="vef" icon-id="8de6a4b1-9dd1-4154-b812-bc0a1cb24bc6" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[vCenter Appliance Backup]]></display-name>
+  <description><![CDATA[This workflow uses the Rest API Plugin and the VMware vCenter Server Appliance Management API to create a backup for one or more vCenter 6.5 appliances (which could also be a Platform Services Controller)
+Backup files are stored via FTP, which could also be FTPS, SCP, HTTP or HTTPS, as is documented in the API Documentation: 
+https://pubs.vmware.com/vsphere-65/index.jsp#com.vmware.vsphere.vcsapg-rest.doc/GUID-16243CA1-8323-45B3-9F29-37D9CED6A632.html
+
+For the backup to work first create Rest Hosts with basic authentication in Orchestrator and define them in an array in this workflow in the corresponding attribute.
+Documentation of how to do this is available at: www.vmwarebits.com/vcenterbackup
+
+Use the attribute named seat to configure if the Stats, Events, Alarms, and Tasks data (SEAT) will be included in the backup. Default is Yes. For a Platform Services Controller
+this part is not available therefor on a PSC only the Inventory and Configuration are included in the backup. For vCenter Inventory and Config]]></description>
+  <position y="0.45454545454545325" x="25.0"></position>
+  <attrib name="ssoPassword" type="SecureString" read-only="false">
+    <value encoded="n"><![CDATA[24BR61V47M64Q65O70G32R31G6AK74L63Z31L64V25Q4DZ49Y4EX6AH35K4CM25M5EY4EK6DH21V4CA4BD3M2168775L7FDBED0H638F584G4F108D5GD0F521CLA6E132CY28CCCFFZ]]></value>
+    <description><![CDATA[Password for the SSO user]]></description>
+  </attrib>
+  <attrib name="ssoUser" type="string" read-only="false">
+    <value encoded="n"><![CDATA[svc_vcsa_backup]]></value>
+    <description><![CDATA[User for the connection to vCenter / PSC]]></description>
+  </attrib>
+  <attrib name="ftpPassword" type="SecureString" read-only="false">
+    <value encoded="n"><![CDATA[16BM6FX32V35V4DS77W58P50J31Y26S67J26I44U39J79U6BP39UA3D5EF8H67E5ACUC5A402BVC07B0D6I9A583AEJA49BD2ESE607AABS9FCA67DM9725E94T4E1A565LC24C07BOA07A2ADT4B74E9BK756ADDCV72D9F5DI89E3869M]]></value>
+    <description><![CDATA[Password for the FTP user]]></description>
+  </attrib>
+  <attrib name="ftpUser" type="string" read-only="false">
+    <value encoded="n"><![CDATA[svc_vro]]></value>
+    <description><![CDATA[User for the FTP host]]></description>
+  </attrib>
+  <attrib name="ftpHost" type="string" read-only="false">
+    <value encoded="n"><![CDATA[pclidcdvtftp01.dv.pc.local]]></value>
+    <description><![CDATA[FTP host to store the backup]]></description>
+  </attrib>
+  <attrib name="backupDateTime" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+    <description><![CDATA[Used to place each backup set in a unique directory]]></description>
+  </attrib>
+  <attrib name="restHosts" type="Array/REST:RESTHost" read-only="false">
+    <value encoded="n"><![CDATA[#{#REST:RESTHost#dunes://service.dunes.ch/CustomSDKObject?id='7baecfcd-5373-4300-9188-44553a4c2c48'&dunesName='REST:RESTHost'#;#REST:RESTHost#dunes://service.dunes.ch/CustomSDKObject?id='f562b6e3-a418-40a2-bfeb-60e7fdd46989'&dunesName='REST:RESTHost'#}#]]></value>
+    <description><![CDATA[Rest hosts to perform backup for (rest host name should match FQDN)]]></description>
+  </attrib>
+  <attrib name="seat" type="boolean" read-only="false">
+    <value encoded="n"><![CDATA[false]]></value>
+    <description><![CDATA[Set to yes to also backup Stats, Events, Alarms, and Tasks (SEAT)]]></description>
+  </attrib>
+  <attrib name="numberOfHoststoBackup" type="number" read-only="false">
+    <value encoded="n"><![CDATA[__NULL__]]></value>
+    <description><![CDATA[Will be used to store the number of hosts found in the array of rest hosts]]></description>
+  </attrib>
+  <attrib name="hostCounter" type="number" read-only="false">
+    <value encoded="n"><![CDATA[0.0]]></value>
+    <description><![CDATA[counter to increment to track which host in the array to backup]]></description>
+  </attrib>
+  <workflow-item name="item1" out-name="item6" type="task">
+    <display-name><![CDATA[Appliance Backup to FTP]]></display-name>
+    <script encoded="false"><![CDATA[//set main variables for the script based on workflow attributes
+//I have made the assumption that your rest host name is identical to the FQDN for the host
+var appliance = restHosts[hostCounter].name;
+System.log("Starting backup process for host: "+appliance);
+
+//create an authentication session for the rest host
+var request = restHosts[hostCounter].createRequest("POST", "https://" + appliance + "/rest/com/vmware/cis/session", "");
+var response = request.executeWithCredentials(ssoUser, ssoPassword);
+var sessionid = JSON.parse(response.contentAsString).value;
+
+System.log("response code: " + response.statusCode);
+System.log("response body: " + response.contentAsString);
+System.log("sessionid: " + sessionid);
+
+//get the possible backup parts: common (Inventory and Configuration) is always present 
+//and mandatory (vCenter and PSC) but SEAT (Stats, Events, Alarms, and Tasks) is only available for vCenter
+partsRequest = restHosts[hostCounter].createRequest("GET", "https://" + appliance + "/rest/appliance/recovery/backup/parts", "");
+var partsResponse = partsRequest.executeWithCredentials(ssoUser, ssoPassword);
+
+System.log("get parts list response code: " + partsResponse.statusCode);
+System.log("get parts list response body: " + partsResponse.contentAsString);
+
+//if the keyword seat is present in the parts list then it must be vCenter, not a PSC
+//so if we do not find seat then we use a variable to later decide not to include the seat part
+seatFound = partsResponse.contentAsString.indexOf("seat");
+var psc = false;
+if (seatFound < 1) {
+    //seat was not found in the response fro the server so it must be a psc
+    psc = true;
+}
+System.log("seat: " + seat);
+System.log(seatFound);
+
+//use the workflow attribute seat to decide whether or not to include the seat-part in the backup 
+//but only when it's not a PSC
+if ((seat === true) && (psc === false)) {
+   var taskjson = 
+	{ "piece":
+      {
+          "location_type":"SCP",
+          "comment":"Automatic backup " + backupDateTime ,
+//          "location":"SCP://"+ftpHost+"/home/svc_vro/backup/"+appliance+"/"+backupDateTime+"/",
+          "location":""+ftpHost+"/home/svc_vro/backup/"+appliance+"/"+backupDateTime+"/",
+          "location_user":ftpUser,
+          "location_password":ftpPassword,
+		  "parts":["common","seat"] //backup both Inventory and Confgiuration and SEAT-part
+      }
+	}
+}
+else
+{
+   var taskjson = 
+	{ "piece":
+      {
+          "location_type":"SCP",
+          "comment":"Automatic backup " + backupDateTime ,
+//          "location":"SCP://"+ftpHost+"/home/svc_vro/backup/"+appliance+"/"+backupDateTime+"/",
+          "location":""+ftpHost+"/home/svc_vro/backup/"+appliance+"/"+backupDateTime+"/",
+          "location_user":ftpUser,
+          "location_password":ftpPassword,
+		  "parts":["common"] //only backup the mandatory common part with Inventory and Configuration
+      }
+	}
+}
+
+//create a backup job
+request = restHosts[hostCounter].createRequest("POST", "https://" + appliance + "/rest/appliance/recovery/backup/job", JSON.stringify(taskjson));
+request.setHeader("Accept", "application/json");
+request.setHeader("Content-Type", "application/json");
+var response = request.executeWithCredentials(ssoUser, ssoPassword);
+var jobid = JSON.parse(response.contentAsString).value.id;
+System.log("response code: " + response.statusCode);
+System.log("response body: " + response.contentAsString);
+System.log("backup job id: " + jobid);
+
+var status = "INPROGRESS";
+while (status == "INPROGRESS") {
+  System.sleep(10000);
+  request = restHosts[hostCounter].createRequest("GET", "https://" + appliance + "/rest/appliance/recovery/backup/job/" + jobid, "");
+  request.setHeader("Accept", "application/json");
+  response = request.executeWithCredentials(ssoUser, ssoPassword);
+  status = JSON.parse(response.contentAsString).value.state;
+  System.log("response code: " + response.statusCode);
+  System.log("status: " + status);
+  System.log("response body: " + response.contentAsString);
+}
+
+System.log("Completion status: " + status);
+]]></script>
+    <in-binding>
+      <bind name="ssoPassword" type="SecureString" export-name="ssoPassword"></bind>
+      <bind name="ssoUser" type="string" export-name="ssoUser"></bind>
+      <bind name="ftpPassword" type="SecureString" export-name="ftpPassword"></bind>
+      <bind name="ftpUser" type="string" export-name="ftpUser"></bind>
+      <bind name="ftpHost" type="string" export-name="ftpHost"></bind>
+      <bind name="backupDateTime" type="string" export-name="backupDateTime"></bind>
+      <bind name="seat" type="boolean" export-name="seat"></bind>
+      <bind name="restHosts" type="Array/REST:RESTHost" export-name="restHosts"></bind>
+      <bind name="hostCounter" type="number" export-name="hostCounter"></bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <position y="9.954545454545453" x="404.5"></position>
+  </workflow-item>
+  <workflow-item name="item2" out-name="item3" type="task">
+    <display-name><![CDATA[Define Parent Backup Directory]]></display-name>
+    <script encoded="false"><![CDATA[function pad(num) {
+    //function to add leading 0 when number is only one digit. (1 becomes 01)
+	var s = num+"";	
+	while (s.length < 2) s = "0" + s;
+	return s;
+}
+
+//construct a variable with the date and time to store the backup in a unique directory, 
+//the main backup script will create an additional child directory per server  
+date = new Date;
+day = pad(date.getDate().toString());
+month = pad((date.getMonth()+1).toString());
+year = date.getFullYear().toString();
+hour = pad(date.getHours().toString());
+minute = pad(date.getMinutes().toString());
+backupDateTime =  year + "-"+ month + "-"+day +"-"+hour+"-"+minute;]]></script>
+    <in-binding></in-binding>
+    <out-binding>
+      <bind name="backupDateTime" type="string" export-name="backupDateTime"></bind>
+    </out-binding>
+    <position y="9.954545454545453" x="124.5"></position>
+  </workflow-item>
+  <workflow-item name="item3" out-name="item1" type="task">
+    <display-name><![CDATA[Get number of hosts to backup]]></display-name>
+    <script encoded="false"><![CDATA[//use the array of rest hosts to define how many hosts to backup to loop through the array
+numberOfHoststoBackup = restHosts.length;
+]]></script>
+    <in-binding>
+      <bind name="restHosts" type="Array/REST:RESTHost" export-name="restHosts"></bind>
+    </in-binding>
+    <out-binding>
+      <bind name="numberOfHoststoBackup" type="number" export-name="numberOfHoststoBackup"></bind>
+    </out-binding>
+    <position y="9.954545454545453" x="264.5"></position>
+  </workflow-item>
+  <workflow-item name="item0" out-name="item5" type="custom-condition" alt-out-name="item1">
+    <display-name><![CDATA[All host backups created?]]></display-name>
+    <script encoded="false"><![CDATA[
+return (hostCounter >= (numberOfHoststoBackup ));
+
+]]></script>
+    <in-binding>
+      <bind name="numberOfHoststoBackup" type="number" export-name="numberOfHoststoBackup"></bind>
+      <bind name="hostCounter" type="number" export-name="hostCounter"></bind>
+    </in-binding>
+    <position y="54.5" x="465.0"></position>
+  </workflow-item>
+  <workflow-item name="item5" type="end" end-mode="0">
+    <position y="54.5" x="604.5"></position>
+  </workflow-item>
+  <workflow-item name="item6" prototype-id="increase-counter" out-name="item0" content-mode="x" type="task">
+    <display-name><![CDATA[Increase counter]]></display-name>
+    <script encoded="false"><![CDATA[//Auto-generated script
+counter = counter+1;]]></script>
+    <in-binding>
+      <bind name="counter" type="number" export-name="hostCounter">
+        <description><![CDATA[counter to increment]]></description>
+      </bind>
+    </in-binding>
+    <out-binding>
+      <bind name="counter" type="number" export-name="hostCounter">
+        <description><![CDATA[counter incremented]]></description>
+      </bind>
+    </out-binding>
+    <description><![CDATA[Increment a counter by one]]></description>
+    <position y="9.954545454545453" x="525.0"></position>
+  </workflow-item>
+  <presentation></presentation>
+</workflow>

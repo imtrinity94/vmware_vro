@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Exported from [server]</comment>
+<entry key="categoryPath">Library.VAPI.Examples.vSphere</entry>
+<entry key="categoryPathEscaped">TGlicmFyeQ==.VkFQSQ==.RXhhbXBsZXM=.dlNwaGVyZQ==</entry>
+<entry key="name">Create CIS session</entry>
+<entry key="type">Workflow</entry>
+<entry key="id">1d04a4fe-079f-4a5c-ae54-3ceebe4fcc5a</entry>
+</properties>

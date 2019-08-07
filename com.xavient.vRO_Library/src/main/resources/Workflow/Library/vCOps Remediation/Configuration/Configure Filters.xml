@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item1" object-name="Workflow:name=generic" id="ecacd160-1030-495b-8dc6-9ccf809eefdb" version="0.0.2" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Configure Filters]]></display-name>
+  <position y="50.0" x="100.0"></position>
+  <input>
+    <param name="entityName" type="Array/string">
+      <description><![CDATA[Entity Name]]></description>
+    </param>
+    <param name="entityType" type="Array/string">
+      <description><![CDATA[Entity Type]]></description>
+    </param>
+    <param name="critCritical" type="boolean">
+      <description><![CDATA[Critical]]></description>
+    </param>
+    <param name="critImmediate" type="boolean">
+      <description><![CDATA[Immediate]]></description>
+    </param>
+    <param name="critWarning" type="boolean">
+      <description><![CDATA[Warning]]></description>
+    </param>
+    <param name="critInfo" type="boolean">
+      <description><![CDATA[Info]]></description>
+    </param>
+    <param name="critNone" type="boolean">
+      <description><![CDATA[None]]></description>
+    </param>
+    <param name="typeHealth" type="boolean">
+      <description><![CDATA[Health]]></description>
+    </param>
+    <param name="typeRisk" type="boolean">
+      <description><![CDATA[Risk]]></description>
+    </param>
+    <param name="typeEfficiency" type="boolean">
+      <description><![CDATA[Efficiency]]></description>
+    </param>
+    <param name="typeAdmAlert" type="boolean">
+      <description><![CDATA[Administrative Alert]]></description>
+    </param>
+    <param name="subtypeWorkload" type="boolean">
+      <description><![CDATA[Workload]]></description>
+    </param>
+    <param name="subtypeAmonalies" type="boolean">
+      <description><![CDATA[Anomalies]]></description>
+    </param>
+    <param name="subtypeFaults" type="boolean">
+      <description><![CDATA[Faults]]></description>
+    </param>
+    <param name="subtypeTimeRemaining" type="boolean">
+      <description><![CDATA[Time Remaining]]></description>
+    </param>
+    <param name="subtypeCapacityRemaining" type="boolean">
+      <description><![CDATA[Capacity Remaining]]></description>
+    </param>
+    <param name="subtypeStress" type="boolean">
+      <description><![CDATA[Stress]]></description>
+    </param>
+    <param name="subtypeWaste" type="boolean">
+      <description><![CDATA[Waste]]></description>
+    </param>
+    <param name="subtypeDensity" type="boolean">
+      <description><![CDATA[Density]]></description>
+    </param>
+    <param name="subtypeSystem" type="boolean">
+      <description><![CDATA[System]]></description>
+    </param>
+    <param name="subtypeEnvironment" type="boolean">
+      <description><![CDATA[Environment]]></description>
+    </param>
+  </input>
+  <attrib name="cfgCriticality" type="Array/string" read-only="false" conf-id="631886e7-0d8d-4e8f-bb35-5ed8704a69da" conf-key="criticality">
+    <value encoded="n"><![CDATA[__NULL__]]></value>
+  </attrib>
+  <attrib name="cfgType" type="Array/string" read-only="false" conf-id="631886e7-0d8d-4e8f-bb35-5ed8704a69da" conf-key="type">
+    <value encoded="n"><![CDATA[__NULL__]]></value>
+  </attrib>
+  <attrib name="cfgSubtype" type="Array/string" read-only="false" conf-id="631886e7-0d8d-4e8f-bb35-5ed8704a69da" conf-key="subtype">
+    <value encoded="n"><![CDATA[__NULL__]]></value>
+  </attrib>
+  <attrib name="cfgEntityName" type="Array/string" read-only="false" conf-id="631886e7-0d8d-4e8f-bb35-5ed8704a69da" conf-key="entityName">
+    <value encoded="n"><![CDATA[__NULL__]]></value>
+  </attrib>
+  <attrib name="cfgEntityType" type="Array/string" read-only="false" conf-id="631886e7-0d8d-4e8f-bb35-5ed8704a69da" conf-key="entityType">
+    <value encoded="n"><![CDATA[__NULL__]]></value>
+  </attrib>
+  <attrib name="filterConfig" type="ConfigurationElement" read-only="false">
+    <value encoded="n"><![CDATA[dunes://service.dunes.ch/ConfigurationElement?id='631886e7-0d8d-4e8f-bb35-5ed8704a69da'&dunesName='ConfigurationElement']]></value>
+  </attrib>
+  <workflow-item name="item0" type="end" end-mode="0">
+    <position y="45.40909090909091" x="384.5"></position>
+  </workflow-item>
+  <workflow-item name="item1" out-name="item0" type="task">
+    <display-name><![CDATA[Scriptable task]]></display-name>
+    <script encoded="false"><![CDATA[// Entity Name
+cfgEntityName = entityName;
+
+filterConfig.setAttributeWithKey("entityName", cfgEntityName);
+
+// Entity Type
+cfgEntityType = entityType;
+
+filterConfig.setAttributeWithKey("entityType", cfgEntityType);
+
+// Criticality
+cfgCriticality = [];
+if (critCritical) cfgCriticality.push("Critical");
+if (critImmediate) cfgCriticality.push("Immediate");
+if (critWarning) cfgCriticality.push("Warning");
+if (critInfo) cfgCriticality.push("Info");
+if (critNone) cfgCriticality.push("None");
+
+filterConfig.setAttributeWithKey("criticality", cfgCriticality);
+
+// Type
+cfgType = [];
+if (typeHealth) cfgType.push("Health");
+if (typeRisk) cfgType.push("Risk");
+if (typeEfficiency) cfgType.push("Efficiency");
+if (typeAdmAlert) cfgType.push("Administrative Alert");
+
+filterConfig.setAttributeWithKey("type", cfgType);
+
+// Subtype
+cfgSubtype = [];
+if (subtypeWorkload) cfgSubtype.push("Workload");
+if (subtypeAmonalies) cfgSubtype.push("Anomalies");
+if (subtypeFaults) cfgSubtype.push("Faults");
+if (subtypeTimeRemaining) cfgSubtype.push("Time Remaining");
+if (subtypeCapacityRemaining) cfgSubtype.push("Capacity Remaining");
+if (subtypeStress) cfgSubtype.push("Stress");
+if (subtypeWaste) cfgSubtype.push("Waste");
+if (subtypeDensity) cfgSubtype.push("Density");
+if (subtypeSystem) cfgSubtype.push("System");
+if (subtypeEnvironment) cfgSubtype.push("Environment");
+
+filterConfig.setAttributeWithKey("subtype", cfgSubtype);
+]]></script>
+    <in-binding>
+      <bind name="cfgCriticality" type="Array/string" export-name="cfgCriticality"></bind>
+      <bind name="critCritical" type="boolean" export-name="critCritical">
+        <description><![CDATA[Critical]]></description>
+      </bind>
+      <bind name="critImmediate" type="boolean" export-name="critImmediate">
+        <description><![CDATA[Immediate]]></description>
+      </bind>
+      <bind name="critWarning" type="boolean" export-name="critWarning">
+        <description><![CDATA[Warning]]></description>
+      </bind>
+      <bind name="critInfo" type="boolean" export-name="critInfo">
+        <description><![CDATA[Info]]></description>
+      </bind>
+      <bind name="critNone" type="boolean" export-name="critNone">
+        <description><![CDATA[None]]></description>
+      </bind>
+      <bind name="filterConfig" type="ConfigurationElement" export-name="filterConfig"></bind>
+      <bind name="typeHealth" type="boolean" export-name="typeHealth"></bind>
+      <bind name="typeRisk" type="boolean" export-name="typeRisk"></bind>
+      <bind name="typeEfficiency" type="boolean" export-name="typeEfficiency"></bind>
+      <bind name="typeAdmAlert" type="boolean" export-name="typeAdmAlert"></bind>
+      <bind name="subtypeWorkload" type="boolean" export-name="subtypeWorkload"></bind>
+      <bind name="subtypeAmonalies" type="boolean" export-name="subtypeAmonalies"></bind>
+      <bind name="subtypeFaults" type="boolean" export-name="subtypeFaults"></bind>
+      <bind name="subtypeTimeRemaining" type="boolean" export-name="subtypeTimeRemaining"></bind>
+      <bind name="subtypeCapacityRemaining" type="boolean" export-name="subtypeCapacityRemaining"></bind>
+      <bind name="subtypeStress" type="boolean" export-name="subtypeStress"></bind>
+      <bind name="subtypeWaste" type="boolean" export-name="subtypeWaste"></bind>
+      <bind name="subtypeDensity" type="boolean" export-name="subtypeDensity"></bind>
+      <bind name="subtypeSystem" type="boolean" export-name="subtypeSystem"></bind>
+      <bind name="subtypeEnvironment" type="boolean" export-name="subtypeEnvironment"></bind>
+      <bind name="cfgType" type="Array/string" export-name="cfgType"></bind>
+      <bind name="cfgSubtype" type="Array/string" export-name="cfgSubtype"></bind>
+      <bind name="entityName" type="Array/string" export-name="entityName"></bind>
+      <bind name="cfgEntityName" type="Array/string" export-name="cfgEntityName"></bind>
+      <bind name="entityType" type="Array/string" export-name="entityType"></bind>
+      <bind name="cfgEntityType" type="Array/string" export-name="cfgEntityType"></bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <position y="55.40909090909091" x="204.5"></position>
+  </workflow-item>
+  <presentation>
+    <p-group>
+      <title><![CDATA[EntityName]]></title>
+      <desc><![CDATA[Entity Name]]></desc>
+      <p-param name="entityName">
+        <desc><![CDATA[Entity Name]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="Array/string"><![CDATA[#cfgEntityName]]></p-qual>
+      </p-param>
+    </p-group>
+    <p-group>
+      <title><![CDATA[EntityType]]></title>
+      <desc><![CDATA[Entity Type]]></desc>
+      <p-param name="entityType">
+        <desc><![CDATA[Entity Type]]></desc>
+      </p-param>
+    </p-group>
+    <p-group>
+      <title><![CDATA[Criticality]]></title>
+      <p-param name="critCritical">
+        <desc><![CDATA[Critical]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgCriticality , "Critical" )]]></p-qual>
+      </p-param>
+      <p-param name="critImmediate">
+        <desc><![CDATA[Immediate]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgCriticality , "Immediate" )]]></p-qual>
+      </p-param>
+      <p-param name="critWarning">
+        <desc><![CDATA[Warning]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgCriticality , "Warning" )]]></p-qual>
+      </p-param>
+      <p-param name="critInfo">
+        <desc><![CDATA[Info]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgCriticality , "Info" )]]></p-qual>
+      </p-param>
+      <p-param name="critNone">
+        <desc><![CDATA[None]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgCriticality , "None" )]]></p-qual>
+      </p-param>
+    </p-group>
+    <p-group>
+      <title><![CDATA[Type]]></title>
+      <p-param name="typeHealth">
+        <desc><![CDATA[Health]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgType , "Health" )]]></p-qual>
+      </p-param>
+      <p-param name="typeRisk">
+        <desc><![CDATA[Risk]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgType , "Risk" )]]></p-qual>
+      </p-param>
+      <p-param name="typeEfficiency">
+        <desc><![CDATA[Efficiency]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgType , "Efficiency" )]]></p-qual>
+      </p-param>
+      <p-param name="typeAdmAlert">
+        <desc><![CDATA[Administrative Alert]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgType , "Administrative Alert" )]]></p-qual>
+      </p-param>
+    </p-group>
+    <p-group>
+      <title><![CDATA[SubType]]></title>
+      <p-param name="subtypeWorkload">
+        <desc><![CDATA[Workload]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgSubtype , "Workload" )]]></p-qual>
+      </p-param>
+      <p-param name="subtypeAmonalies">
+        <desc><![CDATA[Anomalies]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgSubtype , "Anomalies" )]]></p-qual>
+      </p-param>
+      <p-param name="subtypeFaults">
+        <desc><![CDATA[Faults]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgSubtype , "Faults" )]]></p-qual>
+      </p-param>
+      <p-param name="subtypeTimeRemaining">
+        <desc><![CDATA[Time Remaining]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgSubtype , "Time Remaining" )]]></p-qual>
+      </p-param>
+      <p-param name="subtypeCapacityRemaining">
+        <desc><![CDATA[Capacity Remaining]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgSubtype , "Capacity Remaining" )]]></p-qual>
+      </p-param>
+      <p-param name="subtypeStress">
+        <desc><![CDATA[Stress]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgSubtype , "Stress" )]]></p-qual>
+      </p-param>
+      <p-param name="subtypeWaste">
+        <desc><![CDATA[Waste]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgSubtype , "Waste" )]]></p-qual>
+      </p-param>
+      <p-param name="subtypeDensity">
+        <desc><![CDATA[Density]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgSubtype , "Density" )]]></p-qual>
+      </p-param>
+      <p-param name="subtypeSystem">
+        <desc><![CDATA[System]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgSubtype , "System" )]]></p-qual>
+      </p-param>
+      <p-param name="subtypeEnvironment">
+        <desc><![CDATA[Environment]]></desc>
+        <p-qual kind="ognl" name="defaultValue" type="boolean"><![CDATA[GetAction("com.vmware.library.snmp.vcops","arrayContainsString").call( #cfgSubtype , "Environment" )]]></p-qual>
+      </p-param>
+    </p-group>
+  </presentation>
+</workflow>

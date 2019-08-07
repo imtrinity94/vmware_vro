@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Exported from [server]</comment>
+<entry key="categoryPath">Library.VMwarebits.Backup</entry>
+<entry key="categoryPathEscaped">TGlicmFyeQ==.Vk13YXJlYml0cw==.QmFja3Vw</entry>
+<entry key="name">vCenter Appliance Backup</entry>
+<entry key="type">Workflow</entry>
+<entry key="id">e42af9c3-c514-4546-89dc-4e284946faad</entry>
+</properties>

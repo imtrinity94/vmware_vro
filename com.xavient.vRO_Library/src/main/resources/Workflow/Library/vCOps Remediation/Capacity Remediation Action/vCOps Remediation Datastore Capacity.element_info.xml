@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Exported from [server]</comment>
+<entry key="categoryPath">Library.vCOps Remediation.Capacity Remediation Action</entry>
+<entry key="categoryPathEscaped">TGlicmFyeQ==.dkNPcHMgUmVtZWRpYXRpb24=.Q2FwYWNpdHkgUmVtZWRpYXRpb24gQWN0aW9u</entry>
+<entry key="name">vCOps Remediation Datastore Capacity</entry>
+<entry key="type">Workflow</entry>
+<entry key="id">c030bae8-f6af-40a0-8a53-49d1a24cebcd</entry>
+</properties>

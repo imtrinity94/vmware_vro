@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item1" object-name="Workflow:name=generic" id="8F8080808080808080808080808080808D80808001304924533492bf8ebee26f5" version="1.0.0" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Add tables to a database]]></display-name>
+  <description><![CDATA[Adds database tables to a database in the plug-in's inventory.]]></description>
+  <ref-types><![CDATA[(SQL:Database)]]></ref-types>
+  <position y="10.0" x="180.0"></position>
+  <input>
+    <param name="database" type="SQL:Database">
+      <description><![CDATA[A database]]></description>
+    </param>
+    <param name="tableNames" type="Array/string">
+      <description><![CDATA[Names of tables to be added ]]></description>
+    </param>
+  </input>
+  <output>
+    <param name="result" type="Array/SQL:Table">
+      <description><![CDATA[An array of table objects]]></description>
+    </param>
+  </output>
+  <attrib name="errorCode" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+    <description><![CDATA[An error message or code]]></description>
+  </attrib>
+  <workflow-item name="item0" type="end" end-mode="0">
+    <position y="142.0" x="185.0"></position>
+  </workflow-item>
+  <workflow-item name="item1" out-name="item0" catch-name="item2" throw-bind-name="errorCode" type="task">
+    <display-name><![CDATA[Scriptable task]]></display-name>
+    <script encoded="false"><![CDATA[result = SQLDatabaseManager.addTablesToDatabase(database, tableNames);
+for(var i = 0; i < tableNames.length; ++i) {
+	System.log("Added table " + tableNames[i] + " to database " + database.name);
+}]]></script>
+    <in-binding>
+      <bind name="database" type="SQL:Database" export-name="database"></bind>
+      <bind name="tableNames" type="Array/string" export-name="tableNames"></bind>
+    </in-binding>
+    <out-binding>
+      <bind name="result" type="Array/SQL:Table" export-name="result"></bind>
+    </out-binding>
+    <position y="82.5" x="145.0"></position>
+  </workflow-item>
+  <workflow-item name="item2" throw-bind-name="errorCode" type="end" end-mode="1">
+    <position y="72.5" x="365.0"></position>
+  </workflow-item>
+  <presentation>
+    <p-step>
+      <title><![CDATA[Map database tables]]></title>
+      <p-group>
+        <title><![CDATA[Select a database]]></title>
+        <desc><![CDATA[Database to add tables to]]></desc>
+        <p-param name="database">
+          <desc><![CDATA[Database]]></desc>
+          <p-qual kind="static" name="mandatory" type="boolean"><![CDATA[true]]></p-qual>
+          <p-qual name="contextualParameter" type="void"><![CDATA[]]></p-qual>
+        </p-param>
+      </p-group>
+      <p-group>
+        <title><![CDATA[Select tables to import]]></title>
+        <desc><![CDATA[Tables to be imported]]></desc>
+        <p-qual kind="ognl" name="visible" type="boolean"><![CDATA[#database != null]]></p-qual>
+        <p-param name="tableNames">
+          <desc><![CDATA[Tables]]></desc>
+          <p-qual kind="static" name="mandatory" type="boolean"><![CDATA[true]]></p-qual>
+          <p-qual kind="ognl" name="genericEnumeration" type="Array/Array/string"><![CDATA[GetAction("com.vmware.library.sql.configuration","getAllTableNames").call(#database)]]></p-qual>
+          <p-qual kind="static" name="sameValues" type="boolean"><![CDATA[false]]></p-qual>
+        </p-param>
+      </p-group>
+    </p-step>
+  </presentation>
+</workflow>

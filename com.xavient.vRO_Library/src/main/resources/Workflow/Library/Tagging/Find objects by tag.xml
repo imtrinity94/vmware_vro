@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item1" object-name="workflow:name=generic" id="e8dbabb8-772f-4d9e-a88f-8f952ef61a04" version="0.0.2" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Find objects by tag]]></display-name>
+  <description><![CDATA[Finds objects by the tags assigned to them. You provide the names and values of the tags and the workflow returns a list of the objects to which these tags apply.
+
+In Advanced mode, a query can be provided in JSON format with the following syntax.
+
+Example :  [ {'tag':'tag_name', 'value':'tag_value'},{'tag':'another_tag_name'}]
+
+At least one tag must be provided. Value property is optional. 
+To search for global tags, the tag name must be prefixed with ":".]]></description>
+  <position y="50.0" x="100.0"></position>
+  <input>
+    <param name="advanced" type="boolean">
+      <description><![CDATA[Advanced]]></description>
+    </param>
+    <param name="advancedQuery" type="string">
+      <description><![CDATA[Tag filters]]></description>
+    </param>
+    <param name="tagName1" type="string">
+      <description><![CDATA[Tag]]></description>
+    </param>
+    <param name="tagValue1" type="string">
+      <description><![CDATA[Value]]></description>
+    </param>
+    <param name="tagIsGlobal1" type="boolean">
+      <description><![CDATA[Search for global tag]]></description>
+    </param>
+    <param name="tagName2" type="string">
+      <description><![CDATA[Tag]]></description>
+    </param>
+    <param name="tagValue2" type="string">
+      <description><![CDATA[Value]]></description>
+    </param>
+    <param name="tagIsGlobal2" type="boolean">
+      <description><![CDATA[Search for global tag]]></description>
+    </param>
+    <param name="tagName3" type="string">
+      <description><![CDATA[Tag]]></description>
+    </param>
+    <param name="tagValue3" type="string">
+      <description><![CDATA[Value]]></description>
+    </param>
+    <param name="tagIsGlobal3" type="boolean">
+      <description><![CDATA[Search for global tag]]></description>
+    </param>
+    <param name="tagName4" type="string">
+      <description><![CDATA[Tag]]></description>
+    </param>
+    <param name="tagValue4" type="string">
+      <description><![CDATA[Value]]></description>
+    </param>
+    <param name="tagIsGlobal4" type="boolean">
+      <description><![CDATA[Search for global tag]]></description>
+    </param>
+  </input>
+  <output>
+    <param name="objects" type="Array/Any">
+      <description><![CDATA[Tagged objects]]></description>
+    </param>
+  </output>
+  <workflow-item name="item0" type="end" end-mode="0">
+    <position y="45.40909090909091" x="364.5"></position>
+  </workflow-item>
+  <workflow-item name="item1" out-name="item0" type="task">
+    <display-name><![CDATA[Find objects by tag]]></display-name>
+    <script encoded="false"><![CDATA[var tagQuery = new TagQuery();
+
+function addTagFilter(tag, value, isGlobal ){
+  if (tag != null && tag.length > 0) {
+     if  (isGlobal) {
+       tagQuery.hasGlobalTag(tag,value);
+     } else {
+       tagQuery.hasTag(tag,value);
+     }     
+  }
+}
+
+var  found;
+if (advanced) {	  
+	found = Server.queryByTags(eval(advancedQuery), null);
+} else {
+	addTagFilter(tagName1, tagValue1, tagIsGlobal1)
+	addTagFilter(tagName2, tagValue2, tagIsGlobal2)
+	addTagFilter(tagName3, tagValue3, tagIsGlobal3)
+	addTagFilter(tagName4, tagValue4, tagIsGlobal4)
+	System.log("Query :" + tagQuery);
+	found = Server.queryByTags(tagQuery, null);
+}
+
+System.log ( 'Objects found :' + found.length );
+objects  = new Array();
+for ( var idx in found) {
+	System.log(found[idx])
+	objects[idx] = found[idx]
+}
+]]></script>
+    <in-binding>
+      <bind name="advanced" type="boolean" export-name="advanced"></bind>
+      <bind name="advancedQuery" type="string" export-name="advancedQuery"></bind>
+      <bind name="tagName1" type="string" export-name="tagName1"></bind>
+      <bind name="tagValue1" type="string" export-name="tagValue1"></bind>
+      <bind name="tagIsGlobal1" type="boolean" export-name="tagIsGlobal1"></bind>
+      <bind name="tagName2" type="string" export-name="tagName2"></bind>
+      <bind name="tagValue2" type="string" export-name="tagValue2"></bind>
+      <bind name="tagIsGlobal2" type="boolean" export-name="tagIsGlobal2"></bind>
+      <bind name="tagName3" type="string" export-name="tagName3"></bind>
+      <bind name="tagValue3" type="string" export-name="tagValue3"></bind>
+      <bind name="tagIsGlobal3" type="boolean" export-name="tagIsGlobal3"></bind>
+      <bind name="tagName4" type="string" export-name="tagName4"></bind>
+      <bind name="tagValue4" type="string" export-name="tagValue4"></bind>
+      <bind name="tagIsGlobal4" type="boolean" export-name="tagIsGlobal4"></bind>
+    </in-binding>
+    <out-binding>
+      <bind name="objects" type="Array/Any" export-name="objects"></bind>
+    </out-binding>
+    <position y="55.40909090909091" x="204.5"></position>
+  </workflow-item>
+  <presentation>
+    <p-step>
+      <title><![CDATA[Tag filters]]></title>
+      <p-group>
+        <title><![CDATA[Filter 1]]></title>
+        <p-param name="advanced">
+          <desc><![CDATA[Advanced]]></desc>
+        </p-param>
+        <p-param name="advancedQuery">
+          <desc><![CDATA[Tag filters
+[ {"tag":"tag_name", "value":"tag_value"},  {"tag":":global_tag_name", "value":"value"}]]]></desc>
+          <p-qual kind="ognl" name="visible" type="boolean"><![CDATA[#advanced]]></p-qual>
+        </p-param>
+        <p-param name="tagName1">
+          <desc><![CDATA[Tag name]]></desc>
+          <p-qual kind="ognl" name="visible" type="boolean"><![CDATA[#advanced==false]]></p-qual>
+        </p-param>
+        <p-param name="tagValue1">
+          <desc><![CDATA[Tag value]]></desc>
+          <p-qual kind="ognl" name="visible" type="boolean"><![CDATA[#advanced==false]]></p-qual>
+        </p-param>
+        <p-param name="tagIsGlobal1">
+          <desc><![CDATA[Search in global tags]]></desc>
+          <p-qual kind="ognl" name="visible" type="boolean"><![CDATA[#advanced==false]]></p-qual>
+        </p-param>
+      </p-group>
+      <p-group>
+        <title><![CDATA[Filter 2]]></title>
+        <p-qual kind="ognl" name="visible" type="boolean"><![CDATA[#advanced==false && (#tagName1!=null || #tagName2!=null)]]></p-qual>
+        <p-param name="tagName2">
+          <desc><![CDATA[Tag name]]></desc>
+        </p-param>
+        <p-param name="tagValue2">
+          <desc><![CDATA[Tag value]]></desc>
+        </p-param>
+        <p-param name="tagIsGlobal2">
+          <desc><![CDATA[Search in global tags]]></desc>
+        </p-param>
+      </p-group>
+      <p-group>
+        <title><![CDATA[Filter 3]]></title>
+        <p-qual kind="ognl" name="visible" type="boolean"><![CDATA[#advanced==false && (#tagName2!=null || #tagName3!=null)]]></p-qual>
+        <p-param name="tagName3">
+          <desc><![CDATA[Tag]]></desc>
+        </p-param>
+        <p-param name="tagValue3">
+          <desc><![CDATA[Value]]></desc>
+        </p-param>
+        <p-param name="tagIsGlobal3">
+          <desc><![CDATA[Search in global tags]]></desc>
+        </p-param>
+      </p-group>
+      <p-group>
+        <title><![CDATA[Filter 4]]></title>
+        <p-qual kind="ognl" name="visible" type="boolean"><![CDATA[#advanced==false && (#tagName3!=null || #tagName4!=null)]]></p-qual>
+        <p-param name="tagName4">
+          <desc><![CDATA[Tag]]></desc>
+        </p-param>
+        <p-param name="tagValue4">
+          <desc><![CDATA[Value]]></desc>
+        </p-param>
+        <p-param name="tagIsGlobal4">
+          <desc><![CDATA[Search in global tags]]></desc>
+        </p-param>
+      </p-group>
+    </p-step>
+  </presentation>
+</workflow>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item1" object-name="workflow:name=generic" id="6ec349ec-1dfe-4af7-ae7b-399b3c78dd5c" version="1.0.2" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Get tag by ID]]></display-name>
+  <ref-types><![CDATA[(VAPI:VAPIEndpoint)]]></ref-types>
+  <position y="50.0" x="100.0"></position>
+  <input>
+    <param name="endpoint" type="VAPI:VAPIEndpoint"></param>
+    <param name="tagId" type="string"></param>
+  </input>
+  <attrib name="errorCode" type="string" read-only="false">
+    <value encoded="n"><![CDATA[]]></value>
+  </attrib>
+  <workflow-item name="item0" type="end" end-mode="0">
+    <position y="45.40909090909091" x="384.5"></position>
+  </workflow-item>
+  <workflow-item name="item1" out-name="item0" catch-name="item2" throw-bind-name="errorCode" type="task">
+    <display-name><![CDATA[Scriptable task]]></display-name>
+    <script encoded="false"><![CDATA[if (endpoint == null) {
+  throw "'endpoint' parameter should not be null";
+}
+if (tagId == null) {
+  throw "'tagId' parameter should not be null";
+}
+
+var client = endpoint.client();
+try {
+  var tagging = new com_vmware_cis_tagging_tag(client);
+  var result = tagging.get(tagId);
+
+  System.log(result);
+} finally {
+  client.close();
+}
+]]></script>
+    <in-binding>
+      <bind name="endpoint" type="VAPI:VAPIEndpoint" export-name="endpoint"></bind>
+      <bind name="tagId" type="string" export-name="tagId"></bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <position y="55.40909090909091" x="204.5"></position>
+  </workflow-item>
+  <workflow-item name="item2" throw-bind-name="errorCode" type="end" end-mode="1">
+    <position y="109.04545454545453" x="245.0"></position>
+  </workflow-item>
+  <presentation>
+    <p-param name="endpoint">
+      <desc><![CDATA[vAPI Endpoint]]></desc>
+      <p-qual kind="static" name="show-select-as" type="string"><![CDATA[list]]></p-qual>
+      <p-qual kind="static" name="mandatory" type="boolean"><![CDATA[true]]></p-qual>
+      <p-qual name="contextualParameter" type="void"><![CDATA[__NULL__]]></p-qual>
+    </p-param>
+    <p-param name="tagId">
+      <desc><![CDATA[Tag ID]]></desc>
+      <p-qual kind="static" name="mandatory" type="boolean"><![CDATA[true]]></p-qual>
+    </p-param>
+  </presentation>
+</workflow>

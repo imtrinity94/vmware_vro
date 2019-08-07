@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Exported from [server]</comment>
+<entry key="categoryPath">Library.Tagging</entry>
+<entry key="categoryPathEscaped">TGlicmFyeQ==.VGFnZ2luZw==</entry>
+<entry key="name">Untag workflow</entry>
+<entry key="type">Workflow</entry>
+<entry key="id">5a067901-2ced-47ef-8973-ea49ceb60d5d</entry>
+</properties>

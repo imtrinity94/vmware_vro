@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item0" object-name="workflow:name=generic" id="208080808080808080808080808080808880808001304924533492bf8ebee26f5" version="0.0.2" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Get documentation for workflow category]]></display-name>
+  <position y="20.0" x="180.0"></position>
+  <input>
+    <param name="category" type="WorkflowCategory">
+      <description><![CDATA[Workflow category, which will be documented]]></description>
+    </param>
+  </input>
+  <output>
+    <param name="result" type="MimeAttachment">
+      <description><![CDATA[The generated PDF-file, which contains the information about workflow category]]></description>
+    </param>
+  </output>
+  <workflow-item name="item0" out-name="item1" type="task">
+    <display-name><![CDATA[Scriptable task]]></display-name>
+    <script encoded="false"><![CDATA[result = workflowDocumentationService.getWorkflowCategoryDocumentation(category);]]></script>
+    <in-binding>
+      <bind name="category" type="WorkflowCategory" export-name="category"></bind>
+    </in-binding>
+    <out-binding>
+      <bind name="result" type="MimeAttachment" export-name="result"></bind>
+    </out-binding>
+    <position y="120.0" x="140.0"></position>
+  </workflow-item>
+  <workflow-item name="item1" type="end" end-mode="0">
+    <position y="210.0" x="180.0"></position>
+  </workflow-item>
+  <presentation>
+    <p-step>
+      <title><![CDATA[Workflow category]]></title>
+      <desc><![CDATA[Select workflow category]]></desc>
+      <p-param name="category">
+        <desc><![CDATA[Workflow category to document]]></desc>
+      </p-param>
+    </p-step>
+  </presentation>
+</workflow>

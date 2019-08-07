@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item0" object-name="Workflow:name=generic" id="90808080808080808080808080808080C38080800120523434428525559a3425f" version="1.0.2" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Register vCO public key on host]]></display-name>
+  <description><![CDATA[Register the vCO public key (must be generated before) to a target host.
+]]></description>
+  <position y="50.0" x="120.0"></position>
+  <input>
+    <param name="hostNameOrIP" type="string">
+      <description><![CDATA[Hostname or IP address of the SSH host]]></description>
+    </param>
+    <param name="username" type="string">
+      <description><![CDATA[Username]]></description>
+    </param>
+    <param name="password" type="SecureString">
+      <description><![CDATA[Password]]></description>
+    </param>
+  </input>
+  <attrib name="localPath" type="Path" read-only="false">
+    <description><![CDATA[Local key file]]></description>
+  </attrib>
+  <attrib name="remotePath" type="string" read-only="false">
+    <value encoded="n"><![CDATA[/tmp]]></value>
+    <description><![CDATA[Temporary location of public key file]]></description>
+  </attrib>
+  <workflow-item name="item0" out-name="item1" type="task" script-module="com.vmware.constants/getDefaultSSHKeyPairPath">
+    <display-name><![CDATA[getDefaultSSHKeyPairPath]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("com.vmware.constants").getDefaultSSHKeyPairPath() ;]]></script>
+    <in-binding></in-binding>
+    <out-binding>
+      <bind name="actionResult" type="Path" export-name="localPath"></bind>
+    </out-binding>
+    <description><![CDATA[Path on the VS-O server where the Key Pair for SSH is stored.]]></description>
+    <position y="100.0" x="80.0"></position>
+  </workflow-item>
+  <workflow-item name="item5" type="end" end-mode="0">
+    <position y="190.0" x="120.0"></position>
+  </workflow-item>
+  <workflow-item name="item1" out-name="item5" type="task" script-module="com.vmware.library.ssh/registerVSOonHost">
+    <display-name><![CDATA[registerVSOonHost]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+System.getModule("com.vmware.library.ssh").registerVSOonHost(host,username,password,localPath,remotePath) ;]]></script>
+    <in-binding>
+      <bind name="host" type="string" export-name="hostNameOrIP"></bind>
+      <bind name="username" type="string" export-name="username"></bind>
+      <bind name="password" type="SecureString" export-name="password"></bind>
+      <bind name="localPath" type="Path" export-name="localPath"></bind>
+      <bind name="remotePath" type="string" export-name="remotePath"></bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <description><![CDATA[Upload and register the VS-O public key to the target user@host.
+This will enable future connections to use public key authentication instead of password authentication for this user.]]></description>
+    <position y="140.0" x="80.0"></position>
+  </workflow-item>
+  <presentation>
+    <desc><![CDATA[This workflow will register the VS-O public key to a target host.]]></desc>
+    <p-step>
+      <title><![CDATA[Register]]></title>
+      <p-group>
+        <title><![CDATA[Register VS-O on  Host]]></title>
+        <desc><![CDATA[Enter the Host, username and password.
+
+VS-O will register its public key on the target host for the selected user.
+Future SSH connections for this username@host can then use public key authentication instead of password authentication.]]></desc>
+        <p-param name="hostNameOrIP">
+          <desc><![CDATA[Host name or IP  address of the SSH host]]></desc>
+          <p-qual kind="static" name="mandatory" type="boolean"><![CDATA[true]]></p-qual>
+        </p-param>
+        <p-param name="username">
+          <desc><![CDATA[Username]]></desc>
+        </p-param>
+        <p-param name="password">
+          <desc><![CDATA[Password]]></desc>
+        </p-param>
+      </p-group>
+    </p-step>
+  </presentation>
+</workflow>

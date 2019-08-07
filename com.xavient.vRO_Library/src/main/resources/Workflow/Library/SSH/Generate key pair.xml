@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item0" object-name="Workflow:name=generic" id="42808080808080808080808080808080CE80808001175587494510271f02ffa1f" version="2.1.3" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Generate key pair]]></display-name>
+  <description><![CDATA[Generate key pair to connect to an SSH host without a password]]></description>
+  <position y="20.0" x="80.0"></position>
+  <input>
+    <param name="type" type="string">
+      <description><![CDATA[Key type]]></description>
+    </param>
+    <param name="passphrase" type="SecureString">
+      <description><![CDATA[Pass-phrase to protect key pair]]></description>
+    </param>
+    <param name="comment" type="string">
+      <description><![CDATA[Comment to describe the key]]></description>
+    </param>
+    <param name="size" type="number">
+      <description><![CDATA[Key size]]></description>
+    </param>
+  </input>
+  <output>
+    <param name="result" type="number">
+      <description><![CDATA[0 = OK, Negative = Error, Positive = Number of values returned, after error text]]></description>
+    </param>
+    <param name="fingerPrint" type="string">
+      <description><![CDATA[Generated key fingerprint]]></description>
+    </param>
+    <param name="errorText" type="string">
+      <description><![CDATA[Error message]]></description>
+    </param>
+  </output>
+  <attrib name="keyPath" type="Path" read-only="false">
+    <description><![CDATA[Path to the key]]></description>
+  </attrib>
+  <workflow-item name="item0" out-name="item1" type="task" script-module="com.vmware.constants/getDefaultSSHKeyPairPath">
+    <display-name><![CDATA[getDefaultSSHKeyPairPath]]></display-name>
+    <script encoded="false"><![CDATA[//Auto generated script, cannot be modified !
+actionResult = System.getModule("com.vmware.constants").getDefaultSSHKeyPairPath() ;]]></script>
+    <in-binding></in-binding>
+    <out-binding>
+      <bind name="actionResult" type="Path" export-name="keyPath"></bind>
+    </out-binding>
+    <description><![CDATA[Path on the VS-O server where the Key Pair for SSH is stored.]]></description>
+    <position y="60.0" x="80.0"></position>
+  </workflow-item>
+  <workflow-item name="item1" out-name="item2" catch-name="item3" throw-bind-name="errorText" type="task">
+    <display-name><![CDATA[Generate KeyPair]]></display-name>
+    <script encoded="false"><![CDATA[try{
+	fingerPrint = KeyPairManager.generateKeyPair(type,path,passphrase, size, comment);
+	result = 0;
+} catch (e) {
+	errorText = "Failed to generate key pair: " + e;
+	Server.error("Failed to generate key pair", e);
+	result = -1;
+	throw "Failed to generate key pair: " + e;
+}]]></script>
+    <in-binding>
+      <bind name="path" type="Path" export-name="keyPath"></bind>
+      <bind name="type" type="string" export-name="type"></bind>
+      <bind name="passphrase" type="SecureString" export-name="passphrase"></bind>
+      <bind name="size" type="number" export-name="size"></bind>
+      <bind name="comment" type="string" export-name="comment"></bind>
+    </in-binding>
+    <out-binding>
+      <bind name="fingerPrint" type="string" export-name="fingerPrint">
+        <description><![CDATA[Generated key finger print]]></description>
+      </bind>
+      <bind name="result" type="number" export-name="result"></bind>
+      <bind name="errorText" type="string" export-name="errorText"></bind>
+    </out-binding>
+    <position y="100.0" x="80.0"></position>
+  </workflow-item>
+  <workflow-item name="item2" type="end" end-mode="0">
+    <position y="130.0" x="120.0"></position>
+  </workflow-item>
+  <workflow-item name="item3" throw-bind-name="errorText" type="end" end-mode="1">
+    <position y="90.0" x="260.0"></position>
+  </workflow-item>
+  <presentation>
+    <p-step>
+      <title><![CDATA[Generate]]></title>
+      <p-group>
+        <title><![CDATA[Key Pair]]></title>
+        <desc><![CDATA[Please enter key Pair definition. ( for esx 3.0 use RSA-1024)]]></desc>
+        <p-param name="type">
+          <desc><![CDATA[Key type]]></desc>
+          <p-qual name="genericEnumeration"><![CDATA[#{#string#rsa#;#string#dsa#}#]]></p-qual>
+        </p-param>
+        <p-param name="size">
+          <desc><![CDATA[Key size]]></desc>
+          <p-qual name="defaultValue" type="number"><![CDATA[1024.0]]></p-qual>
+          <p-qual name="genericEnumeration"><![CDATA[#{#number#512.0#;#number#1024.0#;#number#2048.0#}#]]></p-qual>
+        </p-param>
+        <p-param name="passphrase">
+          <desc><![CDATA[Pass-phrase (Optional)]]></desc>
+        </p-param>
+        <p-param name="comment">
+          <desc><![CDATA[Comment (Optional)]]></desc>
+        </p-param>
+      </p-group>
+    </p-step>
+  </presentation>
+</workflow>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Exported from [server]</comment>
+<entry key="categoryPath">Library.VAPI</entry>
+<entry key="categoryPathEscaped">TGlicmFyeQ==.VkFQSQ==</entry>
+<entry key="name">Add vAPI endpoint</entry>
+<entry key="type">Workflow</entry>
+<entry key="id">9fa581be-16e8-4bd5-b650-248923b494b8</entry>
+</properties>

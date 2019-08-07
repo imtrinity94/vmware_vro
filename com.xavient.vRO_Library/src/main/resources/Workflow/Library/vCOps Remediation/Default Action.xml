@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item2" object-name="Workflow:name=generic" id="888299f1-2906-4683-ab3f-79a4a642a64e" version="0.0.2" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Default Action]]></display-name>
+  <position y="50.0" x="100.0"></position>
+  <input>
+    <param name="oid" type="string"></param>
+    <param name="serverName" type="string"></param>
+    <param name="entityName" type="string"></param>
+    <param name="entityType" type="string"></param>
+    <param name="timestamp" type="string"></param>
+    <param name="criticality" type="string"></param>
+    <param name="rootCause" type="string"></param>
+    <param name="url" type="string"></param>
+    <param name="id" type="string"></param>
+    <param name="message" type="string"></param>
+    <param name="type" type="string"></param>
+    <param name="subtype" type="string"></param>
+  </input>
+  <workflow-item name="item0" type="end" end-mode="0">
+    <position y="45.40909090909091" x="384.5"></position>
+  </workflow-item>
+  <workflow-item name="item2" out-name="item0" type="task">
+    <display-name><![CDATA[Scriptable task]]></display-name>
+    <script encoded="false"><![CDATA[System.log("Default remediation workflow started.");
+
+var output = "";
+
+   output += "VCOPs Alert:\n=============\n";
+   output += "oid: " + oid + "\n";
+   output += "serverName: " + serverName + "\n";
+   output += "entityName: " + entityName + "\n";
+   output += "entityType: " + entityType + "\n";
+   output += "timestamp: " + timestamp + "\n";
+   output += "criticality: " + criticality + "\n";
+   output += "rootCause: " + rootCause + "\n";
+   output += "url: " + url + "\n";
+   output += "id: " + id + "\n";
+   output += "message: " + message + "\n";
+   output += "type: " + type + "\n";
+   output += "subtype: " + subtype + "\n\n";
+
+System.log(output);]]></script>
+    <in-binding>
+      <bind name="oid" type="string" export-name="oid"></bind>
+      <bind name="serverName" type="string" export-name="serverName"></bind>
+      <bind name="entityName" type="string" export-name="entityName"></bind>
+      <bind name="entityType" type="string" export-name="entityType"></bind>
+      <bind name="timestamp" type="string" export-name="timestamp"></bind>
+      <bind name="criticality" type="string" export-name="criticality"></bind>
+      <bind name="rootCause" type="string" export-name="rootCause"></bind>
+      <bind name="url" type="string" export-name="url"></bind>
+      <bind name="id" type="string" export-name="id"></bind>
+      <bind name="message" type="string" export-name="message"></bind>
+      <bind name="type" type="string" export-name="type"></bind>
+      <bind name="subtype" type="string" export-name="subtype"></bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <position y="55.40909090909091" x="204.5"></position>
+  </workflow-item>
+  <presentation>
+    <p-param name="oid">
+      <desc><![CDATA[trapData]]></desc>
+    </p-param>
+    <p-param name="serverName">
+      <desc><![CDATA[serverName]]></desc>
+    </p-param>
+    <p-param name="entityName">
+      <desc><![CDATA[entityName]]></desc>
+    </p-param>
+    <p-param name="entityType">
+      <desc><![CDATA[entityType]]></desc>
+    </p-param>
+    <p-param name="timestamp">
+      <desc><![CDATA[timestamp]]></desc>
+    </p-param>
+    <p-param name="criticality">
+      <desc><![CDATA[criticality]]></desc>
+    </p-param>
+    <p-param name="rootCause">
+      <desc><![CDATA[rootCause]]></desc>
+    </p-param>
+    <p-param name="url">
+      <desc><![CDATA[url]]></desc>
+    </p-param>
+    <p-param name="id">
+      <desc><![CDATA[id]]></desc>
+    </p-param>
+    <p-param name="message">
+      <desc><![CDATA[message]]></desc>
+    </p-param>
+    <p-param name="type">
+      <desc><![CDATA[type]]></desc>
+    </p-param>
+    <p-param name="subtype">
+      <desc><![CDATA[subtype]]></desc>
+    </p-param>
+  </presentation>
+</workflow>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item1" object-name="workflow:name=generic" id="5a067901-2ced-47ef-8973-ea49ceb60d5d" version="0.0.2" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Untag workflow]]></display-name>
+  <description><![CDATA[Removes a tag from a workflow. You must specify the workflow you want to untag and the tag you want to remove from the specified workflow.]]></description>
+  <position y="50.0" x="100.0"></position>
+  <input>
+    <param name="taggedObject" type="Workflow">
+      <description><![CDATA[Workflow to untag]]></description>
+    </param>
+    <param name="tagName" type="string">
+      <description><![CDATA[Tag name]]></description>
+    </param>
+    <param name="isGlobal" type="boolean">
+      <description><![CDATA[Is global tag]]></description>
+    </param>
+  </input>
+  <workflow-item name="item0" type="end" end-mode="0">
+    <position y="45.40909090909091" x="384.5"></position>
+  </workflow-item>
+  <workflow-item name="item1" out-name="item0" type="task">
+    <display-name><![CDATA[Untag object]]></display-name>
+    <script encoded="false"><![CDATA[try { 
+    var	tags = new Array(tagName);
+	if ( isGlobal ) {
+	  Server.untagGlobally(taggedObject,  tags);
+	} else {
+	  Server.untag(taggedObject, tags);
+	}
+} catch (e) {
+  System.error(e);
+}
+
+]]></script>
+    <in-binding>
+      <bind name="taggedObject" type="Workflow" export-name="taggedObject"></bind>
+      <bind name="isGlobal" type="boolean" export-name="isGlobal"></bind>
+      <bind name="tagName" type="string" export-name="tagName"></bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <position y="55.40909090909091" x="204.5"></position>
+  </workflow-item>
+  <presentation>
+    <p-param name="taggedObject">
+      <desc><![CDATA[Workflow to untag]]></desc>
+    </p-param>
+    <p-param name="tagName">
+      <desc><![CDATA[Tag to remove]]></desc>
+    </p-param>
+    <p-param name="isGlobal">
+      <desc><![CDATA[Global tag]]></desc>
+    </p-param>
+  </presentation>
+</workflow>

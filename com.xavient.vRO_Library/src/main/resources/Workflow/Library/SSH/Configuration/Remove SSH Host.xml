@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item1" object-name="workflow:name=generic" id="e176beaf-3b44-4865-84db-9c21c80598c7" version="1.0.0" api-version="6.0.0" allowed-operations="vef" restartMode="1" resumeFromFailedMode="0">
+  <display-name><![CDATA[Remove SSH Host]]></display-name>
+  <description><![CDATA[Removing a SSH Host from configuration]]></description>
+  <position y="50.0" x="100.0"></position>
+  <input>
+    <param name="sshHost" type="SSH:Host">
+      <description><![CDATA[The SSH Host to be removed]]></description>
+    </param>
+  </input>
+  <workflow-item name="item0" type="end" end-mode="0">
+    <position y="45.40909090909091" x="384.5"></position>
+  </workflow-item>
+  <workflow-item name="item1" out-name="item0" type="task">
+    <display-name><![CDATA[Scriptable task]]></display-name>
+    <script encoded="false"><![CDATA[SSHHostManager.removeSshHost(sshHost);]]></script>
+    <in-binding>
+      <bind name="sshHost" type="SSH:Host" export-name="sshHost">
+        <description><![CDATA[The SSH Host to be removed]]></description>
+      </bind>
+    </in-binding>
+    <out-binding></out-binding>
+    <position y="55.40909090909091" x="204.5"></position>
+  </workflow-item>
+  <presentation>
+    <p-param name="sshHost">
+      <desc><![CDATA[The SSH Host to be removed]]></desc>
+      <p-qual kind="static" name="mandatory" type="boolean"><![CDATA[true]]></p-qual>
+    </p-param>
+  </presentation>
+</workflow>
