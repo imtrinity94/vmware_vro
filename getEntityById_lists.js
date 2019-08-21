@@ -1,3 +1,29 @@
+//How to get vApp Network > OrgVDC Network > External Network?
+var vApp = vCDHost.getEntityById(VclFinderType.VAPP, parsedData.VAppId);
+        if (vApp != null) {
+            if (vApp != null) {
+                System.log("\nvApp is " + vApp.name);
+                var vAppNetworks = vApp.getVAppNetworks();
+            }
+            if (vAppNetworks != null) {
+                for each(var myvAppNetwork in vAppNetworks) {
+                    var parentOrgNetworkReference = myvAppNetwork.configuration.parentNetwork;
+                    if (parentOrgNetworkReference != null) {
+                        var parentOrgNetwork = vCDHost.getEntityByReference(VclFinderType.ADMIN_ORG_VDC_NETWORK, parentOrgNetworkReference);
+                        if (parentOrgNetwork != null) System.log("ORG_VDC NETWORK NAME; " + parentOrgNetwork.name);
+						//parentOrgNetwork = parentOrgNetwork.toUserObject();
+						var parentExternalNetworkReference = parentOrgNetwork.configuration.parentNetwork;
+						System.log(parentExternalNetworkReference);
+                    		if (parentExternalNetworkReference != null) {
+                        var parentExternalNetwork = vCDHost.getEntityByReference(VclFinderType.EXTERNAL_NETWORK, parentExternalNetworkReference);
+                        if (parentExternalNetwork != null) System.log("EXT NETWORK NAME; " + parentExternalNetwork.name);
+					
+                    }
+                    }
+                }
+          
+
+-------------------------------------------------------
 for each (var i in JSON.parse(availableVMsInVCloud)){
 	if(i.AdditionalData){
 		var parsedData = JSON.parse(i.AdditionalData);
