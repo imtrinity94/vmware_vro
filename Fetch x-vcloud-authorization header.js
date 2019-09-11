@@ -1,7 +1,7 @@
 System.log("Fetching x-vcloud-authorization header");
 
-var vCD_UserName = "xav-mayank@system";
-var vCD_Password = "Telus12345";
+var vCD_UserName = "xzx-123@system"; //for a LADP user xzx-123
+var vCD_Password = "XXXX12345";
 var vCD_API_URL = System.getModule("org.telus.vCloud").getvCloudHost().url.split(":443")[0];
 var header = '[{"key":"Accept","value":"application/*;version=29.0"}]';
 var sessionResponse = invokeRestOperationMultipleHeaders(vCD_API_URL, vCD_UserName, vCD_Password, "api/sessions", "POST", "", header);
