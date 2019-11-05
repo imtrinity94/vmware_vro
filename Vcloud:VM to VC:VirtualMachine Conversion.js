@@ -1,5 +1,7 @@
 //Input vCloudVM (Vcloud:VM)
 //Output VCVM (VC:VirtualMachine)
+///Vcloud:VM to VC:VirtualMachine Conversion
+//VclVM to VcVirtualMachine Conversion
 
 var vmId = vCloudVM.id.split(":")[3];
 var XPath = "xpath:name[contains(.,('" + vmId + "'))]";
