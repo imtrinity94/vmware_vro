@@ -6,6 +6,5 @@ I have written or manipulated code multiple times for vRO, vSphere, vCloud etc, 
 SHARING IS CARING
 
 
-BR
 MG
 
