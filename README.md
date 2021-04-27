@@ -8,3 +8,5 @@ SHARING IS CARING
 
 MG
 
+https://img.shields.io/badge/VMware-Code-green
+
