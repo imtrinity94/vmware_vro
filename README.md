@@ -1,12 +1,12 @@
-# VMware vRealize Orchestrator Code Base - by imtrinity94
-# Instagram: @vmware_vro  (Memes and Info.)
-vRO Sample Codes are not so easily available.
-The main purpose of this repository is to provide vRO related code snippets which can make the vRO development a bit simpler.
-I have written or manipulated code multiple times for vRO, vSphere, vCloud etc, which I am very glad to share.
-SHARING IS CARING
+Follow [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/vmware_vro/)
 
+The reason I made this repo solely because 'vRO Sample Codes' are not so easily available.
+Most of the vRO Code I write put out here for anyone to use. So feel 'free to use' and save time.
+Thanks for visiting this repo.
 
-MG
+![SHARINGISCARING](http://ForTheBadge.com/images/badges/built-with-love.svg)
 
-[![VMware Code](https://img.shields.io/badge/VMware-Code-green)](https://github.com/imtrinity94/vmware_vro)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Powershell](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+
 
