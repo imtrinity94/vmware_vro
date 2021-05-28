@@ -1,3 +1,55 @@
+//System.log(Server.findAllForType("AutoDeploy:ADAnswerFile"));
+System.log("ADHostProfile---------------------------");
+var arr = Server.findAllForType("AutoDeploy:ADHostProfile");
+for(var i =0; i < arr.length;  i++ ){
+    System.log(arr[i].name);
+}
+System.log("AutoDeploy----------------------------");
+arr = Server.findAllForType("AutoDeploy:AutoDeploy");
+for(var i =0; i < arr.length;  i++ ){
+    System.log(arr[i].name);
+}
+//System.log(Server.findAllForType("AutoDeploy:AutoDeployItem"));
+//System.log(Server.findAllForType("AutoDeploy:autoDeployManager"));
+//System.log(Server.findAllForType("AutoDeploy:CheckItemResult"));
+System.log("DeployRule----------------------------------");
+arr = Server.findAllForType("AutoDeploy:DeployRule");
+for(var i =0; i < arr.length;  i++ ){
+    System.log(arr[i].pxeProfileName + " - "+ arr[i].name);
+}
+System.log("SoftwareChannel-------------------------------");
+arr = Server.findAllForType("AutoDeploy:SoftwareChannel");
+for(var i =0; i < arr.length;  i++ ){
+    System.log(arr[i].name);
+}
+System.log("SoftwareDepot-----------------------------");
+arr = Server.findAllForType("AutoDeploy:SoftwareDepot");
+for(var i =0; i < arr.length;  i++ ){
+    System.log(arr[i].depotName);
+}
+
+System.log("SoftwareImageProfile-----------------------------");
+arr = Server.findAllForType("AutoDeploy:SoftwareImageProfile"); // many
+for(var i =0; i < arr.length;  i++ ){
+    System.log(arr[i].name);
+}
+System.log("SoftwareVendor-----------------------------");
+arr = Server.findAllForType("AutoDeploy:SoftwareVendor");
+for(var i =0; i < arr.length;  i++ ){
+    System.log(arr[i].name);
+}
+
+//System.log(Server.findAllForType("AutoDeploy:UserInputParameter"));
+/*for(var i =0; i < arr.length;  i++ ){
+    System.log(arr[i].depotName + " - "+ arr[i].depotURL);
+}*/
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
 autoDeployManager.reloadConfiguration();
 
 adHost : AutoDeploy:AutoDeploy
