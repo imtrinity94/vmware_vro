@@ -1,4 +1,4 @@
-//A short Powershell script I wrote to demonstrate how to open vCloud Director VM console in the (Windows) Standalone VM Console.
+#A short Powershell script I wrote to demonstrate how to open vCloud Director VM console in the (Windows) Standalone VM Console.
 
 $vm = get-CIVM 'CentOS7'
 $vmrcPath = "C:\Program Files (x86)\VMware\VMware Remote Console\vmrc.exe"
@@ -6,5 +6,5 @@ $mks = $vm.ExtensionData.AcquireMksTicket()
 $thumbprint = $mks.Ticket.Substring($mks.Ticket.get_Length()-61,59)
 $parameter = "vmrc://$($mks.Host)/?thumbprint=$($thumbprint)&path=$($mks.Vmx)&websocket=wss://$($mks.Host)/($mks.Port);$($mks.Ticket)" & "$vmrcPath" $parameter
 
-//The script should be pretty self explanatory. You need to have PowerCLI for vCloud Director installed and be logged in (as tenant or system admin).
-//$vm variable contains the VM for which you want to open the console. $vrmcPath is the path to the locally installed VMware Remote Console application. Next you need to acquire VM’s MKS ticket and with little manipulation send it to the application as a parameter.
+#The script should be pretty self explanatory. You need to have PowerCLI for vCloud Director installed and be logged in (as tenant or system admin).
+#$vm variable contains the VM for which you want to open the console. $vrmcPath is the path to the locally installed VMware Remote Console application. Next you need to acquire VM’s MKS ticket and with little manipulation send it to the application as a parameter.
