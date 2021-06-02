@@ -1,3 +1,4 @@
+[![Manual workflow](https://github.com/imtrinity94/vmware_vro/actions/workflows/manual.yml/badge.svg)](https://github.com/imtrinity94/vmware_vro/actions/workflows/manual.yml)
 
 The reason I made this repo solely because `vRO Sample Codes` are not so easily available.
 Most of the vRO Code I write, I put it here for anyone to use. So feel `free to use` and save time. Open to suggestions and collaborations.
