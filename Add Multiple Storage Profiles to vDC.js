@@ -1,4 +1,4 @@
-//Input pvDC oftype(vCloud:ProviderVdc) and vDC oftype(vCloud:Vdc)
+//Input pvDC typeof(vCloud:ProviderVdc) and vDC typeof(vCloud:Vdc)
 System.log("Starting \"Prepare Inputs for Storage Profiles\" script");
 SP_Array = pvdc.getProviderStorageProfiles();
 
