@@ -14,6 +14,7 @@ Thanks for visiting this repo.
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/vmware_vro/)
 
 
-<hr>
+</hr>
+
 [![SHARINGISCARING](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/imtrinity94/vmware_vro)
 
