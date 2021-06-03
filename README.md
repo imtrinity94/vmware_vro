@@ -6,13 +6,14 @@ Most of the vRO Code I write, I put it here for anyone to use. So feel `free to 
 Thanks for visiting this repo.
 
 ### Important Links
-#### [Dynamic Types](https://www.vcoteam.info/articles/learn-vco/323-how-to-create-a-microsoft-dns-dynamic-types-plug-in.html)
+- [Starter to Dynamic Types](https://www.vcoteam.info/articles/learn-vco/323-how-to-create-a-microsoft-dns-dynamic-types-plug-in.html)
+- [More on Dynamic Types](https://vbombarded.wordpress.com/2017/11/21/a-primer-on-vrealize-orchestrator-dynamic-types/#more-1180)
 
 
 ### For Memes and Updates, follow on 
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/vmware_vro/)
 
 
-
+<hr>
 [![SHARINGISCARING](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/imtrinity94/vmware_vro)
 
