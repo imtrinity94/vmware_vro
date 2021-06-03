@@ -6,6 +6,8 @@ Thanks for visiting this repo.
 
 ![SHARINGISCARING](http://ForTheBadge.com/images/badges/built-with-love.svg)
 
+### Important Links
+#### [Dynamic Types](https://www.vcoteam.info/articles/learn-vco/323-how-to-create-a-microsoft-dns-dynamic-types-plug-in.html)
 
 
 ### For Memes and Updates, follow on 
