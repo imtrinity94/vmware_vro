@@ -18,7 +18,7 @@ Thanks for visiting this repo.
 ### Contributing
 If you find any issue with the current scripts you can [create a issue](https://github.com/imtrinity94/vmware_vro/issues/new)
 
-If you have any other Polyglot scripts that you want to share with the vRO community you can [create a pull request](https://github.com/imtrinity94/vmware_vro/compare)
+If you have any other scripts that you want to share with the vRO community you can [create a pull request](https://github.com/imtrinity94/vmware_vro/compare)
 
 
 
