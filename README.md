@@ -15,6 +15,12 @@ Thanks for visiting this repo.
 
 [Create your own vRO Plugin without Java SDK](https://github.com/imtrinity94/vmware_vro/files/6663022/vRealize.Orchestrator.Dynamic.Ty_793c45ef6cb84252802a350fc8712a1e-160421-0633-172.pdf)
 
+### Contributing
+If you find any issue with the current scripts you can [create a issue](https://github.com/imtrinity94/vmware_vro/issues/new)
+
+If you have any other Polyglot scripts that you want to share with the vRO community you can [create a pull request](https://github.com/imtrinity94/vmware_vro/compare)
+
+
 
 [![SHARINGISCARING](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/imtrinity94/vmware_vro) <br>
 <img src="https://user-images.githubusercontent.com/7029361/126627909-e7ea306a-a3cc-45e4-9be9-d22e1277fcc9.png" width="180" height="123">
