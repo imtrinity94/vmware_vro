@@ -1,5 +1,0 @@
-var allLocks = LockingSystem.retrieveAll();
-for each( var lock in allLocks){
-	var splited = lock.split(",");
-	LockingSystem.unlock(splited[0],splited[1]);
-}
