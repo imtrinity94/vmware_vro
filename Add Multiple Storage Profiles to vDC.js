@@ -1,7 +1,14 @@
-//Input pvDC typeof(vCloud:ProviderVdc) and vDC typeof(vCloud:Vdc)
-System.log("Starting \"Prepare Inputs for Storage Profiles\" script");
-SP_Array = pvdc.getProviderStorageProfiles();
+/**
+ * @author Mayank Goyal <mayankgoyalmax@gmail.com>
+ * @version 1.0.0
+ * @requires vCD vRO Plugin
+ * @license MIT
+ * @param {vCloud:ProviderVdc} pvdc
+ * @param {vCloud:Vdc} vDC
+ */
 
+/** @type {(Array)} */
+var SP_Array = pvdc.getProviderStorageProfiles();
 var vdcStorageProfile = vDC.vdcStorageProfiles.vdcStorageProfile;
 var arr = vdcStorageProfile.enumerate();
 for (var i = 0; i< arr.length; i++){
@@ -14,7 +21,11 @@ for (var i = 0; i< arr.length; i++){
 }
 SP_Array = condenseSparseArray(SP_Array);
 
-
+/**
+ * Returns a condensed Array with no empty items
+ * @param {Array} a
+ * @returns {Array}
+ */
 function condenseSparseArray(a) { 
  var b = []; 
  for(var ind = 0;ind < a.length;ind++) { 
@@ -24,5 +35,3 @@ function condenseSparseArray(a) {
  } 
  return b; 
 }
-
-System.log("Starting \"Prepare Inputs for Storage Profiles\" script");
