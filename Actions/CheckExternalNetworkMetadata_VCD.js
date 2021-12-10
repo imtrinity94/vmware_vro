@@ -1,7 +1,8 @@
 System.log("Fetching External Network Metadata");
 var vcdHost = System.getModule("org.telus.vCloud").getvCloudHost();
 var allExtNet = vcdHost.toAdminObject().getExternalNetworks();
-for each(extNet in allExtNet) {
+for (index in allExtNet) {
+	var exNet = allExtNet[index];
     var extNetMetadata = extNet.getMetadata();
     var entries = extNetMetadata.getTypedEntries();
     var enumeratedEntries = entries.enumerate();
