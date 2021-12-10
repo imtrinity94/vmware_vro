@@ -15,3 +15,9 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Build
+        uses: andstor/jsdoc-action@v1
+        with:
+            source_dir: ./Actions
+            recurse: true
+            output_dir: ./jsdoc
