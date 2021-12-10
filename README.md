@@ -11,6 +11,9 @@ Thanks for visiting this repo.
 
 ### Important Plugins for enhancing vRO capabilities
 [vRealize Orchestrator Encryption Plugin - Crypto](https://github.com/vmware/o11n-plugin-crypto)
+[Cache plug-in for vRealize Orchestrator](https://github.com/dimitrovvlado/o11n-plugin-cache)
+[Redis plug-in for vRealize Orchestrator](https://github.com/dimitrovvlado/o11n-plugin-redis)
+[JsonPath plug-in for vRealize Orchestrator](https://cloudadvisors.net/2016/05/09/new-orchestrator-jsonpath-plugin/)
 
 ### Important Links
 - [Starter to Dynamic Types](https://www.vcoteam.info/articles/learn-vco/323-how-to-create-a-microsoft-dns-dynamic-types-plug-in.html)
