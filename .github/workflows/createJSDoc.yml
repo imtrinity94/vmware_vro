@@ -1,7 +1,0 @@
-name: JSDoc Creation
-on: [push]
-uses: andstor/jsdoc-action@v1
-  with:
-    source_dir: ./Actions
-    recurse: true
-    output_dir: ./jsdoc
