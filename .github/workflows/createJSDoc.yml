@@ -1,6 +1,7 @@
-- name: Build
-  uses: andstor/jsdoc-action@v1
+name: JSDoc Creation
+on: [push]
+uses: andstor/jsdoc-action@v1
   with:
-    source_dir: ./src
+    source_dir: ./Actions
     recurse: true
-    output_dir: ./out
+    output_dir: ./jsdoc
