@@ -1,7 +1,7 @@
 name: Create JSdoc and update Pages for current repo
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Executing_various_steps:
     runs-on: ubuntu-latest
     steps:
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
