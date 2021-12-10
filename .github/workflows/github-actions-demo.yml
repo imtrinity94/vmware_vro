@@ -1,4 +1,4 @@
-name: Create JSdoc for ${{ github.repository }} repo
+name: Create JSdoc and update Pages for current repo
 on: [push]
 jobs:
   Explore-GitHub-Actions:
