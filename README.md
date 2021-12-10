@@ -9,11 +9,11 @@ The reason I made this repo solely because `vRO Sample Codes` are not so easily 
 Most of the vRO Code I write, I put it here for anyone to use. So feel `free to use` and save time. Open to suggestions and collaborations.
 Thanks for visiting this repo.
 
-### Important Plugins for enhancing vRO capabilities
-[vRealize Orchestrator Encryption Plugin - Crypto](https://github.com/vmware/o11n-plugin-crypto)
-[Cache plug-in for vRealize Orchestrator](https://github.com/dimitrovvlado/o11n-plugin-cache)
-[Redis plug-in for vRealize Orchestrator](https://github.com/dimitrovvlado/o11n-plugin-redis)
-[JsonPath plug-in for vRealize Orchestrator](https://cloudadvisors.net/2016/05/09/new-orchestrator-jsonpath-plugin/)
+### UnOfficial Plugins for enhancing vRO capabilities
+[vRealize Orchestrator Encryption Plugin - Crypto](https://github.com/vmware/o11n-plugin-crypto)<br>
+[Cache plug-in for vRealize Orchestrator](https://github.com/dimitrovvlado/o11n-plugin-cache)<br>
+[Redis plug-in for vRealize Orchestrator](https://github.com/dimitrovvlado/o11n-plugin-redis)<br>
+[JsonPath plug-in for vRealize Orchestrator](https://cloudadvisors.net/2016/05/09/new-orchestrator-jsonpath-plugin/)<br>
 
 ### Important Links
 - [Starter to Dynamic Types](https://www.vcoteam.info/articles/learn-vco/323-how-to-create-a-microsoft-dns-dynamic-types-plug-in.html)
