@@ -28,6 +28,6 @@ If you have any other scripts that you want to share with the vRO community you 
 
 
 
-[![SHARINGISCARING](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/imtrinity94/vmware_vro) <br>
-<img src="https://user-images.githubusercontent.com/7029361/126627909-e7ea306a-a3cc-45e4-9be9-d22e1277fcc9.png" width="180" height="123">
+<hr height="1px">
+<img src="https://user-images.githubusercontent.com/7029361/126627909-e7ea306a-a3cc-45e4-9be9-d22e1277fcc9.png" width="120" align="right">
 
