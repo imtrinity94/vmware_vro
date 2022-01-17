@@ -1,0 +1,11 @@
+// vm of type Vc:VirtualMachine;
+var myVcVirtualMachineConfigSpec = new VcVirtualMachineConfigSpec();
+var myVcResourceAllocationInfo = new VcResourceAllocationInfo();
+var myVcSharesInfo = new VcSharesInfo();
+myVcSharesInfo.shares = 1000;
+myVcSharesInfo.level = VcSharesLevel("normal");
+myVcResourceAllocationInfo.shares = myVcSharesInfo;
+myVcVirtualMachineConfigSpec.cpuAllocation = myVcResourceAllocaionInfo;
+myVcVirtualMachineConfigSpec.cpuAllocation = new VcResourceAllocationInfo();
+myVcVirtualMachineConfigSpec.cpuAllocation.reservation = myVcResourceAllocationInfo;
+var task = vm.reconfigVM_Task(myVcVirtualMachineConfigSpec);
