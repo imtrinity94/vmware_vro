@@ -26,6 +26,7 @@ If you find any issue with the current scripts you can [create a issue](https://
 
 If you have any other scripts that you want to share with the vRO community you can [create a pull request](https://github.com/imtrinity94/vmware_vro/compare)
 
+![Alt](https://repobeats.axiom.co/api/embed/56b2e07200f1afbb370b8453bec0183f75140a53.svg "Repobeats analytics image")
 
 
 <hr height="1px">
