@@ -15,7 +15,7 @@ for (index in allExtNet) {
                 var networkTypeValue = entry.typedValue.getValue(new VclMetadataStringValue).value;
                 var visibility = entry.domain.visibility; //null for Read/Write //READONLY for ReadOnly //PRIVATE for Hidden
                 if (visibility != "PRIVATE") throw "Metadata Tag is not hidden.";
-                //scope = entry.domain.value; // SYSTEM or (null for GENERAL & Read/Write )
+                //scope = entry.domain.value; // SYSTEM or (null for Read/Write )
                 System.log("\nKey: " + entry.key + "\nValue: " + networkTypeValue + "\nVisbility: " + visibility);
                 count++;
                 continue;
