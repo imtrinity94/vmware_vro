@@ -13,13 +13,9 @@ Thanks for visiting this repo.
 
 ### Postman Collection for vRO Swagger API
 
-#### vco/api
+### vco/api
 vRealize Orchestrator Server API_8.3.postman_collection.json   <br>
 [![Postman](https://user-images.githubusercontent.com/7029361/155566604-c390f285-a9e7-4c88-b913-582b82a5a22c.png)](https://github.com/imtrinity94/vmware_vro/blob/d887ed9a534ff2eda68d19475aa8fffae6048608/vRealize%20Orchestrator%20Server%20API_8.3.postman_collection.json)
-
-<hr>
-
-128x128px vro_icon_webook ![Safeimagekit-resized-imgpng](https://user-images.githubusercontent.com/7029361/157434341-d1cd1706-4072-4f32-abe1-2f0459e93879.png)
 
 
 ### UnOfficial Plugins for enhancing vRO capabilities
