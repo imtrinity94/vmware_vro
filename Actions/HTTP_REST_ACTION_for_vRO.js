@@ -1,6 +1,5 @@
 /**
  * Creates and returns an instance of the HttpClient object.
- * @author Mayank Goyal <mayankgoyalmax@gmail.com>
  * @version 1.0.0
  * @function httpClient
  * @returns {*} An instance of the HttpClient object.
