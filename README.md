@@ -1,9 +1,7 @@
 
 
 # Welcome to my VMware vRO Code Repository <img src="https://user-images.githubusercontent.com/7029361/157902571-675d1aaf-83fe-41ab-9678-9e9323f887d8.gif" alt="3D Logo" width="193">
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/vmwarevro/)
-[![Facebook](https://camo.githubusercontent.com/ae469df0ca892760cf6edd0c12b154d6d18dd56c019ad0fc12d881c17d3db3d3/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f7374796c653d666f722d7468652d6261646765266d6573736167653d46616365626f6f6b26636f6c6f723d313837374632266c6f676f3d46616365626f6f6b266c6f676f436f6c6f723d464646464646266c6162656c3d)](https://www.facebook.com/Vmware-vro-111245587912322)
-[![Slack](https://camo.githubusercontent.com/0006cf094da45ae096d194937b0a810ac30ceeb78db406430af198ff6c8891f7/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f7374796c653d666f722d7468652d6261646765266d6573736167653d536c61636b26636f6c6f723d344131353442266c6f676f3d536c61636b266c6f676f436f6c6f723d464646464646266c6162656c3d)](https://vmwarevro.slack.com/)
+
 [![Twitter](https://camo.githubusercontent.com/0bd066115a3d5d3b06c206ac73e483bc237e6ff7c61f9ba3262e683581de9718/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f7374796c653d666f722d7468652d6261646765266d6573736167653d5477697474657226636f6c6f723d314441314632266c6f676f3d54776974746572266c6f676f436f6c6f723d464646464646266c6162656c3d)](https://twitter.com/VMwarevRO)
 
 The reason I made this repo solely because `vRO Sample Codes` are not so easily available.
@@ -34,8 +32,6 @@ vRealize Orchestrator Server API_8.3.postman_collection.json   <br>
 If you find any issue with the current scripts you can [create a issue](https://github.com/imtrinity94/vmware_vro/issues/new)
 
 If you have any other scripts that you want to share with the vRO community you can [create a pull request](https://github.com/imtrinity94/vmware_vro/compare)
-
-![Alt](https://repobeats.axiom.co/api/embed/56b2e07200f1afbb370b8453bec0183f75140a53.svg "Repobeats analytics image")
 
 
 <hr height="1px">
