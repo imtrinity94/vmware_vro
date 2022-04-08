@@ -12,7 +12,6 @@ Thanks for visiting this repo.
 ### Postman Collection for vRO Swagger API
 
 ### vco/api
-vRealize Orchestrator Server API_8.3.postman_collection.json   <br>
 [![Postman](https://user-images.githubusercontent.com/7029361/155566604-c390f285-a9e7-4c88-b913-582b82a5a22c.png)](https://github.com/imtrinity94/vmware_vro/blob/d887ed9a534ff2eda68d19475aa8fffae6048608/vRealize%20Orchestrator%20Server%20API_8.3.postman_collection.json)
 
 
@@ -21,6 +20,10 @@ vRealize Orchestrator Server API_8.3.postman_collection.json   <br>
 [Cache plug-in for vRealize Orchestrator](https://github.com/dimitrovvlado/o11n-plugin-cache)<br>
 [Redis plug-in for vRealize Orchestrator](https://github.com/dimitrovvlado/o11n-plugin-redis)<br>
 [JsonPath plug-in for vRealize Orchestrator](https://cloudadvisors.net/2016/05/09/new-orchestrator-jsonpath-plugin/)<br>
+
+### JavaScript Standard Style
+![image](https://user-images.githubusercontent.com/7029361/162364064-59fcea09-3818-4608-a97e-e004c4d8439f.png)<br>
+Learn more about it at https://standardjs.com/rules.html
 
 ### Important Links
 - [Starter to Dynamic Types](https://www.vcoteam.info/articles/learn-vco/323-how-to-create-a-microsoft-dns-dynamic-types-plug-in.html)
