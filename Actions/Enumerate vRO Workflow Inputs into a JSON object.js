@@ -1,4 +1,4 @@
-/ Get all input parameters for the parent workflow
+// Get all input parameters for the parent workflow
 var inParamsArray = workflow.rootWorkflow.inParameters;
 
 // Get all input parameters for the current workflow to search through later
