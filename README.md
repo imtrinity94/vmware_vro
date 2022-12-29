@@ -1,4 +1,4 @@
-
+[![Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fimtrinity94%2Fvmware_vro&count_bg=%23FF9300&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false)](https://hits.seeyoufarm.com)
 
 # Welcome to my VMware vRO Code Repository <img src="https://user-images.githubusercontent.com/7029361/157902571-675d1aaf-83fe-41ab-9678-9e9323f887d8.gif" alt="3D Logo" width="193">
 
