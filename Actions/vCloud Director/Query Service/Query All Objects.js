@@ -39,26 +39,6 @@ System.log("Querying Disks.");
 executeQuery(queryService, 'queryDiskRecords', 'Disk',VclQueryDiskField.NAME, name, new VclQueryResultDiskRecord());
 
 
-function executeQuery(queryService, funcName, objectType, fieldName, filterByName, recordObject) {
-    var expression = new VclExpression(fieldName, filterByName, VclExpressionType.EQUALS);
-    var filter = new VclFilter(expression);
-    var params = new VclQueryParams();
-    params.setFilter(filter);
-
-    var resultSet = queryService[funcName](params);
-
-    while (resultSet != null)  {
-        var records = resultSet.getRecords(recordObject);
-        for each (var record in records) {
-            System.log(objectType + ": " + record.name);
-            if(typeof record !== typeof recordObject) {
-                throw 'invalid type.';
-            }
-        }
-        resultSet = resultSet.getNextPage();
-    }
-}
-
 System.log("*** Default queries end. ***");
 
 var queryService = vcdHost.toAdminObject().getAdminQueryService();
@@ -77,24 +57,6 @@ System.log("Querying Orgs.");
 executeQuery(queryService, 'queryOrgReferences', 'Org',VclQueryOrgField.NAME, name, new VclQueryResultDiskRecord());
 System.log("Querying OrgVdcs.");
 executeQuery(queryService, 'queryOrgVdcReferences', 'OrgVdc',VclQueryOrgVdcField.NAME, name, new VclQueryResultDiskRecord());
-
-
-function executeQuery(queryService, funcName, objectType, fieldName, filterByName, recordObject) {
-    var expression = new VclExpression(fieldName, filterByName, VclExpressionType.EQUALS);
-    var filter = new VclFilter(expression);
-    var params = new VclQueryParams();
-    params.setFilter(filter);
-
-    var resultSet = queryService[funcName](params);
-
-    while (resultSet != null)  {
-        var records = resultSet.getReferences(recordObject);
-        for each (var record in records) {
-            System.log(objectType + ": " + record.name);
-        }
-        resultSet = resultSet.getNextPage();
-    }
-}
 
 System.log("*** Admin queries end. ***");
 
