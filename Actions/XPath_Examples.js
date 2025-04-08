@@ -1,6 +1,6 @@
 var vmName = "vcova";
 var xpath = "xpath:name[contains(.,'" + vmName +"')]"; //for case-sensitive search
-var xpath = "xpath:matches(name, '(?i)" + vmName + "')"); //for case-insensitive search
+var xpath = "xpath:matches(name, '(?i)" + vmName + "')"; //for case-insensitive search
 var vms = VcPlugin.getAllVirtualMachines(null, xpath); 
 return vms[0];
 
