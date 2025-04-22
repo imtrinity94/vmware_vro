@@ -1,4 +1,4 @@
-# Welcome to my VMware vRO Code Repository <img src="https://user-images.githubusercontent.com/7029361/157902571-675d1aaf-83fe-41ab-9678-9e9323f887d8.gif" alt="3D Logo" width="193">
+# A VMware Aria Orchestrator Code Repository  ![high_res_vmware_vro_logo.jpg](https://github.com/user-attachments/assets/902c50fa-ba5c-4229-aa3c-6206a851ee37)
 
 The reason I made this repo solely because `vRO Sample Codes` are not so easily available.
 Most of the vRO Code I write, I put it here for anyone to use. So feel `free to use` and save time. Open to suggestions and collaborations.
