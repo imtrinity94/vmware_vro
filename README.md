@@ -1,8 +1,4 @@
-[![Views](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fimtrinity94%2Fvmware_vro&count_bg=%23FF9300&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false)](https://hits.seeyoufarm.com)
-
 # Welcome to my VMware vRO Code Repository <img src="https://user-images.githubusercontent.com/7029361/157902571-675d1aaf-83fe-41ab-9678-9e9323f887d8.gif" alt="3D Logo" width="193">
-
-[![Twitter](https://camo.githubusercontent.com/0bd066115a3d5d3b06c206ac73e483bc237e6ff7c61f9ba3262e683581de9718/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f7374796c653d666f722d7468652d6261646765266d6573736167653d5477697474657226636f6c6f723d314441314632266c6f676f3d54776974746572266c6f676f436f6c6f723d464646464646266c6162656c3d)](https://twitter.com/VMwarevRO)
 
 The reason I made this repo solely because `vRO Sample Codes` are not so easily available.
 Most of the vRO Code I write, I put it here for anyone to use. So feel `free to use` and save time. Open to suggestions and collaborations.
