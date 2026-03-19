@@ -41,7 +41,7 @@ function parseJSDoc(content) {
 function getFiles(dir) {
     let results = [];
     if (!fs.existsSync(dir)) return results;
-    
+
     const list = fs.readdirSync(dir);
     list.forEach(file => {
         const filePath = path.join(dir, file);
@@ -68,12 +68,14 @@ folders.forEach(folder => {
             const relativePath = path.relative(rootDir, file).replace(/\\/g, '/');
             const fileName = path.basename(file);
             const metadata = parseJSDoc(content);
-            
+
             // Return to subfolders for Library, but keep Actions/JS Modules simplified
-            let folderLabel = relativePath.split('/')[0];
-            if (folderLabel === 'Library') {
-                folderLabel = path.dirname(relativePath).replace(/\\/g, '/');
-            }
+            // let folderLabel = relativePath.split('/')[0];
+            // if (folderLabel === 'Library') {
+            //folderLabel = path.dirname(relativePath).replace(/\\/g, '/');
+            dirName = path.dirname(relativePath);
+            folderLabel = dirName === "." ? folder : dirName;
+            // }
 
             actions.push({
                 id: relativePath.replace(/\//g, '_').replace(/\.js$/, ''),
