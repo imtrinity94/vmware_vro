@@ -3,13 +3,18 @@ name: Generate JSDoc and Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 permissions:
   contents: write
   pages: write
   id-token: write
+
+env:
+  # Opt into Node.js 24 across all actions to avoid Node.js 20 deprecation warnings
+  # See: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build-and-deploy-docs:
@@ -25,7 +30,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "npm"
 
       # ── 3. Install JSDoc + docdash theme ───────────────────────────────────
@@ -43,7 +48,7 @@ jobs:
           find docs/ -name "*.html" | head -30
           echo "Total HTML files: $(find docs/ -name '*.html' | wc -l)"
 
-      # ── 6. Add a .nojekyll so GitHub Pages serves ALL files ────────────────
+      # ── 6. Add .nojekyll so GitHub Pages serves all files as-is ────────────
       - name: Add .nojekyll
         run: touch docs/.nojekyll
 
