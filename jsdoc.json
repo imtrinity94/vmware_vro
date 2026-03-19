@@ -7,7 +7,6 @@
   "opts": {
     "destination": "./docs",
     "recurse": true,
-    "readme": "./README.md",
     "template": "./node_modules/docdash",
     "encoding": "utf8"
   },
