@@ -5,7 +5,7 @@ const OUTPUT_DIR = path.join(__dirname, '../dist');
 const DATA_FILE = path.join(OUTPUT_DIR, 'actions.json');
 
 if (!fs.existsSync(OUTPUT_DIR)) {
-    fs.mkdirSync(OUTPUT_DIR);
+    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
 function parseJSDoc(content) {
@@ -13,20 +13,26 @@ function parseJSDoc(content) {
     if (!docMatch) return { description: 'No documentation provided.', params: [], returns: 'void' };
 
     const doc = docMatch[1];
-    const descriptionMatch = doc.split('@')[0].replace(/\*+/g, '').trim();
-    
+    const lines = doc.split('\n');
+    let description = '';
     const params = [];
-    const paramRegex = /@param\s+\{([^}]+)\}\s+([^\s-]+)(?:\s+-\s+)?(.*)/g;
-    let m;
-    while ((m = paramRegex.exec(doc)) !== null) {
-        params.push({ type: m[1], name: m[2], description: m[3].trim() });
-    }
+    let returns = 'void';
 
-    const returnsMatch = doc.match(/@returns\s+\{([^}]+)\}/);
-    const returns = returnsMatch ? returnsMatch[1] : 'void';
+    lines.forEach(line => {
+        const cleanLine = line.replace(/^\s*\*\s?/, '').trim();
+        if (cleanLine.startsWith('@param')) {
+            const m = cleanLine.match(/@param\s+\{([^}]+)\}\s+([^\s-]+)(?:\s+-\s+)?(.*)/);
+            if (m) params.push({ type: m[1], name: m[2], description: m[3] });
+        } else if (cleanLine.startsWith('@returns')) {
+            const m = cleanLine.match(/@returns\s+\{([^}]+)\}/);
+            if (m) returns = m[1];
+        } else if (!cleanLine.startsWith('@')) {
+            if (cleanLine) description += (description ? ' ' : '') + cleanLine;
+        }
+    });
 
     return {
-        description: descriptionMatch || 'No description.',
+        description: description || 'No description.',
         params: params,
         returns: returns
     };
@@ -34,6 +40,8 @@ function parseJSDoc(content) {
 
 function getFiles(dir) {
     let results = [];
+    if (!fs.existsSync(dir)) return results;
+    
     const list = fs.readdirSync(dir);
     list.forEach(file => {
         const filePath = path.join(dir, file);
@@ -47,31 +55,37 @@ function getFiles(dir) {
     return results;
 }
 
-const actionFiles = getFiles(path.join(__dirname, '../Actions')).map(f => ({ path: f, root: 'Actions' }));
-const libraryFiles = getFiles(path.join(__dirname, '../Library')).map(f => ({ path: f, root: 'Library' }));
-const allFiles = [...actionFiles, ...libraryFiles];
+const actions = [];
+const folders = ['Actions', 'Library', 'JS Modules'];
+const rootDir = path.join(__dirname, '..');
 
-const actionsData = allFiles.map(fileMeta => {
-    const filePath = fileMeta.path;
-    const content = fs.readFileSync(filePath, 'utf8');
-    const relativePath = path.relative(path.join(__dirname, '..'), filePath).replace(/\\/g, '/');
-    const fileName = path.basename(filePath);
-    const metadata = parseJSDoc(content);
+folders.forEach(folder => {
+    const fullFolderPath = path.join(rootDir, folder);
+    if (fs.existsSync(fullFolderPath)) {
+        const files = getFiles(fullFolderPath);
+        files.forEach(file => {
+            const content = fs.readFileSync(file, 'utf8');
+            const relativePath = path.relative(rootDir, file).replace(/\\/g, '/');
+            const fileName = path.basename(file);
+            const metadata = parseJSDoc(content);
+            
+            // Determine grouping folder
+            const dirName = path.dirname(relativePath);
+            const folderLabel = dirName === '.' ? folder : dirName;
 
-    // Grouping by "Library/.../..." or "Actions/.../..."
-    const folder = path.dirname(relativePath);
-
-    return {
-        id: relativePath.replace(/\//g, '_').replace(/\.js$/, ''),
-        name: fileName.replace(/\.js$/, ''),
-        folder: folder === '.' ? fileMeta.root : folder,
-        path: relativePath,
-        code: content,
-        ...metadata
-    };
+            actions.push({
+                id: relativePath.replace(/\//g, '_').replace(/\.js$/, ''),
+                name: fileName.replace(/\.js$/, ''),
+                folder: folderLabel,
+                path: relativePath,
+                code: content,
+                ...metadata
+            });
+        });
+    }
 });
 
-fs.writeFileSync(DATA_FILE, JSON.stringify(actionsData, null, 2));
+fs.writeFileSync(DATA_FILE, JSON.stringify(actions, null, 2));
 
 // Copy brand logo to dist
 const logoSource = path.join(__dirname, 'image.png');
@@ -81,4 +95,4 @@ if (fs.existsSync(logoSource)) {
     console.log('Logo copied to dist.');
 }
 
-console.log(`Generated documentation metadata for ${actionsData.length} actions.`);
+console.log(`Generated documentation metadata for ${actions.length} actions.`);

@@ -13,7 +13,8 @@ The entire library is searchable and documented with source code previews in our
 ## 📂 Project Structure
 
 - `Actions/`: Supplementary vRO action scripts, organized by function/plugin.
-- `Library/`: Core Library vRO scripts for seeveral plugins.
+- `Library/`: Core Library vRO scripts for several plugins.
+- `JS Modules/`: External JavaScript utility modules like Lodash for vRO.
 - `scripts/`: Custom documentation build system and portal assets.
 - `.github/workflows/`: CI/CD pipeline for automatic JSDoc extraction and portal deployment.
 
