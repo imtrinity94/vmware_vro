@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>vRO Actions Reference</title>
+    <link rel="icon" type="image/png" href="https://preview.redd.it/vrealize-orchestrator-logo-v0-6r0vnu3rgyba1.png?width=1000&format=png&auto=webp&s=bc6318855ced2f8b5443e0258832a875a6435987">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -27,9 +28,13 @@
     <div id="app" class="flex">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <div class="p-6">
-                <h1 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">vRO Actions Portal</h1>
-                <div class="mt-4 relative">
+            <div class="px-6 py-8">
+                <div class="flex items-center gap-3 mb-2">
+                    <img src="https://preview.redd.it/vrealize-orchestrator-logo-v0-6r0vnu3rgyba1.png?width=1000&format=png&auto=webp&s=bc6318855ced2f8b5443e0258832a875a6435987" 
+                         class="h-10 w-10 object-contain brightness-110 drop-shadow-[0_0_8px_rgba(59,130,246,0.3)]">
+                    <h1 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">vRO Portal</h1>
+                </div>
+                <div class="mt-6 relative">
                     <input type="text" v-model="searchQuery" placeholder="Search actions..." 
                            class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-200">
                 </div>
