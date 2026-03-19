@@ -199,10 +199,10 @@
                             value: code,
                             language: 'javascript',
                             theme: 'vs-dark',
-                            readOnly: true,
+                            readOnly: false,
                             automaticLayout: true,
                             fontFamily: 'Consolas, "Courier New", monospace',
-                            fontSize: 12,
+                            fontSize: 12.5,
                             fontWeight: 'normal',
                             minimap: { enabled: true },
                             scrollBeyondLastLine: false,
@@ -223,8 +223,9 @@
                 };
 
                 const copyCode = () => {
-                    if (!currentAction.value) return;
-                    navigator.clipboard.writeText(currentAction.value.code).then(() => {
+                    const codeToCopy = editor ? editor.getValue() : (currentAction.value ? currentAction.value.code : '');
+                    if (!codeToCopy) return;
+                    navigator.clipboard.writeText(codeToCopy).then(() => {
                         const toast = document.getElementById('copy-toast');
                         toast.style.display = 'block';
                         setTimeout(() => { toast.style.display = 'none'; }, 2000);
