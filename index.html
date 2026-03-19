@@ -142,13 +142,21 @@
                         class="text-xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
                         Orchestrator Code Library</h1>
                 </div>
-                <div class="mt-6 relative">
+                <div class="mt-6 flex items-center justify-between">
                     <input type="text" v-model="searchQuery" placeholder="Search names, notes, or code..."
-                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-200 placeholder:text-slate-600">
+                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-200 placeholder:text-slate-600 mr-3">
+                    <button @click="toggleAll(isAllCollapsed)" 
+                            class="text-[0.6rem] uppercase tracking-wider font-bold text-slate-500 hover:text-orange-400 whitespace-nowrap transition-colors">
+                        {{ isAllCollapsed ? 'Expand All' : 'Collapse All' }}
+                    </button>
                 </div>
             </div>
 
             <div class="flex-grow overflow-y-auto pb-8">
+                <!-- Fallback if no results -->
+                <div v-if="Object.keys(groupedActions).length === 0" class="px-8 py-4 text-xs text-slate-600 italic">
+                    No results found for "{{ searchQuery }}"
+                </div>
                 <div v-for="(actions, folder) in groupedActions" :key="folder" class="select-none">
                     <div @click="toggleFolder(folder)" 
                          class="folder-header cursor-pointer hover:bg-slate-900 transition-colors group">
@@ -332,13 +340,28 @@
                 const groupedActions = computed(() => {
                     const groups = {};
                     filteredActions.value.forEach(a => {
-                        if (!groups[a.folder]) groups[a.folder] = [];
-                        groups[a.folder].push(a);
+                        const folderName = a.folder || 'Other';
+                        if (!groups[folderName]) groups[folderName] = [];
+                        groups[folderName].push(a);
                     });
                     const sortedGroups = {};
                     Object.keys(groups).sort().forEach(key => sortedGroups[key] = groups[key]);
                     return sortedGroups;
                 });
+
+                const isAllCollapsed = computed(() => {
+                    const keys = Object.keys(groupedActions.value);
+                    if (keys.length === 0) return false;
+                    return keys.every(key => collapsedFolders.value.has(key));
+                });
+
+                const toggleAll = (shouldExpand) => {
+                    if (shouldExpand) {
+                        collapsedFolders.value.clear();
+                    } else {
+                        Object.keys(groupedActions.value).forEach(key => collapsedFolders.value.add(key));
+                    }
+                };
 
                 const toggleFolder = (folder) => {
                     if (collapsedFolders.value.has(folder)) {
@@ -407,6 +430,8 @@
                     currentAction,
                     groupedActions,
                     collapsedFolders,
+                    isAllCollapsed,
+                    toggleAll,
                     toggleFolder,
                     selectAction,
                     copyCode
