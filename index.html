@@ -357,8 +357,16 @@
                         if (!groups[folderName]) groups[folderName] = [];
                         groups[folderName].push(a);
                     });
+                    const keys = Object.keys(groups).sort((a, b) => {
+                        // Pin Actions and JS Modules to top
+                        const priority = { 'Actions': 1, 'JS Modules': 2 };
+                        if (priority[a] && priority[b]) return priority[a] - priority[b];
+                        if (priority[a]) return -1;
+                        if (priority[b]) return 1;
+                        return a.localeCompare(b);
+                    });
                     const sortedGroups = {};
-                    Object.keys(groups).sort().forEach(key => sortedGroups[key] = groups[key]);
+                    keys.forEach(key => sortedGroups[key] = groups[key]);
                     return sortedGroups;
                 });
 
