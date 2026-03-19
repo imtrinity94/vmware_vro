@@ -1,5 +1,13 @@
-var objAMQPBroker;
-objAMQPBroker = AMQPBrokerManager.addBroker({
+/**
+ * @description Creates an AMQP broker connection, declares an exchange and a queue,
+ *              binds them with a wildcard routing key, and subscribes to the queue.
+ *              Intended as a sample for setting up vCloud event notifications via RabbitMQ.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @returns {void}
+ */
+
+var objAMQPBroker = AMQPBrokerManager.addBroker({
     host: "cloudblogger-amqp.domain.local",
     port: 5672,
     username: "username",
@@ -24,7 +32,6 @@ objAMQPBroker.bind("vCloudNotifications", "vCloudExchange", {
     routingKey: "#"
 });
 
-var objAMQPSubscription;
-objAMQPSubscription = objAMQPBroker.subscribe(["vCloudNotifications"], {
+var objAMQPSubscription = objAMQPBroker.subscribe(["vCloudNotifications"], {
     name: "vCloudSubscription"
 });

@@ -1,79 +1,64 @@
-var objProperties;
-	objProperties = new Properties();
+/**
+ * @description Searches for all files in a specific datastore on a named ESXi host using the
+ *              vCenter Datastore Browser. Returns file paths collected into a Properties object.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @param {string} strESXiHostName - The name of the ESXi host to search on.
+ * @param {string} strDataStoreName - The name of the datastore to browse.
+ * @param {*} objCustomActions - Module reference providing the waitVIM3Task helper.
+ * @returns {Properties} objProperties - A Properties object mapping file paths to empty strings.
+ */
 
-var arrVcSdkConnection;
-	arrVcSdkConnection = VcPlugin.allSdkConnections;
+var objProperties = new Properties();
 
-var objVcVmDiskFileQuery;
-	objVcVmDiskFileQuery = new VcVmDiskFileQuery();
+var arrVcSdkConnection = VcPlugin.allSdkConnections;
 
-var objVcVmSnapshotFileQuery;
-	objVcVmSnapshotFileQuery = new VcVmSnapshotFileQuery();
+var objVcVmDiskFileQuery = new VcVmDiskFileQuery();
+var objVcVmSnapshotFileQuery = new VcVmSnapshotFileQuery();
+var objVcVmLogFileQuery = new VcVmLogFileQuery();
+var objVcVmConfigFileQuery = new VcVmConfigFileQuery();
+var objVcIsoImageFileQuery = new VcIsoImageFileQuery();
 
-var objVcVmLogFileQuery;
-	objVcVmLogFileQuery = new VcVmLogFileQuery();
+var arrFileQuery = new Array();
+arrFileQuery.push(objVcVmDiskFileQuery);
+arrFileQuery.push(objVcVmSnapshotFileQuery);
+arrFileQuery.push(objVcVmLogFileQuery);
+arrFileQuery.push(objVcVmConfigFileQuery);
+arrFileQuery.push(objVcIsoImageFileQuery);
 
-var objVcVmConfigFileQuery;
-	objVcVmConfigFileQuery = new VcVmConfigFileQuery();
+var objVcHostDatastoreBrowserSearchSpec = new VcHostDatastoreBrowserSearchSpec();
+objVcHostDatastoreBrowserSearchSpec.query = arrFileQuery;
 
-var objVcIsoImageFileQuery;
-	objVcIsoImageFileQuery = new VcIsoImageFileQuery();
+for each (var objVcSdkConnection in arrVcSdkConnection) {
+    var arrVCHostSystem = objVcSdkConnection.getAllHostSystems();
 
-var arrFileQuery;
-	arrFileQuery = new Array();
-	arrFileQuery.push(objVcVmDiskFileQuery);
-	arrFileQuery.push(objVcVmSnapshotFileQuery);
-	arrFileQuery.push(objVcVmLogFileQuery);
-	arrFileQuery.push(objVcVmConfigFileQuery);
-	arrFileQuery.push(objVcIsoImageFileQuery);
+    for each (var objVCHostSystem in arrVCHostSystem) {
+        if (objVCHostSystem.name == strESXiHostName) {
+            var arrVcDataStore = objVCHostSystem.datastore;
 
-var objVcHostDatastoreBrowserSearchSpec;
-	objVcHostDatastoreBrowserSearchSpec = new VcHostDatastoreBrowserSearchSpec();
-	objVcHostDatastoreBrowserSearchSpec.query = arrFileQuery;		
+            for each (var objVcDataStore in arrVcDataStore) {
+                if (objVcDataStore.info.name == strDataStoreName) {
+                    System.log("===== Data Store: " + objVcDataStore.info.name);
 
-for each (var objVcSdkConnection in arrVcSdkConnection)
-{
-	var arrVCHostSystem;
-		arrVCHostSystem = objVcSdkConnection.getAllHostSystems()
+                    var objVcHostDatastoreBrowser = objVcDataStore.browser;
 
-	for each (var objVCHostSystem in arrVCHostSystem)
-	{
-		if ( objVCHostSystem.name == strESXiHostName )
-		{
-			var arrVcDataStore;
-				arrVcDataStore = objVCHostSystem.datastore;
+                    var objVcTask = objVcHostDatastoreBrowser.searchDatastoreSubFolders_Task("[" + objVcDataStore.name + "]", objVcHostDatastoreBrowserSearchSpec);
 
-			for each (var objVcDataStore in arrVcDataStore)
-			{
-				if ( objVcDataStore.info.name == strDataStoreName )
-				{
-					System.log("===== Data Store: " + objVcDataStore.info.name);
+                    var arrVcHostDatastoreBrowserSearchResults = objCustomActions.waitVIM3Task(objVcTask);
 
-					var objVcHostDatastoreBrowser;
-						objVcHostDatastoreBrowser = objVcDataStore.browser;
+                    for each (var objVcHostDatastoreBrowserSearchResults in arrVcHostDatastoreBrowserSearchResults) {
+                        System.log("===== Folder Path: " + objVcHostDatastoreBrowserSearchResults.folderPath);
 
-					var objVcTask;
-						objVcTask = objVcHostDatastoreBrowser.searchDatastoreSubFolders_Task("[" + objVcDataStore.name + "]", objVcHostDatastoreBrowserSearchSpec);
+                        var arrVcFileInfo = objVcHostDatastoreBrowserSearchResults.file;
 
-					var arrVcHostDatastoreBrowserSearchResults;
-						arrVcHostDatastoreBrowserSearchResults = objCustomActions.waitVIM3Task(objVcTask);
+                        for each (var objVcFileInfo in arrVcFileInfo) {
+                            objProperties.put(objVcHostDatastoreBrowserSearchResults.folderPath + objVcFileInfo.path, "");
+                        }
+                    }
 
-					for each (var objVcHostDatastoreBrowserSearchResults in arrVcHostDatastoreBrowserSearchResults)
-					{
-						System.log("===== Folder Path: " + objVcHostDatastoreBrowserSearchResults.folderPath);
-
-						var arrVcFileInfo;
-							arrVcFileInfo = objVcHostDatastoreBrowserSearchResults.file;
-
-						for each (var objVcFileInfo in arrVcFileInfo)
-						{
-							objProperties.put(objVcHostDatastoreBrowserSearchResults.folderPath + objVcFileInfo.path, "");
-						}
-					}
-
-					break;
-				}
-			}
-		}
-	}
+                    break;
+                }
+            }
+        }
+    }
 }

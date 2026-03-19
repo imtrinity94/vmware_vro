@@ -1,13 +1,19 @@
-var objProperties;
-	objProperties = objSubscription.retrieveLastOnMessageTrigger();
+/**
+ * @description Retrieves and logs the last received AMQP message from a subscription,
+ *              including the message body, notification headers, and message properties.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @param {AMQP:Subscription} objSubscription - The AMQP subscription to retrieve the last trigger from.
+ * @returns {void}
+ */
 
-var strMessageBody;
-	strMessageBody = objProperties.get('body');
+var objProperties = objSubscription.retrieveLastOnMessageTrigger();
+
+var strMessageBody = objProperties.get('body');
 
 System.log("Message Body: " + strMessageBody);
 
-var objHeaders;
-	objHeaders = objProperties.get('headers');
+var objHeaders = objProperties.get('headers');
 
 System.log("notification.type : " + objHeaders.get("notification.type"));
 System.log("notification.orgUUID : " + objHeaders.get("notification.orgUUID"));
@@ -16,8 +22,7 @@ System.log("notification.entityUUID : " + objHeaders.get("notification.entityUUI
 System.log("notification.userUUID : " + objHeaders.get("notification.userUUID"));
 System.log("notification.operationSuccess : " + objHeaders.get("notification.operationSuccess"));
 
-var objProperties2;
-	objProperties2 = objProperties.get('properties');
+var objProperties2 = objProperties.get('properties');
 
 System.log("receivedRoutingKey : " + objProperties2.get("receivedRoutingKey"));
 System.log("messageCount : " + objProperties2.get("messageCount"));

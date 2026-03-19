@@ -1,127 +1,105 @@
-try
-{
-	var objRESTOperation;
-		objRESTOperation = new RESTOperation("RESTOperation");
-		objRESTOperation.defaultContentType = "application/json";
-		objRESTOperation.method = "GET";
-		objRESTOperation.urlTemplate = "/wapi/v1.1/record:host?_return_type=json&name=" + strARecord;
-		objRESTOperation.host = objRESTHost_InfoBlox;
+/**
+ * @description Searches for a host record in InfoBlox by name via the WAPI, then deletes
+ *              the matching record using a subsequent DELETE request. Logs success or throws
+ *              on any HTTP or JSON parsing error.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @param {REST:RESTHost} objRESTHost_InfoBlox - The InfoBlox REST host.
+ * @param {string} strARecord - The A/host record name to locate and delete.
+ * @returns {void}
+ */
 
-	var objRESTRequest;
-		objRESTRequest = objRESTOperation.createRequest([], null);
-		objRESTRequest.contentType = "application/json";
-		objRESTRequest.setHeader("Accept", "application/json");
+try {
+    var objRESTOperation = new RESTOperation("RESTOperation");
+    objRESTOperation.defaultContentType = "application/json";
+    objRESTOperation.method = "GET";
+    objRESTOperation.urlTemplate = "/wapi/v1.1/record:host?_return_type=json&name=" + strARecord;
+    objRESTOperation.host = objRESTHost_InfoBlox;
 
-	var objRESTResponse;
-		objRESTResponse = objRESTRequest.execute();
+    var objRESTRequest = objRESTOperation.createRequest([], null);
+    objRESTRequest.contentType = "application/json";
+    objRESTRequest.setHeader("Accept", "application/json");
 
-	var intStatusCode;
-		intStatusCode = objRESTResponse.statusCode;
+    var objRESTResponse = objRESTRequest.execute();
 
-	if ( intStatusCode == 200 )
-	{
-		var strContentAsString;
-			strContentAsString = objRESTResponse.contentAsString;
+    var intStatusCode = objRESTResponse.statusCode;
 
-		try
-		{
-			var objJson;
-				objJson = JSON.parse(strContentAsString);
+    if (intStatusCode == 200) {
+        var strContentAsString = objRESTResponse.contentAsString;
 
-			var arrRecords;
-				arrRecords = objJson;
+        try {
+            var objJson = JSON.parse(strContentAsString);
 
-			var objRegExp;
-				objRegExp = /(record:(cname|a|host|mx|ptr|txt))\/([A-Za-z0-9]+):([a-z0-9\-\.]+)\/default/;
+            var arrRecords = objJson;
 
-			System.log("==================================================");
+            var objRegExp = /(record:(cname|a|host|mx|ptr|txt))\/([A-Za-z0-9]+):([a-z0-9\-\.]+)\/default/;
 
-			for ( var iiii = 0; iiii < arrRecords.length; iiii++ )
-			{
-				var objRecord;
-					objRecord = arrRecords[iiii];
+            System.log("==================================================");
 
-				var strRecordReference;
-					strRecordReference = objRecord._ref;
+            for (var iiii = 0; iiii < arrRecords.length; iiii++) {
+                var objRecord = arrRecords[iiii];
 
-				System.log("===== RECORD REFERENCE: " + strRecordReference);	
+                var strRecordReference = objRecord._ref;
 
-				var strRecordCanonical;
-					strRecordCanonical = objRecord.canonical;
+                System.log("===== RECORD REFERENCE: " + strRecordReference);
 
-				System.log("===== RECORD CANONICAL: " + strRecordCanonical);	
+                var strRecordCanonical = objRecord.canonical;
 
-				var strRecordName;
-					strRecordName = objRecord.name;
+                System.log("===== RECORD CANONICAL: " + strRecordCanonical);
 
-				System.log("===== RECORD NAME: " + strRecordName);	
+                var strRecordName = objRecord.name;
 
-				var arrRecordReference;
-					arrRecordReference = objRegExp.exec(strRecordReference);
+                System.log("===== RECORD NAME: " + strRecordName);
 
-				var strObjectType;
-					strObjectType = arrRecordReference[1];
+                var arrRecordReference = objRegExp.exec(strRecordReference);
 
-				System.log("===== OBJECT TYPE: " + strObjectType);	
+                var strObjectType = arrRecordReference[1];
 
-				var strObjectReference;
-					strObjectReference = arrRecordReference[3];
+                System.log("===== OBJECT TYPE: " + strObjectType);
 
-				System.log("===== OBJECT REFERENCE: " + strObjectReference);	
+                var strObjectReference = arrRecordReference[3];
 
-				var strObjectName;
-					strObjectName = arrRecordReference[4];
+                System.log("===== OBJECT REFERENCE: " + strObjectReference);
 
-				System.log("===== OBJECT NAME: " + strObjectName);
+                var strObjectName = arrRecordReference[4];
 
-				if ( strObjectName == strARecord )
-				{
-					var objRESTOperation;
-						objRESTOperation = new RESTOperation("RESTOperation");
-						objRESTOperation.defaultContentType = "application/json";
-						objRESTOperation.method = "DELETE";
-						objRESTOperation.urlTemplate = "/wapi/v1.1/record:host/" + strObjectReference + "?_return_type=json";
-						objRESTOperation.host = objRESTHost_InfoBlox;
+                System.log("===== OBJECT NAME: " + strObjectName);
 
-					var objRESTRequest;
-						objRESTRequest = objRESTOperation.createRequest([], null);
-						objRESTRequest.contentType = "application/json";
-						objRESTRequest.setHeader("Accept", "application/json");										
+                if (strObjectName == strARecord) {
+                    var objRESTOperation = new RESTOperation("RESTOperation");
+                    objRESTOperation.defaultContentType = "application/json";
+                    objRESTOperation.method = "DELETE";
+                    objRESTOperation.urlTemplate = "/wapi/v1.1/record:host/" + strObjectReference + "?_return_type=json";
+                    objRESTOperation.host = objRESTHost_InfoBlox;
 
-					System.log("===== ATTEMPTING To DELETE A RECORD: " + strObjectName);	
+                    var objRESTRequest = objRESTOperation.createRequest([], null);
+                    objRESTRequest.contentType = "application/json";
+                    objRESTRequest.setHeader("Accept", "application/json");
 
-					var objRESTResponse;
-						objRESTResponse = objRESTRequest.execute();
+                    System.log("===== ATTEMPTING To DELETE A RECORD: " + strObjectName);
 
-					if ( objRESTResponse.statusCode == 200 )
-					{
-						System.log("===== SUCCESSFULLY DELETED A RECORD: " + strObjectName);	
-					}
-					else
-					{
-						System.error("===== HTTP Error: " + objRESTResponse.statusCode);
-						throw "HTTP Error: " + objRESTResponse.statusCode;				
-					}
+                    var objRESTResponse = objRESTRequest.execute();
 
-					break;
-				}			
-			}
+                    if (objRESTResponse.statusCode == 200) {
+                        System.log("===== SUCCESSFULLY DELETED A RECORD: " + strObjectName);
+                    } else {
+                        System.error("===== HTTP Error: " + objRESTResponse.statusCode);
+                        throw "HTTP Error: " + objRESTResponse.statusCode;
+                    }
 
-			System.log("==================================================");
-		}
-		catch ( objException )
-		{
-			System.error("===== JSON Error: " + objException);
-			throw "JSON Error: " + objException.code;
-		}
-	}
-	else
-	{
-		System.error("===== HTTP Error: " + objRESTResponse.statusCode);
-		throw "HTTP Error: " + objRESTResponse.statusCode;
-	}
-}
-catch (objException)
-{
-	System.error("objException = " + objException);
+                    break;
+                }
+            }
+
+            System.log("==================================================");
+        } catch (objException) {
+            System.error("===== JSON Error: " + objException);
+            throw "JSON Error: " + objException.code;
+        }
+    } else {
+        System.error("===== HTTP Error: " + objRESTResponse.statusCode);
+        throw "HTTP Error: " + objRESTResponse.statusCode;
+    }
+} catch (objException) {
+    System.error("objException = " + objException);
 }

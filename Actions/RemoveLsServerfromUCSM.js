@@ -1,11 +1,22 @@
+/**
+ * @description Removes one or more Logical Server (LsServer / Service Profile) entries from
+ *              a Cisco UCS Manager domain. Iterates over the provided service profile names,
+ *              disassociates each matched profile, and then deletes it.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @param {string[]} SERVICE_PROFILE_ARRAY - Array of service profile names to remove.
+ * @returns {void}
+ */
+
 System.log("Workflow: Remove LsServer");
 
-//UCSM Fetch block
+// UCSM Fetch block
 checkFlag = false;
 try {
     var ucsDomainMatched = System.getModule("org.telus.xavient.util").getPluginObject("UCSM:UcsDomain", ["isLocal", "isPrimary"]);
-    if (ucsDomainMatched != null)
+    if (ucsDomainMatched != null) {
         checkFlag = true;
+    }
 } catch (e) {
     System.debug('Error! no valid object found ');
 }
@@ -13,24 +24,29 @@ if (checkFlag == false) {
     throw "Failed to remove the blades. Reason : UCSM:UcsDomain Object not found";
 }
 
-for each(var j in SERVICE_PROFILE_ARRAY) {
+for each (var j in SERVICE_PROFILE_ARRAY) {
     System.debug("Blade to be matched: " + j);
     var bladeToDelete = [];
-	var allSP = GetSP();
-    for each(var i in allSP) {
+    var allSP = GetSP();
+    for each (var i in allSP) {
         if (i.Name.toUpperCase() == j.toUpperCase()) {
-            System.debug("Deleting the matched blade " + i.Name +"...");
+            System.debug("Deleting the matched blade " + i.Name + "...");
             bladeToDelete.push(i);
-			UcsmActionUtils.disassociateServiceProfile(i);
-			System.log("Successfully disassociated Service Profile.");
+            UcsmActionUtils.disassociateServiceProfile(i);
+            System.log("Successfully disassociated Service Profile.");
             var deletedSP = DeleteSP(bladeToDelete);
-			
-			if(deletedSP.length == 0) System.warn("No Service Profile was removed.");
-			else System.log("Successfully removed Service Profile.");
-            }
+
+            if (deletedSP.length == 0) System.warn("No Service Profile was removed.");
+            else System.log("Successfully removed Service Profile.");
+        }
     }
 }
 
+/**
+ * Retrieves all Service Profiles from the matched UCS domain.
+ *
+ * @returns {*} The list of service profile objects from the UCS domain.
+ */
 function GetSP() {
     ucsDomain = ucsDomainMatched;
     parentMos = null;
@@ -100,6 +116,12 @@ function GetSP() {
     return actionResult;
 }
 
+/**
+ * Deletes specified service profiles from the matched UCS domain.
+ *
+ * @param {*[]} mosToRemove - Array of service profile managed objects to delete.
+ * @returns {*} The result of the removeServiceProfile action.
+ */
 function DeleteSP(mosToRemove) {
     ucsDomain = ucsDomainMatched;
     dn = null;

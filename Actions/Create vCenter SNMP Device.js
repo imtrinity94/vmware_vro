@@ -1,17 +1,19 @@
-var strAddress;
-	strAddress = "vCenterServer.domain.local";
+/**
+ * @description Creates an SNMP v1/v2c device definition in vRO pointing to a vCenter Server.
+ *              Uses hardcoded values as a demonstration template.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @returns {void}
+ */
 
-var strName;
-	strName = "vCenter Server";
+var strAddress = "vCenterServer.domain.local";
 
-var intPort;
-	intPort = 4000;
+var strName = "vCenter Server";
 
-var strCommunity;
-	strCommunity = "public";
+var intPort = 4000;
 
-var strVersion;
-	strVersion = "V2C";
+var strCommunity = "public";
 
-var objSNMPSnmpDevice;
-	objSNMPSnmpDevice = SnmpService.createSnmpDeviceV1V2c(strAddress, strName, intPort, strCommunity, strVersion);
+var strVersion = "V2C";
+
+var objSNMPSnmpDevice = SnmpService.createSnmpDeviceV1V2c(strAddress, strName, intPort, strCommunity, strVersion);

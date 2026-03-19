@@ -1,3 +1,14 @@
+/**
+ * @description Sets the DCUI (Direct Console User Interface) welcome banner on an ESXi host
+ *              using the vRO advanced option manager. The banner text is read from the
+ *              SecBannerText input variable.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @param {VC:HostSystem} hostSystem - The ESXi host on which to set the DCUI banner.
+ * @param {string} SecBannerText - The banner text to display on the ESXi DCUI.
+ * @returns {void}
+ */
+
 var configmanager = hostSystem.configManager;
 var optionmanager = configmanager.advancedOption;
 

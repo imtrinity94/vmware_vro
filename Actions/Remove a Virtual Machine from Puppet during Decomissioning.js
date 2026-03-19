@@ -1,34 +1,35 @@
-//The following script removes a virtual machine from Puppet during decommissioning using the Puppet REST API
+/**
+ * @description Removes a virtual machine's SSL certificate from all configured Puppet masters
+ *              during decommissioning by sending a DELETE request to the Puppet REST API.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @param {string[]} arrHostNames - Array of hostnames to remove from Puppet.
+ * @param {number} i - Index into arrHostNames for the current VM to decommission.
+ * @returns {void}
+ */
 
-var arrPuppetMasters;
-	arrPuppetMasters = new Array();
-	arrPuppetMasters.push("puppet-master-01");
-	arrPuppetMasters.push("puppet-master-02");
+// The following script removes a virtual machine from Puppet during decommissioning using the Puppet REST API
 
-var strHostName;
-	strHostName = arrHostNames[i].toLowerCase();
+var arrPuppetMasters = new Array();
+arrPuppetMasters.push("puppet-master-01");
+arrPuppetMasters.push("puppet-master-02");
 
-for ( var ii = 0; ii < arrPuppetMasters.length; ii++ )
-{
-	var strPuppetMaster;
-		strPuppetMaster = arrPuppetMasters[ii];
+var strHostName = arrHostNames[i].toLowerCase();
 
-	System.log("===== Attempting to DELETE the SSL Certificate for '" + strHostName + "' from " + strPuppetMaster);
+for (var ii = 0; ii < arrPuppetMasters.length; ii++) {
+    var strPuppetMaster = arrPuppetMasters[ii];
 
-	try
-	{
-		var objURL;
-			objURL = new URL("https://" + strPuppetMaster + ":8140/production/certificate_status/" + strHostName );
-			objURL.requestType = "DELETE";
+    System.log("===== Attempting to DELETE the SSL Certificate for '" + strHostName + "' from " + strPuppetMaster);
 
-		var strContent;
-			strContent = objURL.getContent();
-			strContent = strContent.replace(/\n/, "");
+    try {
+        var objURL = new URL("https://" + strPuppetMaster + ":8140/production/certificate_status/" + strHostName);
+        objURL.requestType = "DELETE";
 
-		System.log("===== Result: " + strContent);
-	}
-	catch(objException)
-	{
-		System.error("===== Failed to DELETE the SSL Certificate for '" + strHostName + ".vcoflow.co.uk' from " + strPuppetMaster);
-	}
+        var strContent = objURL.getContent();
+        strContent = strContent.replace(/\n/, "");
+
+        System.log("===== Result: " + strContent);
+    } catch (objException) {
+        System.error("===== Failed to DELETE the SSL Certificate for '" + strHostName + ".vcoflow.co.uk' from " + strPuppetMaster);
+    }
 }

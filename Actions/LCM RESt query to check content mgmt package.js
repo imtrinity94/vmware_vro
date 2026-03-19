@@ -1,3 +1,18 @@
+/**
+ * @description Queries the LCM (Lifecycle Manager) Content Management API to check whether a
+ *              specific content package exists on a given endpoint. Polls asynchronously until
+ *              the content list request completes, then searches the cached result for the package.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @param {string} lcmHost - The LCM host FQDN or IP address.
+ * @param {string} lcmUser - The LCM username for authentication.
+ * @param {string} lcmPassword - The LCM password for authentication.
+ * @param {string} endpointLink - The LCM endpoint link identifier.
+ * @param {string} packageType - The content package type to search for.
+ * @param {string} packageName - The name of the content package to verify.
+ * @returns {void}
+ */
+
 if (packageName == null || packageName.length == 0) {
     throw "Invalid alert name";
 }
@@ -7,9 +22,9 @@ headers.put("accept", "application/json");
 
 var listUrl = "https://" + lcmHost + "/lcm/cms/api/v1/endpoints/" + endpointLink + "/content-list/" + packageType + "?force=true";
 System.log("listUrl :: " + listUrl);
-//headers.put("Authorization",authToken);
+//headers.put("Authorization", authToken);
 try {
-    //	var httpdata = JSON.parse(System.getModule("com.vmware.cse.clm.xenon").request("GET",listUrl));
+    //var httpdata = JSON.parse(System.getModule("com.vmware.cse.clm.xenon").request("GET", listUrl));
     var httpData = System.getModule("com.vmware.cse.utils").restHttpRequest("GET", listUrl, lcmUser, lcmPassword, headers, null, null);
     System.log("Http response :::::  " + httpData);
     if (httpData.indexOf("referenceId") == -1) {
@@ -49,9 +64,9 @@ try {
     }
 } catch (err) {
     if (err.indexOf("404") != -1) {
-        throw ("API does not exist!");
+        throw("API does not exist!");
     } else if (err.indexOf("401") != -1) {
-        throw ("Failed to connect to Blackstone Spring Endpoint  - 401 Unauthorized error");
+        throw("Failed to connect to Blackstone Spring Endpoint  - 401 Unauthorized error");
     } else {
         throw err;
     }

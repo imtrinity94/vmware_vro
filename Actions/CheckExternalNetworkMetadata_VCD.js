@@ -1,21 +1,35 @@
+/**
+ * @description Validates and checks the metadata tags on all external networks in a vCloud Director
+ *              organization. For each external network, it verifies that required hidden (PRIVATE)
+ *              metadata tags exist. Sends email alerts for missing or incorrectly configured tags.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @param {string} NOREPLY_EMAIL - The sender email address for alert notifications.
+ * @param {string} DEVOPS_EMAIL - The recipient email address for alert notifications.
+ * @param {ResourceElement} METADATA_ERROR_MAIL - Resource Element containing the HTML email template.
+ * @returns {void}
+ */
+
 System.log("Fetching External Network Metadata");
 var vcdHost = System.getModule("org.telus.vCloud").getvCloudHost();
 var allExtNet = vcdHost.toAdminObject().getExternalNetworks();
+
 for (index in allExtNet) {
-	var exNet = allExtNet[index];
+    var exNet = allExtNet[index];
     var extNetMetadata = extNet.getMetadata();
     var entries = extNetMetadata.getTypedEntries();
     var enumeratedEntries = entries.enumerate();
     System.log(extNet.name + " external network has following metadata tag(s):");
     var count = 0;
     var mailFlag = false;
-    for each(entry in enumeratedEntries) {
+
+    for each (entry in enumeratedEntries) {
         try {
             if (entry.key == "externalNetworkType") {
                 var networkTypeValue = entry.typedValue.getValue(new VclMetadataStringValue).value;
-                var visibility = entry.domain.visibility; //null for Read/Write //READONLY for ReadOnly //PRIVATE for Hidden
+                var visibility = entry.domain.visibility; // null for Read/Write, READONLY for ReadOnly, PRIVATE for Hidden
                 if (visibility != "PRIVATE") throw "Metadata Tag is not hidden.";
-                //scope = entry.domain.value; // SYSTEM or (null for Read/Write )
+                //scope = entry.domain.value; // SYSTEM or (null for Read/Write)
                 System.log("\nKey: " + entry.key + "\nValue: " + networkTypeValue + "\nVisbility: " + visibility);
                 count++;
                 continue;
@@ -30,13 +44,14 @@ for (index in allExtNet) {
             message.sendMessage();
             System.warn("externalNetworkType Metadata not correct for " + extNet.name + ". Error: " + e);
         }
+
         try {
             if (entry.key == "externalNetworkFunction") {
                 var value = entry.typedValue.getValue(new VclMetadataStringValue).value;
-                var visibility = entry.domain.visibility; //null for Read/Write //READONLY for ReadOnly //PRIVATE for Hidden
+                var visibility = entry.domain.visibility; // null for Read/Write, READONLY for ReadOnly, PRIVATE for Hidden
                 if (visibility != "PRIVATE") throw "Metadata Tag is not hidden.";
                 System.log("\nKey: " + entry.key + "\nValue: " + value + "\nVisbility: " + visibility);
-                //scope = entry.domain.value; // SYSTEM or (null for GENERAL & Read/Write )
+                //scope = entry.domain.value; // SYSTEM or (null for GENERAL & Read/Write)
                 count++;
                 continue;
             } //else throw "externalNetworkFunction Metadata must exist for a external network";
@@ -55,9 +70,9 @@ for (index in allExtNet) {
             try {
                 if (entry.key == "externalNetworkOwner") {
                     value = entry.typedValue.getValue(new VclMetadataStringValue).value;
-                    visibility = entry.domain.visibility; //null for Read/Write //READONLY for ReadOnly //PRIVATE for Hidden
+                    visibility = entry.domain.visibility; // null for Read/Write, READONLY for ReadOnly, PRIVATE for Hidden
                     if (visibility != "PRIVATE") throw "Metadata Tag is not hidden.";
-                    //scope = entry.domain.value; // SYSTEM or (null for GENERAL & Read/Write )
+                    //scope = entry.domain.value; // SYSTEM or (null for GENERAL & Read/Write)
                     System.log("\nKey: " + entry.key + "\nValue: " + value + "\nVisbility: " + visibility);
                     count++;
                     break;
@@ -74,6 +89,7 @@ for (index in allExtNet) {
             }
         }
     }
+
     if (!mailFlag) {
         if (networkTypeValue == "private") {
             if (count == 3) System.log("Essential tags found properly.");
@@ -85,18 +101,17 @@ for (index in allExtNet) {
                 message.addMimePart("Essential Metadata tags not found.", "text/html; charset=UTF-8");
                 message.sendMessage();
             }
+        } else {
+            if (count == 2) System.log("Essential tags found properly.");
+            else {
+                var message = new EmailMessage();
+                message.fromAddress = NOREPLY_EMAIL;
+                message.toAddress = DEVOPS_EMAIL;
+                message.subject = "Metadata fault in external network " + extNet.name;
+                message.addMimePart("Essential Metadata tags not found.", "text/html; charset=UTF-8");
+                message.sendMessage();
+            }
         }
-        else{
-		if (count == 2) System.log("Essential tags found properly.");
-        	else {
-            var message = new EmailMessage();
-            message.fromAddress = NOREPLY_EMAIL;
-            message.toAddress = DEVOPS_EMAIL;
-            message.subject = "Metadata fault in external network " + extNet.name;
-            message.addMimePart("Essential Metadata tags not found.", "text/html; charset=UTF-8");
-            message.sendMessage();
-        	}
-    	}
-	}
+    }
 }
 System.log("//End of script");

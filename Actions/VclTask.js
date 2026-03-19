@@ -1,8 +1,19 @@
+/**
+ * @description Retrieves and logs the running operations of a vCloud task parameter object.
+ *              Logs the operation name and current status for each task found.
+ *              An example output is included at the bottom as a comment for reference.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @param {*} param - A vCloud object containing a tasks property (e.g., an Edge Gateway task payload).
+ * @returns {void}
+ */
+
 var edgeGatewayTasks = param.tasks;
-if(edgeGatewayTasks != null){
-	for each (var i in edgeGatewayTasks.getTasks()) 
-		System.log(i.operation + "  >> "+i.status);
-		System.log(i.operationName + "  >> "+i.status);
+if (edgeGatewayTasks != null) {
+    for each (var i in edgeGatewayTasks.getTasks()) {
+        System.log(i.operation + "  >> " + i.status);
+        System.log(i.operationName + "  >> " + i.status);
+    }
 }
 //param.update();
 

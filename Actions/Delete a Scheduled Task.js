@@ -1,9 +1,16 @@
-var arrTask;
-arrTask = Server.findAllForType('Task');
+/**
+ * @description Iterates through all scheduled tasks (WorkflowToken type), logs their properties,
+ *              and cancels any task that is 100% complete and in a "completed" state.
+ *              Logs an error for tasks that are 100% complete but in a "failed" state.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @returns {void}
+ */
+
+var arrTask = Server.findAllForType('Task');
 
 for (var i = 0; i < arrTask.length; i++) {
-    var objTask;
-    objTask = arrTask[i];
+    var objTask = arrTask[i];
 
     System.log("======================================================================");
 

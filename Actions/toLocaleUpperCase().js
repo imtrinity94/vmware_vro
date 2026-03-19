@@ -1,4 +1,12 @@
-//How to use String.toLocaleUpperCase() funtion in vRO
+/**
+ * @description Demonstrates the use of `String.prototype.toLocaleUpperCase()` in vRO
+ *              with various locale identifiers, including Turkish locale-specific casing.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @returns {void}
+ */
+
+// How to use String.toLocaleUpperCase() function in vRO
 
 var city = 'istanbul';
 
