@@ -12,11 +12,12 @@ The entire library is searchable and documented with source code previews in our
 
 ## 📂 Project Structure
 
-- `Actions/`: Supplementary vRO action scripts, organized by function/plugin.
-- `Library/`: Core Library vRO scripts for several plugins.
-- `JS Modules/`: External JavaScript utility modules like Lodash for vRO.
-- `scripts/`: Custom documentation build system and portal assets.
-- `.github/workflows/`: CI/CD pipeline for automatic JSDoc extraction and portal deployment.
+- `Actions/`: Supplementary vRO action scripts, task-specific utilities, and plugin demonstrations.
+- `Library/`: Comprehensive core library of vRO actions for vSphere, vRA, NSX, and external integrations.
+- `JS Modules/`: External JavaScript libraries (e.g., **Lodash**, **Moment.js**) optimized for vRO script modules.
+- `Binaries/`: Java source code and backend assets for high-performance operations and direct SDK interactions.
+- `scripts/`: Custom documentation build system and responsive portal assets.
+- `.github/workflows/`: Automated CI/CD pipelines for JSDoc extraction and portal deployments.
 
 ---
 *Created and maintained by [Mayank Goyal](https://github.com/imtrinity94).*
