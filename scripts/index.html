@@ -88,9 +88,11 @@
                         <h3 class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-4 border-b border-slate-800 pb-1">Parameters</h3>
                         <div class="space-y-6">
                             <div v-for="param in currentAction.params" class="space-y-2">
-                                <div class="flex items-center gap-2">
-                                    <span class="text-sm font-mono text-blue-300 font-bold tracking-tight">{{ param.name }}</span>
-                                    <span class="text-[0.65rem] text-slate-500 font-mono bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700/50">{{ param.type }}</span>
+                                <div class="block space-y-1.5">
+                                    <div class="text-sm font-mono text-blue-300 font-bold tracking-tight">{{ param.name }}</div>
+                                    <div class="inline-block text-[0.65rem] text-slate-500 font-mono bg-slate-800 px-2 py-0.5 rounded border border-slate-700/50 uppercase tracking-wide">
+                                        {{ param.type }}
+                                    </div>
                                 </div>
                                 <div class="text-[0.8rem] text-slate-400 border-l-2 border-slate-800 pl-3 ml-1 leading-relaxed">
                                     {{ param.description || '—' }}
