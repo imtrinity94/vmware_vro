@@ -1,4 +1,4 @@
-# vRealize Orchestrator (vRO) JavaScript Action Library
+# Orchestrator Code Library
 
 ![vRO Portal Logo](scripts/image.png)
 
@@ -6,7 +6,7 @@ A comprehensive, standardized library of JavaScript actions for VMware Aria Auto
 
 ## 🚀 Live Documentation Portal
 The entire library is searchable and documented with source code previews in our custom portal:
-**[👉 View Actions Reference](https://imtrinity94.github.io/vmware_vro/)**
+**[👉 View Orchestrator Code Library](https://imtrinity94.github.io/vmware_vro/)**
 
 ---
 
