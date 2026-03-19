@@ -1,0 +1,39 @@
+/**
+ * Removes A/AAAA records in IPAM by specified extensible attributes.
+ *
+ * @param {InfobloxIPAM:IpamConnection} ipamConnection - [object Object]
+ * @param {string} dnsView - [object Object]
+ * @param {InfobloxIPAM:IpamExtensibleAttributeDefinition} searchEa1Definition - [object Object]
+ * @param {string} searchEa1Value - [object Object]
+ * @param {InfobloxIPAM:IpamSearchComparisonType} searchEa1Comparison - [object Object]
+ * @param {InfobloxIPAM:IpamExtensibleAttributeDefinition} searchEa2Definition - [object Object]
+ * @param {string} searchEa2Value - [object Object]
+ * @param {InfobloxIPAM:IpamSearchComparisonType} searchEa2Comparison - [object Object]
+ * @param {InfobloxIPAM:IpamExtensibleAttributeDefinition} searchEa3Definition - [object Object]
+ * @param {string} searchEa3Value - [object Object]
+ * @param {InfobloxIPAM:IpamSearchComparisonType} searchEa3Comparison - [object Object]
+ * @param {InfobloxIPAM:IpamExtensibleAttributeDefinition} searchEa4Definition - [object Object]
+ * @param {string} searchEa4Value - [object Object]
+ * @param {InfobloxIPAM:IpamSearchComparisonType} searchEa4Comparison - [object Object]
+ * @param {InfobloxIPAM:IpamExtensibleAttributeDefinition} searchEa5Definition - [object Object]
+ * @param {string} searchEa5Value - [object Object]
+ * @param {InfobloxIPAM:IpamSearchComparisonType} searchEa5Comparison - [object Object]
+ * @param {InfobloxIPAM:IpamExtensibleAttributeDefinition} searchEa6Definition - [object Object]
+ * @param {string} searchEa6Value - [object Object]
+ * @param {InfobloxIPAM:IpamSearchComparisonType} searchEa6Comparison - [object Object]
+ * @param {InfobloxIPAM:IpamExtensibleAttributeDefinition} searchEa7Definition - [object Object]
+ * @param {string} searchEa7Value - [object Object]
+ * @param {InfobloxIPAM:IpamSearchComparisonType} searchEa7Comparison - [object Object]
+ * @param {InfobloxIPAM:IpamExtensibleAttributeDefinition} searchEa8Definition - [object Object]
+ * @param {string} searchEa8Value - [object Object]
+ * @param {InfobloxIPAM:IpamSearchComparisonType} searchEa8Comparison - [object Object]
+ * @param {InfobloxIPAM:IpamExtensibleAttributeDefinition} searchEa9Definition - [object Object]
+ * @param {string} searchEa9Value - [object Object]
+ * @param {InfobloxIPAM:IpamSearchComparisonType} searchEa9Comparison - [object Object]
+ * @param {InfobloxIPAM:IpamExtensibleAttributeDefinition} searchEa10Definition - [object Object]
+ * @param {string} searchEa10Value - [object Object]
+ * @param {InfobloxIPAM:IpamSearchComparisonType} searchEa10Comparison - [object Object]
+ * @param {boolean} allDnsViews
+ */
+//Auto generated script, cannot be modified !
+System.getModule("com.infoblox.ipam").removeAddressRecordsByEA(ipamConnection,dnsView,allDnsViews,searchEa1Definition,searchEa1Value,searchEa1Comparison,searchEa2Definition,searchEa2Value,searchEa2Comparison,searchEa3Definition,searchEa3Value,searchEa3Comparison,searchEa4Definition,searchEa4Value,searchEa4Comparison,searchEa5Definition,searchEa5Value,searchEa5Comparison,searchEa6Definition,searchEa6Value,searchEa6Comparison,searchEa7Definition,searchEa7Value,searchEa7Comparison,searchEa8Definition,searchEa8Value,searchEa8Comparison,searchEa9Definition,searchEa9Value,searchEa9Comparison,searchEa10Definition,searchEa10Value,searchEa10Comparison) ;

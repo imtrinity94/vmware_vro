@@ -1,0 +1,10 @@
+/**
+ * Removes PTR record from the IPAM.
+ *
+ * @param {InfobloxIPAM:IpamConnection} ipamConnection - [object Object]
+ * @param {string} domainName - [object Object]
+ * @param {string} dnsView - [object Object]
+ * @param {string} ipAddress
+ */
+//Auto generated script, cannot be modified !
+System.getModule("com.infoblox.ipam").removePTRRecord(ipamConnection,domainName,ipAddress,dnsView) ;

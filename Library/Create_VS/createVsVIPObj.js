@@ -1,0 +1,20 @@
+/**
+ * createVsVIPObj
+ *
+ * @param {string} Tenant - [object Object]
+ * @param {string} name - [object Object]
+ * @param {string} IPAddress - [object Object]
+ * @param {boolean} eastWestPlacement - [object Object]
+ * @param {boolean} aviAllocatedFIp - [object Object]
+ * @param {boolean} autoAllocateIp - [object Object]
+ * @param {boolean} enabled - [object Object]
+ * @param {boolean} autoAllocateFloatingIp - [object Object]
+ * @param {boolean} aviAllocatedVip - [object Object]
+ * @param {string} tier1
+ * @param {string} ServerCloud
+ * @param {Avi:WorkflowRuntime} workflowRuntime
+ * @param {string} vsvip_uuid - [object Object]
+ * @return {Avi:WorkflowRuntime} actionResult
+ */
+//Auto generated script, cannot be modified !
+actionResult = System.getModule("com.vmware.avi").createVsVIPObj(Tenant,name,IPAddress,eastWestPlacement,aviAllocatedFIp,autoAllocateIp,enabled,autoAllocateFloatingIp,aviAllocatedVip,workflowRuntime,tier1,ServerCloud, vsvip_uuid) ;

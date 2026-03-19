@@ -1,0 +1,33 @@
+/**
+ * Enable vSAN space efficiency on cluster
+ *
+ * @param {VC:ClusterComputeResource} cluster
+ * @param {boolean} allowReducedRedundancy
+ * @return {VC:Task} task
+ */
+var isEnabled = System.getModule("com.vmware.library.vsan.cluster.configuration").isVsanEnabledCluster(cluster);
+if (!isEnabled) {
+   throw "VsanConfigError: This cluster is not vSAN enabled";
+}
+
+var vsanConnection = System.getModule("com.vmware.library.vsan").getVsanConnectionFromSdkConnection(cluster.sdkConnection);
+if (vsanConnection == null) {
+   throw "VsanConnectionError: Could not find vSAN connection for SDK connection [" + cluster.sdkConnection.name + "]";
+}
+
+var clusterConfigSystem = vsanConnection.vsanVcClusterConfigSystem;
+var clusterMoRef = new VsanManagedObjectReference(cluster.moref.type, cluster.moref.value);
+var vsanEsaEnabled = System.getModule("com.vmware.library.vsan").isVsanEsa(cluster);
+if (vsanEsaEnabled) {
+   throw "This is vSAN2 cluster, does not support dedup, compression in cluster level";
+}
+var configSpec = new VsanVimVsanReconfigSpec();
+configSpec.modify = true;
+configSpec.allowReducedRedundancy = allowReducedRedundancy;
+configSpec.dataEfficiencyConfig = new VsanVsanDataEfficiencyConfig();
+configSpec.dataEfficiencyConfig.dedupEnabled = true;
+configSpec.dataEfficiencyConfig.compressionEnabled = true;
+
+System.debug("Enabling vSAN space efficiency on cluster: " + cluster.name);
+var vsanTask = clusterConfigSystem.vsanClusterReconfig(clusterMoRef, configSpec);
+task = System.getModule("com.vmware.library.vsan").getVcTaskById(cluster.sdkConnection, vsanTask.value);

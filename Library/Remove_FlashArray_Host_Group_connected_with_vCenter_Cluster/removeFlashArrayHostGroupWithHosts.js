@@ -1,0 +1,8 @@
+/**
+ * Destroys flasharray host  group along with flasharray hosts.
+ *
+ * @param {PS:HostGroup} hostGroup - [object Object]
+ * @return {string} actionResult
+ */
+//Auto generated script, cannot be modified !
+actionResult = System.getModule("com.purestorage.flasharray.hostgroup").removeFlashArrayHostGroupWithHosts(hostGroup) ;

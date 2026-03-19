@@ -1,0 +1,5 @@
+/**
+ * Refresh hosts
+ *
+ */
+SOAPHostManager.reloadConfiguration();

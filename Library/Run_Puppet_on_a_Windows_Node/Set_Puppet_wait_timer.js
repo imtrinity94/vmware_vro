@@ -1,0 +1,11 @@
+/**
+ * Set Puppet wait timer
+ *
+ * @param {number} puppetRunInterval
+ * @param {Date} puppetRunTimer
+ * @return {Date} puppetRunTimer
+ */
+var timeout = new Date();
+timeout.setSeconds(timeout.getSeconds() + puppetRunInterval);
+
+puppetRunTimer = timeout;
