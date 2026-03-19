@@ -266,14 +266,26 @@
                 <!-- Code Block Area -->
                 <div class="flex-grow bg-slate-950 p-4 pt-2 overflow-hidden flex flex-col">
                     <div class="flex items-center justify-between mb-2">
-                        <div
-                            class="flex items-center gap-2 text-[0.6rem] font-bold text-slate-600 uppercase tracking-widest">
-                            <svg class="h-3 w-3 text-orange-500/60" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            Live Editor Mode
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-2 text-[0.6rem] font-bold text-slate-600 uppercase tracking-widest">
+                                <svg class="h-3 w-3 text-orange-500/60" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Live Editor Mode
+                            </div>
+                            <button @click="toggleDarkMode" 
+                                    class="flex items-center gap-1.5 px-2 py-0.5 rounded border border-slate-800 text-[0.6rem] font-bold text-slate-500 hover:text-white hover:bg-slate-800 transition-all uppercase tracking-wider">
+                                <template v-if="isDarkMode">
+                                    <svg class="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z"/></svg>
+                                    Light Theme
+                                </template>
+                                <template v-else>
+                                    <svg class="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                                    Dark Theme
+                                </template>
+                            </button>
                         </div>
                         <div class="text-[0.6rem] text-slate-600 italic">
                             💡 You can edit this code locally before copying
@@ -315,6 +327,7 @@
                 const searchQuery = ref('');
                 const currentAction = ref(null);
                 const collapsedFolders = ref(new Set());
+                const isDarkMode = ref(false);
                 let editor = null;
 
                 onMounted(async () => {
@@ -371,6 +384,13 @@
                     }
                 };
 
+                const toggleDarkMode = () => {
+                    isDarkMode.value = !isDarkMode.value;
+                    if (window.monaco) {
+                        monaco.editor.setTheme(isDarkMode.value ? 'vs-dark' : 'vs');
+                    }
+                };
+
                 const selectAction = async (action) => {
                     currentAction.value = action;
                     await nextTick();
@@ -390,7 +410,7 @@
                         editor = monaco.editor.create(container, {
                             value: code,
                             language: 'javascript',
-                            theme: 'vs',
+                            theme: isDarkMode.value ? 'vs-dark' : 'vs',
                             readOnly: false,
                             automaticLayout: true,
                             fontFamily: "'Monaspace Krypton', monospace",
@@ -431,8 +451,10 @@
                     groupedActions,
                     collapsedFolders,
                     isAllCollapsed,
+                    isDarkMode,
                     toggleAll,
                     toggleFolder,
+                    toggleDarkMode,
                     selectAction,
                     copyCode
                 };
