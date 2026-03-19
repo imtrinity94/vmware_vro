@@ -74,21 +74,21 @@
             <!-- Side-by-Side Content -->
             <div class="flex-grow flex overflow-hidden">
                 <!-- Metadata Side Column -->
-                <div class="w-80 border-r border-slate-800/50 p-6 overflow-y-auto space-y-6 flex-shrink-0 bg-slate-900/5">
+                <div class="w-96 border-r border-slate-800/50 p-6 overflow-y-auto space-y-8 flex-shrink-0 bg-slate-900/5">
                     <section>
-                        <h3 class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-2 border-b border-slate-800 pb-1">Description</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed italic">{{ currentAction.description }}</p>
+                        <h3 class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">Description</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed italic">{{ currentAction.description }}</p>
                     </section>
                     
                     <section v-if="currentAction.params && currentAction.params.length">
-                        <h3 class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">Parameters</h3>
-                        <div class="space-y-4">
-                            <div v-for="param in currentAction.params" class="space-y-1">
+                        <h3 class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-4 border-b border-slate-800 pb-1">Parameters</h3>
+                        <div class="space-y-6">
+                            <div v-for="param in currentAction.params" class="space-y-2">
                                 <div class="flex items-center gap-2">
-                                    <span class="text-[0.7rem] font-mono text-blue-300 font-semibold">{{ param.name }}</span>
-                                    <span class="text-[0.6rem] text-slate-600 font-mono bg-slate-800/80 px-1 rounded">{{ param.type }}</span>
+                                    <span class="text-sm font-mono text-blue-300 font-bold tracking-tight">{{ param.name }}</span>
+                                    <span class="text-[0.65rem] text-slate-500 font-mono bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700/50">{{ param.type }}</span>
                                 </div>
-                                <div class="text-[0.7rem] text-slate-500 border-l-2 border-slate-800 pl-2 ml-1 leading-snug">
+                                <div class="text-[0.8rem] text-slate-400 border-l-2 border-slate-800 pl-3 ml-1 leading-relaxed">
                                     {{ param.description || '—' }}
                                 </div>
                             </div>
@@ -96,8 +96,8 @@
                     </section>
 
                     <section>
-                        <h3 class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-2 border-b border-slate-800 pb-1">Path</h3>
-                        <div class="text-[0.6rem] font-mono text-slate-600 bg-slate-950/50 p-2 rounded break-all">
+                        <h3 class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">File Path</h3>
+                        <div class="text-[0.7rem] font-mono text-slate-500 bg-slate-950/50 p-3 rounded break-all border border-slate-900 leading-normal">
                             {{ currentAction.path }}
                         </div>
                     </section>
