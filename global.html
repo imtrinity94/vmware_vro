@@ -1,0 +1,8084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Global - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="wrap">
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/imtrinity94/vmware_vro" target="_blank" class="menu-item" id="github-link" >GitHub Repo</a></h2><h3>Global</h3><ul><li><a href="global.html#HttpClient">HttpClient</a></li><li><a href="global.html#ShapeConstructor">ShapeConstructor</a></li><li><a href="global.html#_applyHeaders">_applyHeaders</a></li><li><a href="global.html#_createRequestObject">_createRequestObject</a></li><li><a href="global.html#_executeRequest">_executeRequest</a></li><li><a href="global.html#addWorkflowsByCategory">addWorkflowsByCategory</a></li><li><a href="global.html#adminVdcsList">adminVdcsList</a></li><li><a href="global.html#allHostSystemsList">allHostSystemsList</a></li><li><a href="global.html#allInventoryHostsList">allInventoryHostsList</a></li><li><a href="global.html#allSystemTokensList">allSystemTokensList</a></li><li><a href="global.html#allVms">allVms</a></li><li><a href="global.html#amqpBroker">amqpBroker</a></li><li><a href="global.html#availableStorageProfilesList">availableStorageProfilesList</a></li><li><a href="global.html#characterSet">characterSet</a></li><li><a href="global.html#chefServerV10">chefServerV10</a></li><li><a href="global.html#cleanSparseArray">cleanSparseArray</a></li><li><a href="global.html#collectSubCategories">collectSubCategories</a></li><li><a href="global.html#collectSubCategoriesRecursive">collectSubCategoriesRecursive</a></li><li><a href="global.html#configCategory">configCategory</a></li><li><a href="global.html#constructNicChangeSpec">constructNicChangeSpec</a></li><li><a href="global.html#csvLinesList">csvLinesList</a></li><li><a href="global.html#csvUrl">csvUrl</a></li><li><a href="global.html#customizationSpecMgr">customizationSpecMgr</a></li><li><a href="global.html#datastoreName">datastoreName</a></li><li><a href="global.html#deduplicateOrgArray">deduplicateOrgArray</a></li><li><a href="global.html#defaultAdServerUuid">defaultAdServerUuid</a></li><li><a href="global.html#delete">delete</a></li><li><a href="global.html#deviceAddress">deviceAddress</a></li><li><a href="global.html#discoveredFilesMap">discoveredFilesMap</a></li><li><a href="global.html#discoveryFileKeys">discoveryFileKeys</a></li><li><a href="global.html#dispatchApiRequest">dispatchApiRequest</a></li><li><a href="global.html#dispatchVcdEdgeQuery">dispatchVcdEdgeQuery</a></li><li><a href="global.html#dteStartDate">dteStartDate</a></li><li><a href="global.html#encodedBuffer">encodedBuffer</a></li><li><a href="global.html#executeRefinedVcdQuery">executeRefinedVcdQuery</a></li><li><a href="global.html#executeRestCall">executeRestCall</a></li><li><a href="global.html#executeTargetAction">executeTargetAction</a></li><li><a href="global.html#executionItem">executionItem</a></li><li><a href="global.html#extractSnapshotsRecursively">extractSnapshotsRecursively</a></li><li><a href="global.html#fetchCategoryObjectByName">fetchCategoryObjectByName</a></li><li><a href="global.html#fetchFromUuidCache">fetchFromUuidCache</a></li><li><a href="global.html#filteredCategoriesList">filteredCategoriesList</a></li><li><a href="global.html#finalizedVmGroupName">finalizedVmGroupName</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#getSCSIControllerObject">getSCSIControllerObject</a></li><li><a href="global.html#getSCSIControllerType">getSCSIControllerType</a></li><li><a href="global.html#getTopParentName">getTopParentName</a></li><li><a href="global.html#handler">handler</a></li><li><a href="global.html#hidCodeLookupTable">hidCodeLookupTable</a></li><li><a href="global.html#host">host</a></li><li><a href="global.html#hostsList">hostsList</a></li><li><a href="global.html#iaasTagsUrl">iaasTagsUrl</a></li><li><a href="global.html#keyPairPath">keyPairPath</a></li><li><a href="global.html#logContextType">logContextType</a></li><li><a href="global.html#logDebug">logDebug</a></li><li><a href="global.html#maxDeviceNodesPerController">maxDeviceNodesPerController</a></li><li><a href="global.html#operationNamesArray">operationNamesArray</a></li><li><a href="global.html#optionValueArray">optionValueArray</a></li><li><a href="global.html#patch">patch</a></li><li><a href="global.html#performOuCreation">performOuCreation</a></li><li><a href="global.html#persistToUuidCache">persistToUuidCache</a></li><li><a href="global.html#post">post</a></li><li><a href="global.html#puppetMastersList">puppetMastersList</a></li><li><a href="global.html#put">put</a></li><li><a href="global.html#refinedContent">refinedContent</a></li><li><a href="global.html#resolveTopParentFolderName">resolveTopParentFolderName</a></li><li><a href="global.html#resolvedActionName">resolvedActionName</a></li><li><a href="global.html#ruleInfo">ruleInfo</a></li><li><a href="global.html#scheduledTasksList">scheduledTasksList</a></li><li><a href="global.html#sendErrorEmail">sendErrorEmail</a></li><li><a href="global.html#sendGeneralErrorEmail">sendGeneralErrorEmail</a></li><li><a href="global.html#standardQuerySvc">standardQuerySvc</a></li><li><a href="global.html#strRecurrenceCycle">strRecurrenceCycle</a></li><li><a href="global.html#stripEncapsulatedQuotes">stripEncapsulatedQuotes</a></li><li><a href="global.html#targetFqdn">targetFqdn</a></li><li><a href="global.html#targetServerFqdnStr">targetServerFqdnStr</a></li><li><a href="global.html#tempDirectory">tempDirectory</a></li><li><a href="global.html#testObject">testObject</a></li><li><a href="global.html#tokenMap">tokenMap</a></li><li><a href="global.html#triggerProperties">triggerProperties</a></li><li><a href="global.html#updateAndCacheResult">updateAndCacheResult</a></li><li><a href="global.html#vapiClient">vapiClient</a></li><li><a href="global.html#vapiClientSession">vapiClientSession</a></li><li><a href="global.html#vapiEndpointsList">vapiEndpointsList</a></li><li><a href="global.html#vcloudHostHandle">vcloudHostHandle</a></li><li><a href="global.html#vcloudQuerySvc">vcloudQuerySvc</a></li><li><a href="global.html#vcoflowModuleHandle">vcoflowModuleHandle</a></li><li><a href="global.html#vidmAccessToken">vidmAccessToken</a></li><li><a href="global.html#vmConfigSpec">vmConfigSpec</a></li><li><a href="global.html#vmConfigUpgradeSpec">vmConfigUpgradeSpec</a></li><li><a href="global.html#vmHardwareInfo">vmHardwareInfo</a></li><li><a href="global.html#vmIdsProperties">vmIdsProperties</a></li><li><a href="global.html#vmRelocateSpec">vmRelocateSpec</a></li><li><a href="global.html#vmdkPathsArray">vmdkPathsArray</a></li><li><a href="global.html#workflowId">workflowId</a></li><li><a href="global.html#workflowItem">workflowItem</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Global</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="adminVdcsList"><span class="type-signature"></span>adminVdcsList<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves the Organizations (Orgs) associated with a given Provider VDC (pVDC).
+Navigates from pVDC to Admin VDCs and then to their parent Organizations.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resolveOrgFromPvdc.js.html">resolveOrgFromPvdc.js</a>, <a href="resolveOrgFromPvdc.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves the Organizations (Orgs) associated with a given Provider VDC (pVDC).
+Navigates from pVDC to Admin VDCs and then to their parent Organizations.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="allHostSystemsList"><span class="type-signature"></span>allHostSystemsList<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Disables SSH (TSM-SSH service) on all ESXi hosts in a vCenter instance.
+Sets the SSH service policy to &quot;off&quot; and stops the service if it is currently
+running.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="disableSshServiceOnEsxiHosts.js.html">disableSshServiceOnEsxiHosts.js</a>, <a href="disableSshServiceOnEsxiHosts.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Disables SSH (TSM-SSH service) on all ESXi hosts in a vCenter instance.
+Sets the SSH service policy to &quot;off&quot; and stops the service if it is currently
+running.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="allInventoryHostsList"><span class="type-signature"></span>allInventoryHostsList<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Updates the license key for vSphere ESXi hosts.
+Matches hosts returned from a UCS workflow service profile list against vCenter inventory.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="assignLicenseToVsphereHost.js.html">assignLicenseToVsphereHost.js</a>, <a href="assignLicenseToVsphereHost.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Updates the license key for vSphere ESXi hosts.
+Matches hosts returned from a UCS workflow service profile list against vCenter inventory.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="allSystemTokensList"><span class="type-signature"></span>allSystemTokensList<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves all active workflow tokens (runs) that belong to the currently
+authenticated user.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="listWorkflowTokensByCurrentUser.js.html">listWorkflowTokensByCurrentUser.js</a>, <a href="listWorkflowTokensByCurrentUser.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves all active workflow tokens (runs) that belong to the currently
+authenticated user.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="allVms"><span class="type-signature"></span>allVms<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Finds all Virtual Machine Templates in the vCenter inventory.
+Iterates through all VMs and identifies those where config.template is true.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="listAllVsphereVmTemplates.js.html">listAllVsphereVmTemplates.js</a>, <a href="listAllVsphereVmTemplates.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Finds all Virtual Machine Templates in the vCenter inventory.
+Iterates through all VMs and identifies those where config.template is true.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="amqpBroker"><span class="type-signature"></span>amqpBroker<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Creates an AMQP broker connection, declares an exchange and a queue,
+binds them with a wildcard routing key, and subscribes to the queue.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="createAmqpSubscription.js.html">createAmqpSubscription.js</a>, <a href="createAmqpSubscription.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Creates an AMQP broker connection, declares an exchange and a queue,
+binds them with a wildcard routing key, and subscribes to the queue.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="availableStorageProfilesList"><span class="type-signature"></span>availableStorageProfilesList<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves storage profiles from a Provider VDC (pVDC) that are NOT already in use by a specific Organization VDC (vDC).</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="fetchStorageProfilesFromPvdc.js.html">fetchStorageProfilesFromPvdc.js</a>, <a href="fetchStorageProfilesFromPvdc.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves storage profiles from a Provider VDC (pVDC) that are NOT already in use by a specific Organization VDC (vDC).</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="characterSet"><span class="type-signature"></span>characterSet<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Generates a random password of a specified length using a diverse character set.
+Includes numbers, lowercase letters, uppercase letters, and special characters.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="createRandomPassword.js.html">createRandomPassword.js</a>, <a href="createRandomPassword.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Generates a random password of a specified length using a diverse character set.
+Includes numbers, lowercase letters, uppercase letters, and special characters.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="chefServerV10"><span class="type-signature"></span>chefServerV10<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Removes a virtual machine from a Chef server during decommissioning by executing
+<code>knife node delete</code> and <code>knife client delete</code> commands via SSH.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="deregisterVmFromChefViaSsh.js.html">deregisterVmFromChefViaSsh.js</a>, <a href="deregisterVmFromChefViaSsh.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Removes a virtual machine from a Chef server during decommissioning by executing
+<code>knife node delete</code> and <code>knife client delete</code> commands via SSH.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="configCategory"><span class="type-signature"></span>configCategory<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves the value of a named attribute from a vRO Configuration Element
+located at a specific category path.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="readConfigElementAttributeValue.js.html">readConfigElementAttributeValue.js</a>, <a href="readConfigElementAttributeValue.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves the value of a named attribute from a vRO Configuration Element
+located at a specific category path.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="csvLinesList"><span class="type-signature"></span>csvLinesList<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Parses a multiline CSV string into an array of Properties objects.
+The first row is treated as the header (keys), and each subsequent row
+becomes a Properties entry. Quotes around values are stripped if present.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="parseCsvToPropertiesArray.js.html">parseCsvToPropertiesArray.js</a>, <a href="parseCsvToPropertiesArray.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Parses a multiline CSV string into an array of Properties objects.
+The first row is treated as the header (keys), and each subsequent row
+becomes a Properties entry. Quotes around values are stripped if present.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="csvUrl"><span class="type-signature"></span>csvUrl<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Converts a CSV file retrieved from a URL into a JSON array of objects.
+The first row is expected to be the header.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="parseCsvToJson.js.html">parseCsvToJson.js</a>, <a href="parseCsvToJson.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Converts a CSV file retrieved from a URL into a JSON array of objects.
+The first row is expected to be the header.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="customizationSpecMgr"><span class="type-signature"></span>customizationSpecMgr<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves a named customization spec from a vCenter SDK connection and logs
+the resolved spec name as a warning for verification.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="fetchVmCustomizationSpec.js.html">fetchVmCustomizationSpec.js</a>, <a href="fetchVmCustomizationSpec.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves a named customization spec from a vCenter SDK connection and logs
+the resolved spec name as a warning for verification.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="datastoreName"><span class="type-signature"></span>datastoreName<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Creates a new virtual machine in vCenter with specified configuration,
+including SCSI controller, network interface on a distributed portgroup,
+thin-provisioned hard disk, and a CD-ROM backed by an ISO.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="provisionVirtualMachineInVcenter.js.html">provisionVirtualMachineInVcenter.js</a>, <a href="provisionVirtualMachineInVcenter.js.html#line22">line 22</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Creates a new virtual machine in vCenter with specified configuration,
+including SCSI controller, network interface on a distributed portgroup,
+thin-provisioned hard disk, and a CD-ROM backed by an ISO.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="defaultAdServerUuid"><span class="type-signature"></span>defaultAdServerUuid<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves the default Active Directory host from the vRO plug-in hierarchy
+by matching the default AD server ID from ConfigurationManager.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="inspectPluginHierarchy.js.html">inspectPluginHierarchy.js</a>, <a href="inspectPluginHierarchy.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves the default Active Directory host from the vRO plug-in hierarchy
+by matching the default AD server ID from ConfigurationManager.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="deviceAddress"><span class="type-signature"></span>deviceAddress<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Creates an SNMP v1/v2c device definition in vRO pointing to a vCenter Server.
+Uses hardcoded values as a demonstration template.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="registerVcenterSnmpDevice.js.html">registerVcenterSnmpDevice.js</a>, <a href="registerVcenterSnmpDevice.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Creates an SNMP v1/v2c device definition in vRO pointing to a vCenter Server.
+Uses hardcoded values as a demonstration template.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="discoveredFilesMap"><span class="type-signature"></span>discoveredFilesMap<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Searches for all files in a specific datastore on a named ESXi host using the
+vCenter Datastore Browser. Returns file paths collected into a Properties object.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="listAllFilesInDatastore.js.html">listAllFilesInDatastore.js</a>, <a href="listAllFilesInDatastore.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Searches for all files in a specific datastore on a named ESXi host using the
+vCenter Datastore Browser. Returns file paths collected into a Properties object.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="discoveryFileKeys"><span class="type-signature"></span>discoveryFileKeys<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Scans all vCenter SDK connections to identify and list files belonging to
+all virtual machines (including snapshots). Compares these against a
+provided list of files (discoveryMap) to identify orphaned files or VMs.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="listVcenterVmFiles.js.html">listVcenterVmFiles.js</a>, <a href="listVcenterVmFiles.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Scans all vCenter SDK connections to identify and list files belonging to
+all virtual machines (including snapshots). Compares these against a
+provided list of files (discoveryMap) to identify orphaned files or VMs.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="dteStartDate"><span class="type-signature"></span>dteStartDate<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Recurrence Cycle Options:</p>
+<ul>
+<li>one-time: Task runs once only.</li>
+<li>every-minutes: Task runs every minute.</li>
+<li>every-hours: Task runs hourly.</li>
+<li>every-days: Task runs daily.</li>
+<li>every-weeks: Task runs weekly.</li>
+<li>every-months: Task runs monthly.</li>
+</ul></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Tested%20on%208.18.1_Workflows_scheduleVroWorkflow.js.html">Tested on 8.18.1/Workflows/scheduleVroWorkflow.js</a>, <a href="Tested%20on%208.18.1_Workflows_scheduleVroWorkflow.js.html#line42">line 42</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Recurrence Cycle Options:</p>
+<ul>
+<li>one-time: Task runs once only.</li>
+<li>every-minutes: Task runs every minute.</li>
+<li>every-hours: Task runs hourly.</li>
+<li>every-days: Task runs daily.</li>
+<li>every-weeks: Task runs weekly.</li>
+<li>every-months: Task runs monthly.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="encodedBuffer"><span class="type-signature"></span>encodedBuffer<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Encodes an input string to Base64 using UTF-8 byte encoding.
+The output is split into 76-character lines with CRLF line endings,
+conforming to the MIME Base64 standard.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="encodeStringToBase64.js.html">encodeStringToBase64.js</a>, <a href="encodeStringToBase64.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Encodes an input string to Base64 using UTF-8 byte encoding.
+The output is split into 76-character lines with CRLF line endings,
+conforming to the MIME Base64 standard.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="executionItem"><span class="type-signature"></span>executionItem<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves the display name and internal name of the currently executing
+workflow item from within the item's own scriptable task.
+Note: Specifically targeted for vRO 8.x and later runtime behaviors.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="getActiveWorkflowItem.js.html">getActiveWorkflowItem.js</a>, <a href="getActiveWorkflowItem.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves the display name and internal name of the currently executing
+workflow item from within the item's own scriptable task.
+Note: Specifically targeted for vRO 8.x and later runtime behaviors.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="filteredCategoriesList"><span class="type-signature"></span>filteredCategoriesList<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves all vRO workflow categories whose names contain &quot; - &quot; and returns
+them as an array. Useful for filtering folders following a specific naming convention.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="listWorkflowsInFolder.js.html">listWorkflowsInFolder.js</a>, <a href="listWorkflowsInFolder.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves all vRO workflow categories whose names contain &quot; - &quot; and returns
+them as an array. Useful for filtering folders following a specific naming convention.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="finalizedVmGroupName"><span class="type-signature"></span>finalizedVmGroupName<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Creates a DRS VM Group in a cluster and adds a VM to it.
+Also creates a DRS VM-Host affinity rule for that group.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Not%20tested_createDrsVmGroupWithAffinityRule.js.html">Not tested/createDrsVmGroupWithAffinityRule.js</a>, <a href="Not%20tested_createDrsVmGroupWithAffinityRule.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Creates a DRS VM Group in a cluster and adds a VM to it.
+Also creates a DRS VM-Host affinity rule for that group.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="hidCodeLookupTable"><span class="type-signature"></span>hidCodeLookupTable<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Sends a sequence of keystrokes to a virtual machine's console using vCenter's
+USB HID scan code API. Maps each character to its USB HID code and handles
+shift-modifier for uppercase letters and special characters.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="injectKeyboardInputToVmConsole.js.html">injectKeyboardInputToVmConsole.js</a>, <a href="injectKeyboardInputToVmConsole.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Sends a sequence of keystrokes to a virtual machine's console using vCenter's
+USB HID scan code API. Maps each character to its USB HID code and handles
+shift-modifier for uppercase letters and special characters.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="host"><span class="type-signature"></span>host<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Connects to a remote host using TelnetClient, reads any available banner/output,
+and disconnects after a period of inactivity.</p>
+<p>NOTE:</p>
+<ul>
+<li>When used on port 22, this only captures the SSH banner (no authentication).</li>
+</ul></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="connectAndReadRemoteBanner.js.html">connectAndReadRemoteBanner.js</a>, <a href="connectAndReadRemoteBanner.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Connects to a remote host using TelnetClient, reads any available banner/output,
+and disconnects after a period of inactivity.</p>
+<p>NOTE:</p>
+<ul>
+<li>When used on port 22, this only captures the SSH banner (no authentication).</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>Input:
+host = "172.10.20.151"
+port = 22
+
+Expected Output:
+Connecting to 172.10.20.151:22...
+Connected!
+SSH-2.0-OpenSSH_8.7
+Disconnecting...</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="hostsList"><span class="type-signature"></span>hostsList<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Exits maintenance mode for all hosts within a given cluster if they are currently in maintenance mode.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="exitMaintenanceModeOnCluster.js.html">exitMaintenanceModeOnCluster.js</a>, <a href="exitMaintenanceModeOnCluster.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Exits maintenance mode for all hosts within a given cluster if they are currently in maintenance mode.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="iaasTagsUrl"><span class="type-signature"></span>iaasTagsUrl<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves vRA tags filtered by a specific key and returns them as an array of &quot;key:value&quot; strings.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vRA_fetchVraTagsByKey.js.html">vRA/fetchVraTagsByKey.js</a>, <a href="vRA_fetchVraTagsByKey.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves vRA tags filtered by a specific key and returns them as an array of &quot;key:value&quot; strings.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="keyPairPath"><span class="type-signature"></span>keyPairPath<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Generates an SSH DSA key pair and stores it at the specified path on the vRO server.
+Logs the resulting fingerprint on success, or logs an error on failure.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="createSshKeyPair.js.html">createSshKeyPair.js</a>, <a href="createSshKeyPair.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Generates an SSH DSA key pair and stores it at the specified path on the vRO server.
+Logs the resulting fingerprint on success, or logs an error on failure.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="logContextType"><span class="type-signature"></span>logContextType<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Provides a reusable HttpClient class for making various REST API calls
+(GET, POST, PUT, DELETE, PATCH) within vRO. Includes automatic retries,
+configurable expected response codes, and custom header support.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executeHttpRestRequest.js.html">executeHttpRestRequest.js</a>, <a href="executeHttpRestRequest.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Provides a reusable HttpClient class for making various REST API calls
+(GET, POST, PUT, DELETE, PATCH) within vRO. Includes automatic retries,
+configurable expected response codes, and custom header support.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="maxDeviceNodesPerController"><span class="type-signature"></span>maxDeviceNodesPerController<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Adds a new Virtual Disk to a Virtual Machine.
+Automatically identifies a SCSI controller with available nodes or creates a new one if necessary.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="attachVirtualDiskToVm.js.html">attachVirtualDiskToVm.js</a>, <a href="attachVirtualDiskToVm.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Adds a new Virtual Disk to a Virtual Machine.
+Automatically identifies a SCSI controller with available nodes or creates a new one if necessary.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="operationNamesArray"><span class="type-signature"></span>operationNamesArray<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Copies all REST operations from a source REST Host to a destination REST Host.
+Iterates through all operations on the source host and adds each to the destination.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="migrateRestOperationsBetweenHosts.js.html">migrateRestOperationsBetweenHosts.js</a>, <a href="migrateRestOperationsBetweenHosts.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Copies all REST operations from a source REST Host to a destination REST Host.
+Iterates through all operations on the source host and adds each to the destination.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="optionValueArray"><span class="type-signature"></span>optionValueArray<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Applies a set of predefined advanced configuration settings to all ESXi hosts
+within a vSphere cluster. Each host is placed into maintenance mode before the
+settings are applied, then taken out of maintenance mode afterwards.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="applyAdvancedSettingsOnEsxiHost.js.html">applyAdvancedSettingsOnEsxiHost.js</a>, <a href="applyAdvancedSettingsOnEsxiHost.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Applies a set of predefined advanced configuration settings to all ESXi hosts
+within a vSphere cluster. Each host is placed into maintenance mode before the
+settings are applied, then taken out of maintenance mode afterwards.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="puppetMastersList"><span class="type-signature"></span>puppetMastersList<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Removes a virtual machine's SSL certificate from all configured Puppet masters
+during decommissioning by sending a DELETE request to the Puppet REST API.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="deregisterVmFromPuppet.js.html">deregisterVmFromPuppet.js</a>, <a href="deregisterVmFromPuppet.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Removes a virtual machine's SSL certificate from all configured Puppet masters
+during decommissioning by sending a DELETE request to the Puppet REST API.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="refinedContent"><span class="type-signature"></span>refinedContent<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Returns the content of a Resource Element after performing placeholder
+substitution. Placeholders in the format {{variableName}} are replaced with
+values from the provided Properties object.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="updateResourceElementContent.js.html">updateResourceElementContent.js</a>, <a href="updateResourceElementContent.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Returns the content of a Resource Element after performing placeholder
+substitution. Placeholders in the format {{variableName}} are replaced with
+values from the provided Properties object.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="resolvedActionName"><span class="type-signature"></span>resolvedActionName<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves the source code of a named vRO action from within the module context.
+Uses a self-inspection trick: when called as a module action with a String
+constructor as the argument, it returns the action's script source as a string.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="inspectActionSourceCode.js.html">inspectActionSourceCode.js</a>, <a href="inspectActionSourceCode.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves the source code of a named vRO action from within the module context.
+Uses a self-inspection trick: when called as a module action with a String
+constructor as the argument, it returns the action's script source as a string.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="ruleInfo"><span class="type-signature"></span>ruleInfo<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Adds a DRS VM-to-Host affinity or anti-affinity rule to a vSphere cluster.
+Supports &quot;must&quot;, &quot;should&quot;, &quot;mustNot&quot;, and &quot;shouldNot&quot; rule types.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="createDrsVmHostAffinityRule.js.html">createDrsVmHostAffinityRule.js</a>, <a href="createDrsVmHostAffinityRule.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Adds a DRS VM-to-Host affinity or anti-affinity rule to a vSphere cluster.
+Supports &quot;must&quot;, &quot;should&quot;, &quot;mustNot&quot;, and &quot;shouldNot&quot; rule types.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="scheduledTasksList"><span class="type-signature"></span>scheduledTasksList<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Iterates through all scheduled tasks (WorkflowToken type), logs their properties,
+and cancels any task that is 100% complete and in a &quot;completed&quot; state.
+Logs an error for tasks that are 100% complete but in a &quot;failed&quot; state.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="removeScheduledTask.js.html">removeScheduledTask.js</a>, <a href="removeScheduledTask.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Iterates through all scheduled tasks (WorkflowToken type), logs their properties,
+and cancels any task that is 100% complete and in a &quot;completed&quot; state.
+Logs an error for tasks that are 100% complete but in a &quot;failed&quot; state.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="standardQuerySvc"><span class="type-signature"></span>standardQuerySvc<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Executes a specific query to locate vCloud Director Edge Gateways by name.
+Demonstrates the use of dynamic function invocation and record retrieval.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Not%20tested_vCloud%20Director_Query%20Service_queryVcdEdgeGatewaysByName.js.html">Not tested/vCloud Director/Query Service/queryVcdEdgeGatewaysByName.js</a>, <a href="Not%20tested_vCloud%20Director_Query%20Service_queryVcdEdgeGatewaysByName.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Executes a specific query to locate vCloud Director Edge Gateways by name.
+Demonstrates the use of dynamic function invocation and record retrieval.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="strRecurrenceCycle"><span class="type-signature"></span>strRecurrenceCycle<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Recurrence Pattern Examples:</p>
+<ul>
+<li>one-time: Ignores the recurrencePattern attribute.</li>
+<li>every-minutes: Seconds into each minute at which the task starts, e.g., &quot;00&quot; or &quot;00, 30&quot;.</li>
+<li>every-hours: Minutes and seconds into each hour at which the task starts, e.g., &quot;00:00&quot; or &quot;00:00, 30:00&quot;.</li>
+<li>every-days: Time at which the task starts each day, e.g., &quot;18:30:00&quot; or &quot;12:00:00, 19:30:00&quot;.</li>
+<li>every-weeks: Day and time at which the task starts each week, e.g., &quot;Mon 00:00:00&quot; or &quot;Mon 00:00:00, Wed 18:00:00&quot;.</li>
+<li>every-months: Date and time at which the task starts each month, e.g., &quot;14 00:00:00&quot; or &quot;14 00:00:00, 28 18:00:00&quot;.</li>
+</ul></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Tested%20on%208.18.1_Workflows_scheduleVroWorkflow.js.html">Tested on 8.18.1/Workflows/scheduleVroWorkflow.js</a>, <a href="Tested%20on%208.18.1_Workflows_scheduleVroWorkflow.js.html#line29">line 29</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Recurrence Pattern Examples:</p>
+<ul>
+<li>one-time: Ignores the recurrencePattern attribute.</li>
+<li>every-minutes: Seconds into each minute at which the task starts, e.g., &quot;00&quot; or &quot;00, 30&quot;.</li>
+<li>every-hours: Minutes and seconds into each hour at which the task starts, e.g., &quot;00:00&quot; or &quot;00:00, 30:00&quot;.</li>
+<li>every-days: Time at which the task starts each day, e.g., &quot;18:30:00&quot; or &quot;12:00:00, 19:30:00&quot;.</li>
+<li>every-weeks: Day and time at which the task starts each week, e.g., &quot;Mon 00:00:00&quot; or &quot;Mon 00:00:00, Wed 18:00:00&quot;.</li>
+<li>every-months: Date and time at which the task starts each month, e.g., &quot;14 00:00:00&quot; or &quot;14 00:00:00, 28 18:00:00&quot;.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="targetFqdn"><span class="type-signature"></span>targetFqdn<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Checks the ping status of a given VM name within a domain.
+Executes a single ping command and returns the status as a string.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="testVmNetworkPing.js.html">testVmNetworkPing.js</a>, <a href="testVmNetworkPing.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Checks the ping status of a given VM name within a domain.
+Executes a single ping command and returns the status as a string.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="targetServerFqdnStr"><span class="type-signature"></span>targetServerFqdnStr<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Builds and executes a PowerShell script via a vRO PowerShell host to ping a
+virtual server's FQDN and check TCP connectivity on a specified port. The result
+is stored back in the input JSON request object.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="testNetworkConnectivityViaPowershell.js.html">testNetworkConnectivityViaPowershell.js</a>, <a href="testNetworkConnectivityViaPowershell.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Builds and executes a PowerShell script via a vRO PowerShell host to ping a
+virtual server's FQDN and check TCP connectivity on a specified port. The result
+is stored back in the input JSON request object.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="tempDirectory"><span class="type-signature"></span>tempDirectory<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Creates a temporary text-based file in a temporary directory on the vRO server.
+Useful for staging files before copying them to guest VMs or other systems.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="createTemporaryFileOnVro.js.html">createTemporaryFileOnVro.js</a>, <a href="createTemporaryFileOnVro.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Creates a temporary text-based file in a temporary directory on the vRO server.
+Useful for staging files before copying them to guest VMs or other systems.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="testObject"><span class="type-signature"></span>testObject<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Demonstrates the JavaScript Function.prototype.bind() method in the vRO context.
+Shows the difference between an unbound function call (which loses its context)
+and a bound function call (which preserves the original object context).</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="demonstrateFunctionBindInVro.js.html">demonstrateFunctionBindInVro.js</a>, <a href="demonstrateFunctionBindInVro.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Demonstrates the JavaScript Function.prototype.bind() method in the vRO context.
+Shows the difference between an unbound function call (which loses its context)
+and a bound function call (which preserves the original object context).</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="tokenMap"><span class="type-signature"></span>tokenMap<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Demonstrates how to build an XML body for an NSX Edge appliance using Properties
+as a placeholder map. Reads a template XML from a Resource Element and replaces
+all placeholder tokens with real values.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="demonstrateXmlCyclingInVro.js.html">demonstrateXmlCyclingInVro.js</a>, <a href="demonstrateXmlCyclingInVro.js.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Demonstrates how to build an XML body for an NSX Edge appliance using Properties
+as a placeholder map. Reads a template XML from a Resource Element and replaces
+all placeholder tokens with real values.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="triggerProperties"><span class="type-signature"></span>triggerProperties<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves and logs the last received AMQP message from a subscription,
+including the message body, notification headers, and message properties.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="inspectReceivedAmqpMessages.js.html">inspectReceivedAmqpMessages.js</a>, <a href="inspectReceivedAmqpMessages.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves and logs the last received AMQP message from a subscription,
+including the message body, notification headers, and message properties.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vapiClient"><span class="type-signature"></span>vapiClient<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Deletes a vCenter Tag Category given its ID.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="removeVcenterTagCategory.js.html">removeVcenterTagCategory.js</a>, <a href="removeVcenterTagCategory.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Deletes a vCenter Tag Category given its ID.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vapiClientSession"><span class="type-signature"></span>vapiClientSession<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Lists all vCenter tags in a given category that are not currently assigned to
+any objects. Uses the vAPI tagging client to query tag associations.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="listUnassignedVmTagsByCategory.js.html">listUnassignedVmTagsByCategory.js</a>, <a href="listUnassignedVmTagsByCategory.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Lists all vCenter tags in a given category that are not currently assigned to
+any objects. Uses the vAPI tagging client to query tag associations.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vapiEndpointsList"><span class="type-signature"></span>vapiEndpointsList<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Lists all items across all Content Libraries accessible through all VAPI endpoints.
+Returns an array of Content Library item model objects.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="listContentLibraryItems.js.html">listContentLibraryItems.js</a>, <a href="listContentLibraryItems.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Lists all items across all Content Libraries accessible through all VAPI endpoints.
+Returns an array of Content Library item model objects.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vcloudHostHandle"><span class="type-signature"></span>vcloudHostHandle<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Scans a vCloud Director External Network to determine the status of all IP addresses.
+Categorizes IPs as FREE, VSE (allocated to Edge), or SUB (sub-allocated).</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="auditVcdExternalNetworkIpStatus.js.html">auditVcdExternalNetworkIpStatus.js</a>, <a href="auditVcdExternalNetworkIpStatus.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Scans a vCloud Director External Network to determine the status of all IP addresses.
+Categorizes IPs as FREE, VSE (allocated to Edge), or SUB (sub-allocated).</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vcloudQuerySvc"><span class="type-signature"></span>vcloudQuerySvc<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves all vApp Templates from a vCloud Director host using the Query Service.
+Iterates through all pages of the result set and resolves full entity objects.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Not%20tested_vCloud%20Director_Query%20Service_fetchAllVappTemplates.js.html">Not tested/vCloud Director/Query Service/fetchAllVappTemplates.js</a>, <a href="Not%20tested_vCloud%20Director_Query%20Service_fetchAllVappTemplates.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves all vApp Templates from a vCloud Director host using the Query Service.
+Iterates through all pages of the result set and resolves full entity objects.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vcoflowModuleHandle"><span class="type-signature"></span>vcoflowModuleHandle<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Upgrades VMware Tools and virtual hardware version for all VMs within
+a specified compute resource's resource pool. Checks current tools
+status and hardware version before initiating upgrade tasks.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="upgradeVmToolsAndHardwareVersion.js.html">upgradeVmToolsAndHardwareVersion.js</a>, <a href="upgradeVmToolsAndHardwareVersion.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Upgrades VMware Tools and virtual hardware version for all VMs within
+a specified compute resource's resource pool. Checks current tools
+status and hardware version before initiating upgrade tasks.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vidmAccessToken"><span class="type-signature"></span>vidmAccessToken<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Obtains a vIDM (VMware Identity Manager) OAuth2 bearer access token
+using client credentials grant type. Returns the token or null if inputs
+are missing.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="fetchVidmBearerToken.js.html">fetchVidmBearerToken.js</a>, <a href="fetchVidmBearerToken.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Obtains a vIDM (VMware Identity Manager) OAuth2 bearer access token
+using client credentials grant type. Returns the token or null if inputs
+are missing.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vmConfigSpec"><span class="type-signature"></span>vmConfigSpec<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Reconfigures a Virtual Machine's CPU reservation.
+Sets the CPU allocation shares to &quot;normal&quot; and applies the reservation.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="setVmCpuReservation.js.html">setVmCpuReservation.js</a>, <a href="setVmCpuReservation.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Reconfigures a Virtual Machine's CPU reservation.
+Sets the CPU allocation shares to &quot;normal&quot; and applies the reservation.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vmConfigUpgradeSpec"><span class="type-signature"></span>vmConfigUpgradeSpec<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Applies VM hardening configurations (extraConfig options) and performs vMotion/storage vMotion relocation.
+Processes an array of virtual machines and an array of configuration key-value pairs.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="applyVmHardeningAndRelocate.js.html">applyVmHardeningAndRelocate.js</a>, <a href="applyVmHardeningAndRelocate.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Applies VM hardening configurations (extraConfig options) and performs vMotion/storage vMotion relocation.
+Processes an array of virtual machines and an array of configuration key-value pairs.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vmHardwareInfo"><span class="type-signature"></span>vmHardwareInfo<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Extracts the MAC address of the first VMXNET3 virtual network adapter found on a VM.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="getMacAddressFromVm.js.html">getMacAddressFromVm.js</a>, <a href="getMacAddressFromVm.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Extracts the MAC address of the first VMXNET3 virtual network adapter found on a VM.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vmIdsProperties"><span class="type-signature"></span>vmIdsProperties<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves various UUIDs and BIOS IDs for a vCenter Virtual Machine.
+Returns vCenter MoRef, SCCM BIOS ID, OS BIOS ID, Instance UUID, and BIOS ID.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="listVmIdentifiers.js.html">listVmIdentifiers.js</a>, <a href="listVmIdentifiers.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves various UUIDs and BIOS IDs for a vCenter Virtual Machine.
+Returns vCenter MoRef, SCCM BIOS ID, OS BIOS ID, Instance UUID, and BIOS ID.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vmRelocateSpec"><span class="type-signature"></span>vmRelocateSpec<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Relocates a Virtual Machine across clusters or datastores, supporting hot relocation (Live vMotion)
+even when hosts do not share storage. Tested with vSphere 6.0+.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="relocateVmHotMigration.js.html">relocateVmHotMigration.js</a>, <a href="relocateVmHotMigration.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Relocates a Virtual Machine across clusters or datastores, supporting hot relocation (Live vMotion)
+even when hosts do not share storage. Tested with vSphere 6.0+.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="vmdkPathsArray"><span class="type-signature"></span>vmdkPathsArray<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Enumerates all VMDK files within a specific Datastore.
+Performs a recursive search using the Datastore Browser.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="listVmdkFilesInDatastore.js.html">listVmdkFilesInDatastore.js</a>, <a href="listVmdkFilesInDatastore.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Enumerates all VMDK files within a specific Datastore.
+Performs a recursive search using the Datastore Browser.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="workflowId"><span class="type-signature"></span>workflowId<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves and logs the full inventory folder path of the currently executing workflow,
+including both the category path and the workflow name.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resolveCurrentWorkflowPath.js.html">resolveCurrentWorkflowPath.js</a>, <a href="resolveCurrentWorkflowPath.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves and logs the full inventory folder path of the currently executing workflow,
+including both the category path and the workflow name.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="workflowItem"><span class="type-signature"></span>workflowItem<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves the display name and internal item name of the currently executing
+workflow item from within the item itself.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resolveWorkflowItemName.js.html">resolveWorkflowItemName.js</a>, <a href="resolveWorkflowItemName.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Retrieves the display name and internal item name of the currently executing
+workflow item from within the item itself.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p>
+</div>
+
+
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="HttpClient"><span class="type-signature"></span>HttpClient<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Defines the HttpClient object.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executeHttpRestRequest.js.html">executeHttpRestRequest.js</a>, <a href="executeHttpRestRequest.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="ShapeConstructor"><span class="type-signature"></span>ShapeConstructor<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Shape Constructor</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="demonstrateClassPatternInVro.js.html">demonstrateClassPatternInVro.js</a>, <a href="demonstrateClassPatternInVro.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="_applyHeaders"><span class="type-signature"></span>_applyHeaders<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Private helper to apply headers to the request.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executeHttpRestRequest.js.html">executeHttpRestRequest.js</a>, <a href="executeHttpRestRequest.js.html#line123">line 123</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="_createRequestObject"><span class="type-signature"></span>_createRequestObject<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Private helper to initialize the REST:Request object.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executeHttpRestRequest.js.html">executeHttpRestRequest.js</a>, <a href="executeHttpRestRequest.js.html#line106">line 106</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="_executeRequest"><span class="type-signature"></span>_executeRequest<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Private execution logic with retry capability.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executeHttpRestRequest.js.html">executeHttpRestRequest.js</a>, <a href="executeHttpRestRequest.js.html#line61">line 61</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="addWorkflowsByCategory"><span class="type-signature"></span>addWorkflowsByCategory<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Adds workflows under a workflow category to the package.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="buildVroPackageWithAllElements.js.html">buildVroPackageWithAllElements.js</a>, <a href="buildVroPackageWithAllElements.js.html#line77">line 77</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="cleanSparseArray"><span class="type-signature"></span>cleanSparseArray<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Returns a condensed Array with no empty items.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="fetchStorageProfilesFromPvdc.js.html">fetchStorageProfilesFromPvdc.js</a>, <a href="fetchStorageProfilesFromPvdc.js.html#line49">line 49</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="collectSubCategories"><span class="type-signature"></span>collectSubCategories<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Recursively retrieves sub-categories.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="buildVroPackageWithAllElements.js.html">buildVroPackageWithAllElements.js</a>, <a href="buildVroPackageWithAllElements.js.html#line57">line 57</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="collectSubCategoriesRecursive"><span class="type-signature"></span>collectSubCategoriesRecursive<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Recursive traversal of vRO categories.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="buildVroPackageForDailyRelease.js.html">buildVroPackageForDailyRelease.js</a>, <a href="buildVroPackageForDailyRelease.js.html#line58">line 58</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="constructNicChangeSpec"><span class="type-signature"></span>constructNicChangeSpec<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Generates a NIC change spec to move a VM's first supported NIC to a new distributed portgroup.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="relocateVmHotMigration.js.html">relocateVmHotMigration.js</a>, <a href="relocateVmHotMigration.js.html#line48">line 48</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="deduplicateOrgArray"><span class="type-signature"></span>deduplicateOrgArray<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Removes duplicate items from an array based on ID or HREF.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resolveOrgFromPvdc.js.html">resolveOrgFromPvdc.js</a>, <a href="resolveOrgFromPvdc.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="delete"><span class="type-signature"></span>delete<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Executes a DELETE request.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executeHttpRestRequest.js.html">executeHttpRestRequest.js</a>, <a href="executeHttpRestRequest.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="dispatchApiRequest"><span class="type-signature"></span>dispatchApiRequest<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Dispatches an HTTP request to the vRO REST API.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="buildVroPackageForDailyRelease.js.html">buildVroPackageForDailyRelease.js</a>, <a href="buildVroPackageForDailyRelease.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="dispatchVcdEdgeQuery"><span class="type-signature"></span>dispatchVcdEdgeQuery<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Dispatches a vCD Query and logs results.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Not%20tested_vCloud%20Director_Query%20Service_queryVcdEdgeGatewaysByName.js.html">Not tested/vCloud Director/Query Service/queryVcdEdgeGatewaysByName.js</a>, <a href="Not%20tested_vCloud%20Director_Query%20Service_queryVcdEdgeGatewaysByName.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="executeRefinedVcdQuery"><span class="type-signature"></span>executeRefinedVcdQuery<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Encapsulated helper for executing paged vCD queries and validating record types.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Not%20tested_vCloud%20Director_Query%20Service_queryAllVcdObjectsByName.js.html">Not tested/vCloud Director/Query Service/queryAllVcdObjectsByName.js</a>, <a href="Not%20tested_vCloud%20Director_Query%20Service_queryAllVcdObjectsByName.js.html#line74">line 74</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="executeRestCall"><span class="type-signature"></span>executeRestCall<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Sends a REST request to the vRO API.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="buildVroPackageWithAllElements.js.html">buildVroPackageWithAllElements.js</a>, <a href="buildVroPackageWithAllElements.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="executeTargetAction"><span class="type-signature"></span>executeTargetAction<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Calls the target action dynamically.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="fetchCachedValue.js.html">fetchCachedValue.js</a>, <a href="fetchCachedValue.js.html#line66">line 66</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="extractSnapshotsRecursively"><span class="type-signature"></span>extractSnapshotsRecursively<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Recursive helper to find all snapshots of a VM.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="listVcenterVmFiles.js.html">listVcenterVmFiles.js</a>, <a href="listVcenterVmFiles.js.html#line118">line 118</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="fetchCategoryObjectByName"><span class="type-signature"></span>fetchCategoryObjectByName<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves a tag category by its display name.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="listUnassignedVmTagsByCategory.js.html">listUnassignedVmTagsByCategory.js</a>, <a href="listUnassignedVmTagsByCategory.js.html#line42">line 42</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="fetchFromUuidCache"><span class="type-signature"></span>fetchFromUuidCache<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Retrieves a value from the internal UUID cache.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="fetchCachedValue.js.html">fetchCachedValue.js</a>, <a href="fetchCachedValue.js.html#line56">line 56</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Executes a GET request.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executeHttpRestRequest.js.html">executeHttpRestRequest.js</a>, <a href="executeHttpRestRequest.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getSCSIControllerObject"><span class="type-signature"></span>getSCSIControllerObject<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Returns the appropriate SCSI controller object based on the type string.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="attachVirtualDiskToVm.js.html">attachVirtualDiskToVm.js</a>, <a href="attachVirtualDiskToVm.js.html#line153">line 153</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getSCSIControllerType"><span class="type-signature"></span>getSCSIControllerType<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Determines the SCSI controller type string for a given controller object.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="attachVirtualDiskToVm.js.html">attachVirtualDiskToVm.js</a>, <a href="attachVirtualDiskToVm.js.html#line177">line 177</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getTopParentName"><span class="type-signature"></span>getTopParentName<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Helper to get the top-level parent folder name.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="buildVroPackageWithAllElements.js.html">buildVroPackageWithAllElements.js</a>, <a href="buildVroPackageWithAllElements.js.html#line133">line 133</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="handler"><span class="type-signature"></span>handler<span class="signature">(context, inputs, callback)</span><span class="type-signature"> &rarr; {void}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Sends a text notification message to a Google Chat webhook using the Node.js
+HTTPS module. Intended for use as a vRO ABX action handler.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="sendAlertToGoogleChat.js.html">sendAlertToGoogleChat.js</a>, <a href="sendAlertToGoogleChat.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Any</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The ABX execution context.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>inputs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Any</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The action inputs.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The text message to send to the Google Chat space.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>webhookPath</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The Google Chat webhook path (e.g. /v1/spaces/.../messages).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The ABX callback function to signal completion.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="logDebug"><span class="type-signature"></span>logDebug<span class="signature">(moduleName, actionName, forceReload, args)</span><span class="type-signature"> &rarr; {any}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Provides a caching mechanism for vRO action results.
+Uses DynamicTypes plugin's cache to store results based on a key generated from module name, action name, and arguments.</p>
+<p>Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="fetchCachedValue.js.html">fetchCachedValue.js</a>, <a href="fetchCachedValue.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Mayank Goyal</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>moduleName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The module containing the action to cache.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>actionName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The name of the action.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>forceReload</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>If true, bypasses cache and refreshes the value.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Arguments for the action call.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>resultValue - The cached or freshly retrieved result.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">any</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="patch"><span class="type-signature"></span>patch<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Executes a PATCH request.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executeHttpRestRequest.js.html">executeHttpRestRequest.js</a>, <a href="executeHttpRestRequest.js.html#line54">line 54</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="performOuCreation"><span class="type-signature"></span>performOuCreation<span class="signature">(item, substring)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Creates an Active Directory Sub Organizational Unit (OU) if it does not already exist.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="createAdSubOrganizationalUnit.js.html">createAdSubOrganizationalUnit.js</a>, <a href="createAdSubOrganizationalUnit.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>item</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">ActiveDirectory:OrganizationalUnit</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parent OU object to create the sub OU under.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>substring</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The name of the sub OU to create.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="persistToUuidCache"><span class="type-signature"></span>persistToUuidCache<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Stores a value in the internal UUID cache.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="fetchCachedValue.js.html">fetchCachedValue.js</a>, <a href="fetchCachedValue.js.html#line43">line 43</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="post"><span class="type-signature"></span>post<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Executes a POST request.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executeHttpRestRequest.js.html">executeHttpRestRequest.js</a>, <a href="executeHttpRestRequest.js.html#line32">line 32</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="put"><span class="type-signature"></span>put<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Executes a PUT request.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="executeHttpRestRequest.js.html">executeHttpRestRequest.js</a>, <a href="executeHttpRestRequest.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="resolveTopParentFolderName"><span class="type-signature"></span>resolveTopParentFolderName<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Resolves root-level folder name for comparison logic.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="buildVroPackageForDailyRelease.js.html">buildVroPackageForDailyRelease.js</a>, <a href="buildVroPackageForDailyRelease.js.html#line138">line 138</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="sendErrorEmail"><span class="type-signature"></span>sendErrorEmail<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Sends a specific metadata error email.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="validateExternalNetworkMetadataVcd.js.html">validateExternalNetworkMetadataVcd.js</a>, <a href="validateExternalNetworkMetadataVcd.js.html#line91">line 91</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="sendGeneralErrorEmail"><span class="type-signature"></span>sendGeneralErrorEmail<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Sends a general missing metadata error email.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="validateExternalNetworkMetadataVcd.js.html">validateExternalNetworkMetadataVcd.js</a>, <a href="validateExternalNetworkMetadataVcd.js.html#line104">line 104</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="stripEncapsulatedQuotes"><span class="type-signature"></span>stripEncapsulatedQuotes<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Strips surrounding double-quotes from a string value if present.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="parseCsvToPropertiesArray.js.html">parseCsvToPropertiesArray.js</a>, <a href="parseCsvToPropertiesArray.js.html#line57">line 57</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="updateAndCacheResult"><span class="type-signature"></span>updateAndCacheResult<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Executes action and refreshes cache.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="fetchCachedValue.js.html">fetchCachedValue.js</a>, <a href="fetchCachedValue.js.html#line108">line 108</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Mar 19 2026 10:41:59 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

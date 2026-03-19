@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>buildVroPackageForDailyRelease.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="wrap">
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/imtrinity94/vmware_vro" target="_blank" class="menu-item" id="github-link" >GitHub Repo</a></h2><h3>Global</h3><ul><li><a href="global.html#HttpClient">HttpClient</a></li><li><a href="global.html#ShapeConstructor">ShapeConstructor</a></li><li><a href="global.html#_applyHeaders">_applyHeaders</a></li><li><a href="global.html#_createRequestObject">_createRequestObject</a></li><li><a href="global.html#_executeRequest">_executeRequest</a></li><li><a href="global.html#addWorkflowsByCategory">addWorkflowsByCategory</a></li><li><a href="global.html#adminVdcsList">adminVdcsList</a></li><li><a href="global.html#allHostSystemsList">allHostSystemsList</a></li><li><a href="global.html#allInventoryHostsList">allInventoryHostsList</a></li><li><a href="global.html#allSystemTokensList">allSystemTokensList</a></li><li><a href="global.html#allVms">allVms</a></li><li><a href="global.html#amqpBroker">amqpBroker</a></li><li><a href="global.html#availableStorageProfilesList">availableStorageProfilesList</a></li><li><a href="global.html#characterSet">characterSet</a></li><li><a href="global.html#chefServerV10">chefServerV10</a></li><li><a href="global.html#cleanSparseArray">cleanSparseArray</a></li><li><a href="global.html#collectSubCategories">collectSubCategories</a></li><li><a href="global.html#collectSubCategoriesRecursive">collectSubCategoriesRecursive</a></li><li><a href="global.html#configCategory">configCategory</a></li><li><a href="global.html#constructNicChangeSpec">constructNicChangeSpec</a></li><li><a href="global.html#csvLinesList">csvLinesList</a></li><li><a href="global.html#csvUrl">csvUrl</a></li><li><a href="global.html#customizationSpecMgr">customizationSpecMgr</a></li><li><a href="global.html#datastoreName">datastoreName</a></li><li><a href="global.html#deduplicateOrgArray">deduplicateOrgArray</a></li><li><a href="global.html#defaultAdServerUuid">defaultAdServerUuid</a></li><li><a href="global.html#delete">delete</a></li><li><a href="global.html#deviceAddress">deviceAddress</a></li><li><a href="global.html#discoveredFilesMap">discoveredFilesMap</a></li><li><a href="global.html#discoveryFileKeys">discoveryFileKeys</a></li><li><a href="global.html#dispatchApiRequest">dispatchApiRequest</a></li><li><a href="global.html#dispatchVcdEdgeQuery">dispatchVcdEdgeQuery</a></li><li><a href="global.html#dteStartDate">dteStartDate</a></li><li><a href="global.html#encodedBuffer">encodedBuffer</a></li><li><a href="global.html#executeRefinedVcdQuery">executeRefinedVcdQuery</a></li><li><a href="global.html#executeRestCall">executeRestCall</a></li><li><a href="global.html#executeTargetAction">executeTargetAction</a></li><li><a href="global.html#executionItem">executionItem</a></li><li><a href="global.html#extractSnapshotsRecursively">extractSnapshotsRecursively</a></li><li><a href="global.html#fetchCategoryObjectByName">fetchCategoryObjectByName</a></li><li><a href="global.html#fetchFromUuidCache">fetchFromUuidCache</a></li><li><a href="global.html#filteredCategoriesList">filteredCategoriesList</a></li><li><a href="global.html#finalizedVmGroupName">finalizedVmGroupName</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#getSCSIControllerObject">getSCSIControllerObject</a></li><li><a href="global.html#getSCSIControllerType">getSCSIControllerType</a></li><li><a href="global.html#getTopParentName">getTopParentName</a></li><li><a href="global.html#handler">handler</a></li><li><a href="global.html#hidCodeLookupTable">hidCodeLookupTable</a></li><li><a href="global.html#host">host</a></li><li><a href="global.html#hostsList">hostsList</a></li><li><a href="global.html#iaasTagsUrl">iaasTagsUrl</a></li><li><a href="global.html#keyPairPath">keyPairPath</a></li><li><a href="global.html#logContextType">logContextType</a></li><li><a href="global.html#logDebug">logDebug</a></li><li><a href="global.html#maxDeviceNodesPerController">maxDeviceNodesPerController</a></li><li><a href="global.html#operationNamesArray">operationNamesArray</a></li><li><a href="global.html#optionValueArray">optionValueArray</a></li><li><a href="global.html#patch">patch</a></li><li><a href="global.html#performOuCreation">performOuCreation</a></li><li><a href="global.html#persistToUuidCache">persistToUuidCache</a></li><li><a href="global.html#post">post</a></li><li><a href="global.html#puppetMastersList">puppetMastersList</a></li><li><a href="global.html#put">put</a></li><li><a href="global.html#refinedContent">refinedContent</a></li><li><a href="global.html#resolveTopParentFolderName">resolveTopParentFolderName</a></li><li><a href="global.html#resolvedActionName">resolvedActionName</a></li><li><a href="global.html#ruleInfo">ruleInfo</a></li><li><a href="global.html#scheduledTasksList">scheduledTasksList</a></li><li><a href="global.html#sendErrorEmail">sendErrorEmail</a></li><li><a href="global.html#sendGeneralErrorEmail">sendGeneralErrorEmail</a></li><li><a href="global.html#standardQuerySvc">standardQuerySvc</a></li><li><a href="global.html#strRecurrenceCycle">strRecurrenceCycle</a></li><li><a href="global.html#stripEncapsulatedQuotes">stripEncapsulatedQuotes</a></li><li><a href="global.html#targetFqdn">targetFqdn</a></li><li><a href="global.html#targetServerFqdnStr">targetServerFqdnStr</a></li><li><a href="global.html#tempDirectory">tempDirectory</a></li><li><a href="global.html#testObject">testObject</a></li><li><a href="global.html#tokenMap">tokenMap</a></li><li><a href="global.html#triggerProperties">triggerProperties</a></li><li><a href="global.html#updateAndCacheResult">updateAndCacheResult</a></li><li><a href="global.html#vapiClient">vapiClient</a></li><li><a href="global.html#vapiClientSession">vapiClientSession</a></li><li><a href="global.html#vapiEndpointsList">vapiEndpointsList</a></li><li><a href="global.html#vcloudHostHandle">vcloudHostHandle</a></li><li><a href="global.html#vcloudQuerySvc">vcloudQuerySvc</a></li><li><a href="global.html#vcoflowModuleHandle">vcoflowModuleHandle</a></li><li><a href="global.html#vidmAccessToken">vidmAccessToken</a></li><li><a href="global.html#vmConfigSpec">vmConfigSpec</a></li><li><a href="global.html#vmConfigUpgradeSpec">vmConfigUpgradeSpec</a></li><li><a href="global.html#vmHardwareInfo">vmHardwareInfo</a></li><li><a href="global.html#vmIdsProperties">vmIdsProperties</a></li><li><a href="global.html#vmRelocateSpec">vmRelocateSpec</a></li><li><a href="global.html#vmdkPathsArray">vmdkPathsArray</a></li><li><a href="global.html#workflowId">workflowId</a></li><li><a href="global.html#workflowItem">workflowItem</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">buildVroPackageForDailyRelease.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Creates a vRealize Orchestrator package containing specified workflows, actions, configurations, and resources.
+ * This is useful for automated daily exports and version control integration.
+ * 
+ * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
+ * 
+ * @author Mayank Goyal
+ * @param {string} targetPackageName - Name of the package to create.
+ * @param {string[]} wfCategoriesPathList - List of workflow category paths.
+ * @param {string[]} actionModuleNamesList - List of action module names.
+ * @param {string[]} configCategoriesPathList - List of configuration element category paths.
+ * @param {string[]} resourceCategoriesPathList - List of resource element category paths.
+ * @returns {void}
+ */
+
+// Dependency: Lodash via custom library module
+var lodashHandle = System.getModule("fr.numaneo.library").lodashLibrary();
+
+// Transient REST Host configuration targeting local vRO API
+var vroApiBaseUrl = "https://localhost:8281";
+var authStrategyParams = ["Per User Session", null, null];
+
+var templateRestHost = RESTHostManager.createHost("TransientVroApiHost");
+var transientVroHost = RESTHostManager.createTransientHostFrom(templateRestHost);
+transientVroHost.url = vroApiBaseUrl;
+
+var vroAuthenticationObj = RESTAuthenticationManager.createAuthentication("Basic", authStrategyParams);
+transientVroHost.authentication = vroAuthenticationObj;
+
+var packageEndpointPath = "/vco/api/packages/" + targetPackageName + "/";
+
+/**
+ * Dispatches an HTTP request to the vRO REST API.
+ */
+var dispatchApiRequest = function(apiSubPath, httpMethodVerb) {
+    var emptyJsonPayload = "{}";
+    var apiRequestObj = transientVroHost.createRequest(httpMethodVerb, apiSubPath, emptyJsonPayload);
+    
+    apiRequestObj.setHeader("accept", "application/json");
+    apiRequestObj.setHeader("content-type", "application/json");
+    
+    System.debug("API-CALL [" + httpMethodVerb + "]: " + apiSubPath);
+
+    var apiResponseObj = apiRequestObj.execute();
+    var responseBodyText = apiResponseObj.contentAsString;
+
+    if (!lodashHandle.includes([200, 201, 202, 204, 409], apiResponseObj.statusCode)) {
+        System.error("Critical: REST Interaction Failed (" + apiSubPath + "). Status Code: " + apiResponseObj.statusCode);
+        System.error("Response Details: " + responseBodyText);
+    } else {
+        System.debug("API-RESPONSE [Status: " + apiResponseObj.statusCode + "]");
+    }
+};
+
+/**
+ * Recursive traversal of vRO categories.
+ */
+var collectSubCategoriesRecursive = function(accumulatorArray, parentCategoryObj) {
+    if (parentCategoryObj) {
+        accumulatorArray.push(parentCategoryObj);
+        lodashHandle.forEach(parentCategoryObj.subCategories, function(childCategory) {
+            collectSubCategoriesRecursive(accumulatorArray, childCategory);
+        });
+    }
+    return accumulatorArray;
+};
+
+System.log("Starting Package Lifecycle Management for: " + targetPackageName);
+
+// 1. Prepare environment by removing existing instance
+dispatchApiRequest(packageEndpointPath, "DELETE");
+
+// 2. Initialize new package container
+dispatchApiRequest(packageEndpointPath, "PUT");
+
+// 3. Trigger initial index rebuild
+dispatchApiRequest(packageEndpointPath + "rebuild", "POST");
+
+// 4. Provision Workflow Categories
+var provisionWorkflows = function(targetCategoryName) {
+    var libraryWfCategories = Server.getWorkflowCategoryWithPath("Library").subCategories;
+    var consolidatedCategories = lodashHandle.concat(Server.getAllWorkflowCategories(), libraryWfCategories);
+    
+    var matchedCategory = lodashHandle.find(lodashHandle.flattenDeep(consolidatedCategories), function(catItem) {
+        return catItem.name === targetCategoryName;
+    });
+    
+    if (matchedCategory) {
+        var workflowLinkUrl = packageEndpointPath + "workflow_category/" + System.getObjectId(matchedCategory);
+        dispatchApiRequest(workflowLinkUrl, "POST");
+    } else {
+        System.warn("Workflow Category not matched: " + targetCategoryName);
+    }
+};
+
+lodashHandle.forEach(wfCategoriesPathList, function(categoryNameStr) {
+    provisionWorkflows(categoryNameStr);
+});
+
+// 5. Provision Action Modules
+var allSystemModules = System.getAllModules();
+var matchedModulesList = lodashHandle.filter(allSystemModules, function(sysModule) {
+    return lodashHandle.some(actionModuleNamesList, function(requestedName) {
+        return lodashHandle.startsWith(sysModule.name, requestedName);
+    });
+});
+
+lodashHandle.forEach(matchedModulesList, function(moduleObj) {
+    var actionLinkUrl = packageEndpointPath + "action/" + moduleObj.name + "/";
+    dispatchApiRequest(actionLinkUrl, "POST");
+});
+
+// 6. Provision Configuration Element Categories
+var resolvedConfigCats = lodashHandle(configCategoriesPathList).map(function(pathStr) {
+    var configCatObj = Server.getConfigurationElementCategoryWithPath(pathStr);
+    return collectSubCategoriesRecursive([], configCatObj);
+}).flatten().value();
+
+lodashHandle.forEach(resolvedConfigCats, function(configCategoryItem) {
+    var configLinkUrl = packageEndpointPath + "configuration_category/" + encodeURIComponent(configCategoryItem.path.replace(/\//g, ".")) + "/";
+    dispatchApiRequest(configLinkUrl, "POST");
+});
+
+// 7. Provision Resource Element Categories
+var resolvedResourceCats = lodashHandle(resourceCategoriesPathList).map(function(pathStr) {
+    var resourceCatObj = Server.getResourceElementCategoryWithPath(pathStr);
+    return collectSubCategoriesRecursive([], resourceCatObj);
+}).flatten().value();
+
+lodashHandle.forEach(resolvedResourceCats, function(resourceCategoryItem) {
+    var resourceLinkUrl = packageEndpointPath + "resource_category/" + encodeURIComponent(resourceCategoryItem.path.replace(/\//g, ".")) + "/";
+    dispatchApiRequest(resourceLinkUrl, "POST");
+});
+
+/**
+ * Resolves root-level folder name for comparison logic.
+ */
+var resolveTopParentFolderName = function(wfOrCat) {
+    var parentEntity = wfOrCat.parent;
+    if (!parentEntity) {
+        return wfOrCat.name;
+    } else {
+        var rootParentName = resolveTopParentFolderName(parentEntity);
+        return (!rootParentName || rootParentName === "Library") ? wfOrCat.name : rootParentName;
+    }
+};
+
+// 8. Refine and Cleanup Package Contents
+var finalizedPackageObj = Server.getPackageWithName(targetPackageName);
+if (finalizedPackageObj) {
+    System.log("Generating Audit Report for Package: " + targetPackageName);
+    System.log(" - Configuration Elements: " + (finalizedPackageObj.configurationElements ? finalizedPackageObj.configurationElements.length : 0));
+    System.log(" - Resource Elements:      " + (finalizedPackageObj.resourceElements ? finalizedPackageObj.resourceElements.length : 0));
+    System.log(" - Workflow Items:         " + (finalizedPackageObj.workflows ? finalizedPackageObj.workflows.length : 0));
+    System.log(" - Action Items:           " + (finalizedPackageObj.actions ? finalizedPackageObj.actions.length : 0));
+
+    // Remove Workflows that don't belong to the whitelist categories
+    var workflowsToPurge = lodashHandle.filter(finalizedPackageObj.workflows, function(wfItem) {
+        return lodashHandle.every(wfCategoriesPathList, function(whitelistName) {
+            return resolveTopParentFolderName(wfItem.workflowCategory) !== whitelistName;
+        });
+    });
+
+    lodashHandle.forEach(workflowsToPurge, function(wfPurgeItem) {
+        dispatchApiRequest(packageEndpointPath + "workflow/" + System.getObjectId(wfPurgeItem), "DELETE");
+    });
+
+    // Remove Actions not belonging to the module whitelist
+    var actionsToPurge = lodashHandle.filter(finalizedPackageObj.actions, function(actionItem) {
+        return lodashHandle.every(actionModuleNamesList, function(modulePrefix) {
+            return actionItem.module.name.indexOf(modulePrefix) === -1;
+        });
+    });
+
+    lodashHandle.forEach(actionsToPurge, function(actionPurgeItem) {
+        dispatchApiRequest(packageEndpointPath + "action/" + System.getObjectId(actionPurgeItem), "DELETE");
+    });
+
+    // Remove Resource Elements outside the category hierarchy
+    var resourcesToPurge = lodashHandle.filter(finalizedPackageObj.resourceElements, function(resElementItem) {
+        return lodashHandle.every(resourceCategoriesPathList, function(categoryPathPrefix) {
+             return resElementItem.getResourceElementCategory().path.indexOf(categoryPathPrefix) === -1;
+        });
+    });
+
+    lodashHandle.forEach(resourcesToPurge, function(resPurgeItem) {
+        dispatchApiRequest(packageEndpointPath + "resource/" + System.getObjectId(resPurgeItem), "DELETE");
+    });
+
+    System.log("Package '" + targetPackageName + "' refinement successful.");
+}
+
+return null;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Mar 19 2026 10:41:59 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>
