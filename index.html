@@ -1,88 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-    <meta charset="utf-8">
-    <title>Home - Documentation</title>
-    
-    
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
-    <script src="scripts/nav.js" defer></script>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>vRO Actions Reference</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #0f172a; color: #f8fafc; margin: 0; height: 100vh; overflow: hidden; }
+        .sidebar { width: 320px; border-right: 1px solid #1e293b; height: 100vh; display: flex; flex-direction: column; flex-shrink: 0; background-color: #020617; }
+        .content { flex-grow: 1; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; background-color: #0f172a; }
+        #monaco-editor { flex-grow: 1; min-height: 400px; border-top: 1px solid #1e293b; background: #1e1e1e; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        .action-item { transition: all 0.2s; cursor: pointer; border-radius: 6px; padding: 6px 12px; margin: 2px 8px; }
+        .action-item:hover { background-color: #1e293b; }
+        .action-item.active { background-color: #3b82f6; color: white !important; }
+        .folder-header { font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; margin-top: 1rem; padding: 0 16px 4px; border-bottom: 1px solid #1e293b; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between; }
+        .param-badge { font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; padding: 2px 6px; border-radius: 4px; background: #1e293b; color: #94a3b8; }
+        .copy-success { background: #22c55e; color: white; display: none; padding: 4px 12px; border-radius: 4px; position: fixed; bottom: 20px; right: 20px; font-size: 0.85rem; z-index: 100; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+    </style>
 </head>
 <body>
+    <div id="app" class="flex">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="p-6">
+                <h1 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">vRO Actions Portal</h1>
+                <div class="mt-4 relative">
+                    <input type="text" v-model="searchQuery" placeholder="Search actions..." 
+                           class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-200">
+                </div>
+            </div>
+            
+            <div class="flex-grow overflow-y-auto pb-8">
+                <div v-for="(actions, folder) in groupedActions" :key="folder">
+                    <div class="folder-header">
+                        <span>{{ folder }}</span>
+                        <span class="text-[0.6rem] bg-slate-800 px-1.5 rounded">{{ actions.length }}</span>
+                    </div>
+                    <div v-for="action in actions" :key="action.id" 
+                         @click="selectAction(action)"
+                         :class="['action-item text-sm text-slate-400 flex items-center gap-2', { 'active': currentAction?.id === action.id }]">
+                         <svg class="h-4 w-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        {{ action.name }}
+                    </div>
+                </div>
+            </div>
+        </aside>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
+        <!-- Content Area -->
+        <main v-if="currentAction" class="content">
+            <div class="p-8 pb-4">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="text-xs text-blue-400 font-semibold mb-1 uppercase tracking-wider">{{ currentAction.folder }}</div>
+                        <h2 class="text-3xl font-bold text-white">{{ currentAction.name }}</h2>
+                    </div>
+                    <button @click="copyCode" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
+                        Copy Action Source
+                    </button>
+                </div>
 
-<label for="nav-trigger" class="overlay"></label>
+                <div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 space-y-6">
+                        <section>
+                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Description</h3>
+                            <p class="text-slate-300 leading-relaxed">{{ currentAction.description }}</p>
+                        </section>
 
-<nav class="wrap">
-    
-    <input type="text" id="nav-search" placeholder="Search" />
-    
-    
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/imtrinity94/vmware_vro" target="_blank" class="menu-item" id="github-link" >GitHub Repo</a></h2><h3>Global</h3><ul><li><a href="global.html#HttpClient">HttpClient</a></li><li><a href="global.html#ShapeConstructor">ShapeConstructor</a></li><li><a href="global.html#_applyHeaders">_applyHeaders</a></li><li><a href="global.html#_createRequestObject">_createRequestObject</a></li><li><a href="global.html#_executeRequest">_executeRequest</a></li><li><a href="global.html#addWorkflowsByCategory">addWorkflowsByCategory</a></li><li><a href="global.html#adminVdcsList">adminVdcsList</a></li><li><a href="global.html#allHostSystemsList">allHostSystemsList</a></li><li><a href="global.html#allInventoryHostsList">allInventoryHostsList</a></li><li><a href="global.html#allSystemTokensList">allSystemTokensList</a></li><li><a href="global.html#allVms">allVms</a></li><li><a href="global.html#amqpBroker">amqpBroker</a></li><li><a href="global.html#availableStorageProfilesList">availableStorageProfilesList</a></li><li><a href="global.html#characterSet">characterSet</a></li><li><a href="global.html#chefServerV10">chefServerV10</a></li><li><a href="global.html#cleanSparseArray">cleanSparseArray</a></li><li><a href="global.html#collectSubCategories">collectSubCategories</a></li><li><a href="global.html#collectSubCategoriesRecursive">collectSubCategoriesRecursive</a></li><li><a href="global.html#configCategory">configCategory</a></li><li><a href="global.html#constructNicChangeSpec">constructNicChangeSpec</a></li><li><a href="global.html#csvLinesList">csvLinesList</a></li><li><a href="global.html#csvUrl">csvUrl</a></li><li><a href="global.html#customizationSpecMgr">customizationSpecMgr</a></li><li><a href="global.html#datastoreName">datastoreName</a></li><li><a href="global.html#deduplicateOrgArray">deduplicateOrgArray</a></li><li><a href="global.html#defaultAdServerUuid">defaultAdServerUuid</a></li><li><a href="global.html#delete">delete</a></li><li><a href="global.html#deviceAddress">deviceAddress</a></li><li><a href="global.html#discoveredFilesMap">discoveredFilesMap</a></li><li><a href="global.html#discoveryFileKeys">discoveryFileKeys</a></li><li><a href="global.html#dispatchApiRequest">dispatchApiRequest</a></li><li><a href="global.html#dispatchVcdEdgeQuery">dispatchVcdEdgeQuery</a></li><li><a href="global.html#dteStartDate">dteStartDate</a></li><li><a href="global.html#encodedBuffer">encodedBuffer</a></li><li><a href="global.html#executeRefinedVcdQuery">executeRefinedVcdQuery</a></li><li><a href="global.html#executeRestCall">executeRestCall</a></li><li><a href="global.html#executeTargetAction">executeTargetAction</a></li><li><a href="global.html#executionItem">executionItem</a></li><li><a href="global.html#extractSnapshotsRecursively">extractSnapshotsRecursively</a></li><li><a href="global.html#fetchCategoryObjectByName">fetchCategoryObjectByName</a></li><li><a href="global.html#fetchFromUuidCache">fetchFromUuidCache</a></li><li><a href="global.html#filteredCategoriesList">filteredCategoriesList</a></li><li><a href="global.html#finalizedVmGroupName">finalizedVmGroupName</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#getSCSIControllerObject">getSCSIControllerObject</a></li><li><a href="global.html#getSCSIControllerType">getSCSIControllerType</a></li><li><a href="global.html#getTopParentName">getTopParentName</a></li><li><a href="global.html#handler">handler</a></li><li><a href="global.html#hidCodeLookupTable">hidCodeLookupTable</a></li><li><a href="global.html#host">host</a></li><li><a href="global.html#hostsList">hostsList</a></li><li><a href="global.html#iaasTagsUrl">iaasTagsUrl</a></li><li><a href="global.html#keyPairPath">keyPairPath</a></li><li><a href="global.html#logContextType">logContextType</a></li><li><a href="global.html#logDebug">logDebug</a></li><li><a href="global.html#maxDeviceNodesPerController">maxDeviceNodesPerController</a></li><li><a href="global.html#operationNamesArray">operationNamesArray</a></li><li><a href="global.html#optionValueArray">optionValueArray</a></li><li><a href="global.html#patch">patch</a></li><li><a href="global.html#performOuCreation">performOuCreation</a></li><li><a href="global.html#persistToUuidCache">persistToUuidCache</a></li><li><a href="global.html#post">post</a></li><li><a href="global.html#puppetMastersList">puppetMastersList</a></li><li><a href="global.html#put">put</a></li><li><a href="global.html#refinedContent">refinedContent</a></li><li><a href="global.html#resolveTopParentFolderName">resolveTopParentFolderName</a></li><li><a href="global.html#resolvedActionName">resolvedActionName</a></li><li><a href="global.html#ruleInfo">ruleInfo</a></li><li><a href="global.html#scheduledTasksList">scheduledTasksList</a></li><li><a href="global.html#sendErrorEmail">sendErrorEmail</a></li><li><a href="global.html#sendGeneralErrorEmail">sendGeneralErrorEmail</a></li><li><a href="global.html#standardQuerySvc">standardQuerySvc</a></li><li><a href="global.html#strRecurrenceCycle">strRecurrenceCycle</a></li><li><a href="global.html#stripEncapsulatedQuotes">stripEncapsulatedQuotes</a></li><li><a href="global.html#targetFqdn">targetFqdn</a></li><li><a href="global.html#targetServerFqdnStr">targetServerFqdnStr</a></li><li><a href="global.html#tempDirectory">tempDirectory</a></li><li><a href="global.html#testObject">testObject</a></li><li><a href="global.html#tokenMap">tokenMap</a></li><li><a href="global.html#triggerProperties">triggerProperties</a></li><li><a href="global.html#updateAndCacheResult">updateAndCacheResult</a></li><li><a href="global.html#vapiClient">vapiClient</a></li><li><a href="global.html#vapiClientSession">vapiClientSession</a></li><li><a href="global.html#vapiEndpointsList">vapiEndpointsList</a></li><li><a href="global.html#vcloudHostHandle">vcloudHostHandle</a></li><li><a href="global.html#vcloudQuerySvc">vcloudQuerySvc</a></li><li><a href="global.html#vcoflowModuleHandle">vcoflowModuleHandle</a></li><li><a href="global.html#vidmAccessToken">vidmAccessToken</a></li><li><a href="global.html#vmConfigSpec">vmConfigSpec</a></li><li><a href="global.html#vmConfigUpgradeSpec">vmConfigUpgradeSpec</a></li><li><a href="global.html#vmHardwareInfo">vmHardwareInfo</a></li><li><a href="global.html#vmIdsProperties">vmIdsProperties</a></li><li><a href="global.html#vmRelocateSpec">vmRelocateSpec</a></li><li><a href="global.html#vmdkPathsArray">vmdkPathsArray</a></li><li><a href="global.html#workflowId">workflowId</a></li><li><a href="global.html#workflowItem">workflowItem</a></li></ul>
-    
-</nav>
+                        <section v-if="currentAction.params && currentAction.params.length">
+                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Parameters</h3>
+                            <div class="space-y-3">
+                                <div v-for="param in currentAction.params" class="bg-slate-800/50 border border-slate-700/50 p-3 rounded-lg flex items-start gap-4">
+                                    <span class="param-badge">{{ param.name }}</span>
+                                    <div>
+                                        <div class="text-[0.65rem] text-slate-500 font-bold uppercase mb-0.5">{{ param.type }}</div>
+                                        <div class="text-sm text-slate-300">{{ param.description || 'No description.' }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
 
-<div id="main">
-    
+                    <div class="space-y-6">
+                        <section>
+                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Returns</h3>
+                            <div class="bg-blue-500/10 border border-blue-500/20 p-3 rounded-lg">
+                                <span class="text-blue-400 font-mono text-sm">{{ currentAction.returns }}</span>
+                            </div>
+                        </section>
+                        <section>
+                            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">File Reference</h3>
+                            <div class="text-xs font-mono text-slate-500 bg-slate-900 p-2 rounded truncate" :title="currentAction.path">
+                                {{ currentAction.path }}
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
 
-    
+            <!-- Monaco Container -->
+            <div id="monaco-editor-container" class="mt-6 flex-grow flex flex-col relative">
+                <div class="bg-[#1e1e1e] px-4 py-2 border-t border-slate-800 flex items-center gap-2">
+                    <span class="text-[0.6rem] font-bold text-slate-500 uppercase tracking-widest">Source Code (ES5)</span>
+                </div>
+                <div id="monaco-editor"></div>
+            </div>
+        </main>
+        
+        <main v-else class="content flex items-center justify-center p-8 bg-slate-950">
+            <div class="text-center">
+                <div class="h-24 w-24 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-500/20">
+                    <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-300">Select an action to view its documentation</h2>
+                <p class="text-slate-500 mt-2">Use the sidebar to explore your action library.</p>
+            </div>
+        </main>
 
+        <div id="copy-toast" class="copy-success">Action source copied!</div>
+    </div>
 
+    <!-- Monaco Loader -->
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs/loader.js"></script>
+    <script>
+        const { createApp, ref, computed, onMounted, nextTick } = Vue;
 
-    
+        createApp({
+            setup() {
+                const actionsData = ref([]);
+                const searchQuery = ref('');
+                const currentAction = ref(null);
+                let editor = null;
 
+                onMounted(async () => {
+                    try {
+                        const response = await fetch('actions.json');
+                        actionsData.value = await response.json();
+                        
+                        // Default selection if available
+                        if (actionsData.value.length > 0) {
+                            // selectAction(actionsData.value[0]);
+                        }
+                    } catch (e) {
+                        console.error('Failed to load actions.json', e);
+                    }
+                });
 
-    <section class="package">
-        <h3> </h3>		
-    </section>
+                const filteredActions = computed(() => {
+                    const query = searchQuery.value.toLowerCase().trim();
+                    if (!query) return actionsData.value;
+                    return actionsData.value.filter(a => 
+                        a.name.toLowerCase().includes(query) || 
+                        a.folder.toLowerCase().includes(query) ||
+                        a.description.toLowerCase().includes(query)
+                    );
+                });
 
+                const groupedActions = computed(() => {
+                    const groups = {};
+                    filteredActions.value.forEach(a => {
+                        if (!groups[a.folder]) groups[a.folder] = [];
+                        groups[a.folder].push(a);
+                    });
+                    // Sort folders
+                    const sortedGroups = {};
+                    Object.keys(groups).sort().forEach(key => sortedGroups[key] = groups[key]);
+                    return sortedGroups;
+                });
 
+                const selectAction = async (action) => {
+                    currentAction.value = action;
+                    await nextTick();
+                    initMonaco(action.code);
+                };
 
+                const initMonaco = (code) => {
+                    require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs' }});
+                    require(['vs/editor/editor.main'], function() {
+                        const container = document.getElementById('monaco-editor');
+                        if (!container) return;
+                        
+                        if (editor) {
+                            editor.dispose();
+                        }
 
+                        editor = monaco.editor.create(container, {
+                            value: code,
+                            language: 'javascript',
+                            theme: 'vs-dark',
+                            readOnly: true,
+                            automaticLayout: true,
+                            fontFamily: 'JetBrains Mono',
+                            fontSize: 13,
+                            minimap: { enabled: true },
+                            scrollBeyondLastLine: false,
+                            lineNumbers: 'on',
+                            renderWhitespace: 'all',
+                            scrollbar: {
+                                useShadows: false,
+                                verticalHasArrows: false,
+                                horizontalHasArrows: false,
+                                vertical: 'visible',
+                                horizontal: 'visible',
+                                verticalScrollbarSize: 8,
+                                horizontalScrollbarSize: 8,
+                                arrowSize: 0
+                            }
+                        });
+                    });
+                };
 
+                const copyCode = () => {
+                    if (!currentAction.value) return;
+                    navigator.clipboard.writeText(currentAction.value.code).then(() => {
+                        const toast = document.getElementById('copy-toast');
+                        toast.style.display = 'block';
+                        setTimeout(() => { toast.style.display = 'none'; }, 2000);
+                    });
+                };
 
-
-
-
-    
-
-
-
-
-
-
-
-
-    
-    
-</div>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Thu Mar 19 2026 10:41:59 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
-</footer>
-
-<script>prettyPrint();</script>
-<script src="scripts/polyfill.js"></script>
-<script src="scripts/linenumber.js"></script>
-
-<script src="scripts/search.js" defer></script>
-
-
-
+                return {
+                    searchQuery,
+                    currentAction,
+                    groupedActions,
+                    selectAction,
+                    copyCode
+                };
+            }
+        }).mount('#app');
+    </script>
 </body>
 </html>
