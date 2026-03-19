@@ -69,11 +69,10 @@ folders.forEach(folder => {
             const fileName = path.basename(file);
             const metadata = parseJSDoc(content);
             
-            // Group Library by subfolders, but keep Actions/JS Modules at the top level
+            // Return to subfolders for Library, but keep Actions/JS Modules simplified
             let folderLabel = relativePath.split('/')[0];
             if (folderLabel === 'Library') {
-                const dirName = path.dirname(relativePath).replace(/\\/g, '/');
-                folderLabel = dirName === '.' ? folderLabel : dirName;
+                folderLabel = path.dirname(relativePath).replace(/\\/g, '/');
             }
 
             actions.push({
