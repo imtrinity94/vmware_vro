@@ -5,14 +5,17 @@
  * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
  * 
  * @author Mayank Goyal
- * @param {vCACCAFE:VCACHost} vraHost vRealize Automation host object.
- * @returns {vCACCAFE:CatalogResourceAction[]} Array of catalog resource actions.
+ * @param {vCACCAFE:VCACHost} vcacCafeHost vRealize Automation host object.
+ * @returns {vCACCAFE:CatalogResourceAction[]} catalogActionsList - Array of catalog resource actions.
  */
 
-var cc = vraHost.createCatalogClient();
-var ros = cc.getCatalogAdminResourceOperationService();
+var catalogClient = vcacCafeHost.createCatalogClient();
+var resourceOpService = catalogClient.getCatalogAdminResourceOperationService();
 
-var odataRequest = new vCACCAFEPageOdataRequest(1, 10000);
-var actions = ros.findResourceOperations(odataRequest);
+// Define a large page request to fetch comprehensive list
+var odataPageRequest = new vCACCAFEPageOdataRequest(1, 10000);
+var catalogActionsList = resourceOpService.findResourceOperations(odataPageRequest);
 
-return actions;
+System.log("Successfully retrieved " + catalogActionsList.length + " catalog resource actions from vRA host: " + vcacCafeHost.name);
+
+return catalogActionsList;

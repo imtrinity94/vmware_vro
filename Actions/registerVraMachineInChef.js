@@ -5,25 +5,39 @@
  * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
  * 
  * @author Mayank Goyal
- * @param {VCAC:VcacHost} host The IaaS host object.
- * @param {VCAC:VirtualMachine} machine The IaaS machine to register.
+ * @param {VCAC:VcacHost} vCloudAutomationHost - The IaaS host object.
+ * @param {VCAC:VirtualMachine} vCloudVirtualMachine - The IaaS machine to register.
  * @returns {void}
  */
-function registerMachineInChef(host, machine) {
-    var ChefModule = System.getModule("com.vmware.pscoe.example.chef").Chef();
-    var chef = new ChefModule();
-    var client = chef.createClient(machine.virtualMachineName);
+function registerMachineInChef(iaasHost, iaasMachine) {
+    System.log("Starting Chef registration for node: " + iaasMachine.virtualMachineName);
     
-    var machineProperties = System.getModule("com.vmware.pscoe.library.vra.iaas").getVirtualMachineProperties(host, machine.getEntity());
-    var environment = machineProperties.get("Chef.Environment");
-    var role = machineProperties.get("Chef.Role");
+    var ChefLibraryProvider = System.getModule("com.vmware.pscoe.example.chef").Chef();
+    var chefClientObj = new ChefLibraryProvider();
     
-    var node = chef.createNode(machine.virtualMachineName, environment, client.private_key);
-    node.addRole(role);
-    node.save();
+    var nodeNameStr = iaasMachine.virtualMachineName;
+    var chefClientHandle = chefClientObj.createClient(nodeNameStr);
     
-    System.log("Successfully registered machine '" + machine.virtualMachineName + "' in Chef environment '" + environment + "' with role '" + role + "'");
+    // Retrieve vRA VM custom properties for Chef metadata
+    var vmPropertiesMap = System.getModule("com.vmware.pscoe.library.vra.iaas").getVirtualMachineProperties(iaasHost, iaasMachine.getEntity());
+    var chefEnvStr = vmPropertiesMap.get("Chef.Environment");
+    var chefRoleStr = vmPropertiesMap.get("Chef.Role");
+    
+    if (!chefEnvStr || !chefRoleStr) {
+        System.error("Missing mandatory Chef properties (Environment: " + chefEnvStr + ", Role: " + chefRoleStr + ") for node: " + nodeNameStr);
+        return;
+    }
+
+    System.log("Provisioning Chef Node: " + nodeNameStr + " in Environment: " + chefEnvStr);
+    var chefNodeObj = chefClientObj.createNode(nodeNameStr, chefEnvStr, chefClientHandle.private_key);
+    
+    chefNodeObj.addRole(chefRoleStr);
+    chefNodeObj.save();
+    
+    System.log("Chef Node registration successful for " + nodeNameStr);
 }
 
-// Action execution
-return registerMachineInChef(host, machine);
+// Action execution entry point
+registerMachineInChef(vCloudAutomationHost, vCloudVirtualMachine);
+
+return null;

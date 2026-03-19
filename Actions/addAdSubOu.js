@@ -1,19 +1,18 @@
 /**
- * Creates Active Directory Sub Organizational Units (OUs) if they do not already exist.
- * Specifically ensures "Groups", "Computers", and "Servers" sub-OUs exist under a target parent OU.
- * 
- * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
+ * @description Creates Active Directory Sub Organizational Units (OUs) if they do not already exist.
+ *              Specifically ensures "Groups", "Computers", and "Servers" sub-OUs exist under a target parent OU.
+ * @note JSDoc generated via Antigravity AI IDE and can be reasonably incorrect.
  * 
  * @author Mayank Goyal
+ * @returns {string} Status message.
  */
 
 /**
  * Creates an Active Directory Sub Organizational Unit (OU) if it does not already exist.
  * @param {ActiveDirectory:OrganizationalUnit} item The parent OU object to create the sub OU under.
  * @param {string} substring The name of the sub OU to create.
- * @returns {void}
  */
-function performAction(item, substring) {
+function performOuCreation(item, substring) {
     try {
         // Attempt to create the sub OU
         item.createOrganizationalUnit(substring);
@@ -23,57 +22,51 @@ function performAction(item, substring) {
     }
 }
 
-/**
- * Main execution function
- * @returns {string} Status message.
- */
-function main() {
-    // Set the parent OU value (e.g., application name)
-    var parentOU = "MGMT"; // Example: "Epic"
+// Main execution logic
+var parentOuPath = "MGMT"; // Example: "Epic"
 
-    // Search for the parent OU
-    var ous = ActiveDirectory.search('OrganizationalUnit', parentOU);
-    System.log("Parent OU search result: " + ous);
+// Search for the parent OU
+var foundOus = ActiveDirectory.search('OrganizationalUnit', parentOuPath);
+System.log("Parent OU search result: " + foundOus);
 
-    if (ous.length > 0) {
-        // Extract child OUs from the first parent OU
-        var childOUs = ous[0].organizationalUnits;
+if (foundOus.length > 0) {
+    // Extract child OUs from the first parent OU
+    var childOuList = foundOus[0].organizationalUnits;
 
-        // Build a string of existing sub OU names
-        var subOUs = "";
-        for (var i = 0; i < childOUs.length; i++) {
-            var ouObject = childOUs[i];
-            subOUs += ouObject.name + ":";
-            System.log("Existing OU Name: " + ouObject.name);
-        }
-        System.log("Existing Sub OUs: " + subOUs);
+    // Build a string of existing sub OU names
+    var existingSubOusStr = "";
+    var i;
+    for (i = 0; i < childOuList.length; i++) {
+        var ouObj = childOuList[i];
+        existingSubOusStr += ouObj.name + ":";
+        System.log("Existing OU Name: " + ouObj.name);
+    }
+    System.log("Existing Sub OUs: " + existingSubOusStr);
 
-        // Define the required sub OU names
-        var subOUNames = ["Groups", "Computers", "Servers"];
+    // Define the required sub OU names
+    var requiredSubOuNames = ["Groups", "Computers", "Servers"];
 
-        // Check and create missing sub OUs
-        for (var j = 0; j < subOUNames.length; j++) {
-            var substring = subOUNames[j];
-            if (subOUs.indexOf(substring) !== -1) {
-                System.log("Sub OU '" + substring + "' exists.");
-            } else {
-                System.log("Sub OU '" + substring + "' does not exist. Creating...");
-                var parentOUObject = ActiveDirectory.searchExactMatch('OrganizationalUnit', parentOU);
+    // Check and create missing sub OUs
+    var j;
+    for (j = 0; j < requiredSubOuNames.length; j++) {
+        var requiredName = requiredSubOuNames[j];
+        if (existingSubOusStr.indexOf(requiredName) !== -1) {
+            System.log("Sub OU '" + requiredName + "' exists.");
+        } else {
+            System.log("Sub OU '" + requiredName + "' does not exist. Creating...");
+            var parentOuMatch = ActiveDirectory.searchExactMatch('OrganizationalUnit', parentOuPath);
 
-                if (parentOUObject.length > 0) {
-                    for (var k = 0; k < parentOUObject.length; k++) {
-                        performAction(parentOUObject[k], substring);
-                    }
+            if (parentOuMatch.length > 0) {
+                var k;
+                for (k = 0; k < parentOuMatch.length; k++) {
+                    performOuCreation(parentOuMatch[k], requiredName);
                 }
             }
         }
-        System.log("All required Sub OUs exist!");
-        return "All Sub OUs exist!";
-    } else {
-        System.log("Parent OU '" + parentOU + "' not found");
-        return "Parent OU '" + parentOU + "' not found";
     }
+    System.log("All required Sub OUs exist!");
+    return "All Sub OUs exist!";
+} else {
+    System.log("Parent OU '" + parentOuPath + "' not found");
+    return "Parent OU '" + parentOuPath + "' not found";
 }
-
-// Execute the main function
-return main();

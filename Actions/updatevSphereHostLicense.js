@@ -5,42 +5,64 @@
  * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
  * 
  * @author Mayank Goyal
- * @param {VC:SdkConnection} SDKConnection vCenter SDK connection.
- * @param {Array} UCSWF_SERVICE_PROFILES_RETURNED List of service profiles from UCS.
- * @param {string} DC_DOMAIN Datacenter domain suffix.
- * @param {string} license_key The license key to apply.
+ * @param {VC:SdkConnection} vcSdkConnectionHandle - vCenter SDK connection.
+ * @param {Any[]} ucsServiceProfilesList - List of service profiles objects from UCS.
+ * @param {string} dnsDomainSuffix - Datacenter domain suffix.
+ * @param {string} targetLicenseKey - The license key to apply.
  * @returns {void}
  */
 
-var host_obj = SDKConnection.allHostSystems;
+var allInventoryHostsList = vcSdkConnectionHandle.allHostSystems;
 
-for (var i in UCSWF_SERVICE_PROFILES_RETURNED) {
-    var host_name = UCSWF_SERVICE_PROFILES_RETURNED[i].dn.replace('org-root/ls-', '') + '.' + DC_DOMAIN;
-    host_name = host_name.toLowerCase();
+System.log("Evaluating license assignment for " + (ucsServiceProfilesList ? ucsServiceProfilesList.length : 0) + " UCS service profiles.");
+
+var i;
+for (i = 0; i < ucsServiceProfilesList.length; i++) {
+    var serviceProfileObj = ucsServiceProfilesList[i];
     
-    var targetHost = null;
-    for each (var h in host_obj) {
-        if (h.name == host_name) {
-            targetHost = h;
+    // Construct FQDN from UCS DN: 'org-root/ls-HOST' -> 'HOST.DOMAIN'
+    var hostShortName = serviceProfileObj.dn.replace('org-root/ls-', '');
+    var calculatedFqdn = (hostShortName + "." + dnsDomainSuffix).toLowerCase();
+    
+    System.log("Resolving vCenter host object for FQDN: " + calculatedFqdn);
+    
+    var matchedHostSystem = null;
+    var j;
+    for (j = 0; j < allInventoryHostsList.length; j++) {
+        var candidateHost = allInventoryHostsList[j];
+        if (candidateHost.name.toLowerCase() === calculatedFqdn) {
+            matchedHostSystem = candidateHost;
             break;
         }
     }
     
-    if (targetHost) {
-        var id = targetHost.sdkId.split("/")[1];
-        var host_id = targetHost.id;
-        var name = targetHost.name;
+    if (matchedHostSystem) {
+        var sdkIdentifierStr = matchedHostSystem.sdkId.split("/")[1];
+        var hostInternalId = matchedHostSystem.id;
+        var hostDisplayName = matchedHostSystem.name;
         
-        var license = SDKConnection.licenseManager.licenseAssignmentManager.queryAssignedLicenses(id);
-        System.log("Current license for " + name + ": " + license);
+        System.log("Matched vCenter Host: " + hostDisplayName + " [SDK ID: " + sdkIdentifierStr + "]");
         
-        var update_license = SDKConnection.licenseManager.licenseAssignmentManager.updateAssignedLicense(host_id, license_key, name);
-        if (update_license && update_license.name == "VMware vSphere 6 Enterprise Plus") {
-            System.log("Host " + name + " has been licensed successfully");
+        var assignmentManager = vcSdkConnectionHandle.licenseManager.licenseAssignmentManager;
+        
+        // Audit current license status
+        var currentAssignmentsList = assignmentManager.queryAssignedLicenses(sdkIdentifierStr);
+        System.log("Current License State for " + hostDisplayName + ": " + (currentAssignmentsList ? JSON.stringify(currentAssignmentsList) : "Unlicensed"));
+        
+        // Submit license update
+        System.log("Assigning new license key to " + hostDisplayName);
+        var updateResult = assignmentManager.updateAssignedLicense(hostInternalId, targetLicenseKey, hostDisplayName);
+        
+        if (updateResult && updateResult.name && updateResult.name.indexOf("vSphere") !== -1) {
+            System.log("Licensing SUCCESS for " + hostDisplayName + " [Assigned: " + updateResult.name + "]");
         } else {
-            System.log("Error while applying license to host " + name);
+            System.error("Licensing FAILURE for " + hostDisplayName + ". Verification returned null or unexpected product name.");
         }
     } else {
-        System.warn("Host " + host_name + " not found in vCenter inventory.");
+        System.warn("License update aborted: Host " + calculatedFqdn + " was not found in vCenter inventory.");
     }
 }
+
+System.log("Host licensing cycle finalized.");
+
+return null;

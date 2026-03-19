@@ -8,14 +8,21 @@
  * @returns {void}
  */
 
-// Set System properties:
-// com.vmware.js.allow-local-process to true
-// Run this code in action
+// Prerequisites:
+// Set Server System properties: 'com.vmware.js.allow-local-process' to 'true'
+
 try {
-    var cmd = new Command("jdk/bin/java --version");
-    cmd.execute(true);
-    System.log("Scripting Engine Java Version Output:");
-    System.log(cmd.output);
-} catch (e) {
-    System.error("Failed to execute local process. Ensure 'com.vmware.js.allow-local-process' is enabled. Error: " + e);
+    System.log("Attempting to query local Java runtime version...");
+    var javaVersionCommand = new Command("jdk/bin/java --version");
+    
+    // Execute command synchronously
+    javaVersionCommand.execute(true);
+    
+    System.log("--- vRO Scripting Engine Java Runtime Information ---");
+    System.log(javaVersionCommand.output);
+    System.log("-----------------------------------------------------");
+} catch (procEx) {
+    System.error("Execution failed. Verify that 'com.vmware.js.allow-local-process' is set to true in vRO Control Center via System Properties. Error: " + procEx);
 }
+
+return null;

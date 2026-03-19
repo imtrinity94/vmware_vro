@@ -6,23 +6,35 @@
  * 
  * @author Mayank Goyal
  * @version 1.0
- * @param {VC:HostSystem} host The ESXi host object to join to the Active Directory domain.
- * @param {string} domainName The Active Directory domain name to join (e.g., "company.com").
- * @param {string} userName Active Directory user with permissions to join computers to the domain.
- * @param {SecureString} password Password for the Active Directory user.
+ * @param {VC:HostSystem} vCenterHost - The ESXi host object to join to the Active Directory domain.
+ * @param {string} targetDomainName - The Active Directory domain name to join (e.g., "company.com").
+ * @param {string} adAdminUsername - Active Directory user with permissions to join computers to the domain.
+ * @param {SecureString} adAdminPassword - Password for the Active Directory user.
  * @returns {void}
  */
 
-// Get the authentication manager from the vSphere host configuration
-var authManager = host.configManager.authenticationManager;
+// Access the authentication manager for the host
+var authenticationManager = vCenterHost.configManager.authenticationManager;
+var supportedStoresList = authenticationManager.supportedStore;
 
-// Iterate through all supported authentication stores on the host
-for each (var store in authManager.supportedStore) {
-    // Check if the store is an Active Directory authentication store
-    // The store ID typically starts with "activeDirectoryAuthentication"
-    if (store.id && store.id.match(/^activeDirectoryAuthentication/)) {
-        System.log("Found AD authentication store: " + store.id + ". Joining domain " + domainName);
-        // Join the ESXi host to the Active Directory domain
-        store.joinDomain_Task(domainName, userName, password);
+System.log("Evaluating supported authentication stores on host: " + vCenterHost.name);
+
+var i;
+for (i = 0; i < supportedStoresList.length; i++) {
+    var authStore = supportedStoresList[i];
+    
+    // Identify the Active Directory authentication store
+    if (authStore.id && authStore.id.indexOf("activeDirectoryAuthentication") === 0) {
+        System.log("Matched AD authentication store: " + authStore.id);
+        System.log("Initiating domain join for '" + targetDomainName + "' using account '" + adAdminUsername + "'");
+        
+        try {
+            // Initiate the domain join task
+            authStore.joinDomain_Task(targetDomainName, adAdminUsername, adAdminPassword);
+        } catch (joinEx) {
+            System.error("Failed to trigger domain join task for host " + vCenterHost.name + ": " + joinEx);
+        }
     }
 }
+
+return null;

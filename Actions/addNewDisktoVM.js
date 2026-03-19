@@ -10,10 +10,11 @@
  * @param {number} diskSizeInGB Required Disk size (in GB).
  * @param {string} diskMode Disk persistence mode (e.g., "persistent", "nonpersistent", "independent_persistent", "independent_nonpersistent"). Defaults to "persistent".
  * @param {boolean} thinProvisioned Use thin provisioning?
+ * @returns {void}
  */
 
 var maxDeviceNodesPerController = 15;
-var maxScsiContollers = 4;
+var maxScsiControllers = 4;
 var defaultNodeNumber = 0;
 var diskControllerKey = null;
 var deviceUnitNumber = null;
@@ -21,32 +22,33 @@ var newBusNumber = null;
 var scsiControllerType = "LSILogic"; // Default if not found
 
 // List of all devices on VM
-var devices = vm.config.hardware.device;
+var devicesList = vm.config.hardware.device;
 
 // Find SCSI Controller with free available device nodes
-if (devices !== null) {
-    findValidScsiController:
-    for (var ii in devices) {
-        if (devices[ii] instanceof VcVirtualBusLogicController || 
-            devices[ii] instanceof VcVirtualLsiLogicController || 
-            devices[ii] instanceof VcParaVirtualSCSIController || 
-            devices[ii] instanceof VcVirtualLsiLogicSASController) {
+if (devicesList !== null) {
+    var ii;
+    for (ii = 0; ii < devicesList.length; ii++) {
+        var device = devicesList[ii];
+        if (device instanceof VcVirtualBusLogicController || 
+            device instanceof VcVirtualLsiLogicController || 
+            device instanceof VcParaVirtualSCSIController || 
+            device instanceof VcVirtualLsiLogicSASController) {
             
-            var deviceKey = devices[ii].key;
-            var deviceBusNumber = devices[ii].busNumber;
-            var deviceLabel = devices[ii].deviceInfo.label;
+            var currentDeviceKey = device.key;
+            var currentDeviceBusNumber = device.busNumber;
+            var currentDeviceLabel = device.deviceInfo.label;
                 
-            System.debug("SCSI Controller Bus Number: " + deviceBusNumber);
-            System.debug("SCSI Controller Label: " + deviceLabel);
+            System.debug("SCSI Controller Bus Number: " + currentDeviceBusNumber);
+            System.debug("SCSI Controller Label: " + currentDeviceLabel);
             
             // Store SCSI Controller Type
-            scsiControllerType = getSCSIControllerType(devices[ii]);
+            scsiControllerType = getSCSIControllerType(device);
                     
             // Find number of devices on this bus
-            var controlledDevicesCount = devices[ii].device.length;
+            var controlledDevicesCount = device.device.length;
             System.debug("No. of Devices on this Bus: " + controlledDevicesCount);
             if (controlledDevicesCount < maxDeviceNodesPerController) { // Assuming numbering starts from 0
-                diskControllerKey = deviceKey;
+                diskControllerKey = currentDeviceKey;
                 System.log("SCSI Controller Key: " + diskControllerKey);
                 System.debug("This SCSI controller has nodes available on the Bus");
                 deviceUnitNumber = controlledDevicesCount;
@@ -54,28 +56,26 @@ if (devices !== null) {
                     deviceUnitNumber++;
                 }
                 System.log("Next available device node number on this SCSI Controller: " + deviceUnitNumber);
-                break findValidScsiController;
+                break;
             } else {
-                System.log("SCSI Controller (Bus Number: " + deviceBusNumber + ") has reached its maximum capacity of "
-                            + maxDeviceNodesPerController + " devices. Checking the next Controller ..."); 
+                System.log("SCSI Controller (Bus Number: " + currentDeviceBusNumber + ") has reached its maximum capacity. Checking next..."); 
             }
         }
     }
 }
 
 if ((!diskControllerKey) || !(deviceUnitNumber >= 0)) {
-    // If we didn't find a controller, assume the last one's bus number for increment
-    // Note: If no controller existed at all, deviceBusNumber would be null. 
-    // Usually a VM has at least one.
-    var lastBusNumber = -1;
-    for (var i in devices) {
-        if (devices[i].busNumber !== undefined && devices[i].busNumber > lastBusNumber) {
-            lastBusNumber = devices[i].busNumber;
+    var lastBusNumberFound = -1;
+    var idx;
+    for (idx = 0; idx < devicesList.length; idx++) {
+        var dev = devicesList[idx];
+        if (dev.busNumber !== undefined && dev.busNumber > lastBusNumberFound) {
+            lastBusNumberFound = dev.busNumber;
         }
     }
 
-    newBusNumber = (lastBusNumber !== -1) ? lastBusNumber + 1 : 0;
-    if (newBusNumber < maxScsiContollers) {
+    newBusNumber = (lastBusNumberFound !== -1) ? lastBusNumberFound + 1 : 0;
+    if (newBusNumber < maxScsiControllers) {
         diskControllerKey = -3;
         deviceUnitNumber = defaultNodeNumber;
         System.log("Creating a new SCSI Controller, and adding disk to the default node number " + deviceUnitNumber);
@@ -100,17 +100,17 @@ connectInfo.connected = true;
 connectInfo.startConnected = true;
 
 // Create VirtualDisk Device
-var disk = new VcVirtualDisk();
-disk.backing = backingInfo;
-disk.controllerKey = diskControllerKey;
-disk.key = -2; // Placeholder value. Actual value assigned by server
-disk.unitNumber = deviceUnitNumber;
-disk.capacityInKB = parseInt("" + (diskSizeInGB * 1024 * 1024));
-disk.connectable = connectInfo;
+var virtualDisk = new VcVirtualDisk();
+virtualDisk.backing = backingInfo;
+virtualDisk.controllerKey = diskControllerKey;
+virtualDisk.key = -2; // Placeholder value
+virtualDisk.unitNumber = deviceUnitNumber;
+virtualDisk.capacityInKB = parseInt("" + (diskSizeInGB * 1024 * 1024), 10);
+virtualDisk.connectable = connectInfo;
 
 // Create Disk Config Spec
 var diskConfigSpec = new VcVirtualDeviceConfigSpec();
-diskConfigSpec.device = disk;
+diskConfigSpec.device = virtualDisk;
 diskConfigSpec.fileOperation = VcVirtualDeviceConfigSpecFileOperation.create;
 diskConfigSpec.operation = VcVirtualDeviceConfigSpecOperation.add;
 
@@ -118,8 +118,7 @@ var controllerConfigSpec = null;
 if (diskControllerKey < 0) {
     // Create SCSI Controller
     var scsiController = getSCSIControllerObject(scsiControllerType);
-    scsiController.key = -3; // Placeholder value. Actual value assigned by server
-    scsiController.controllerKey = 100; // Placeholder value. Actual value assigned by server
+    scsiController.key = -3;
     scsiController.busNumber = newBusNumber;
     scsiController.sharedBus = VcVirtualSCSISharing.noSharing;
     
@@ -131,62 +130,60 @@ if (diskControllerKey < 0) {
 
 // Specify Virtual Machine Config Spec
 var vmConfigSpec = new VcVirtualMachineConfigSpec();
-var deviceChanges = [];
-// Add Disk Config Spec
+var deviceChangesArray = [];
 System.log("Adding specifications for new disk to reconfiguration task");
-deviceChanges.push(diskConfigSpec);
-// Add Controller Config Spec
+deviceChangesArray.push(diskConfigSpec);
 if (controllerConfigSpec) {
     System.log("Adding specifications for new SCSI controller to reconfiguration task");
-    deviceChanges.push(controllerConfigSpec);
+    deviceChangesArray.push(controllerConfigSpec);
 }
-vmConfigSpec.deviceChange = deviceChanges;
+vmConfigSpec.deviceChange = deviceChangesArray;
 
 // Launch Reconfig Task
 System.log("Launching reconfiguration task ...");
-var task = vm.reconfigVM_Task(vmConfigSpec);
+var reconfigTask = vm.reconfigVM_Task(vmConfigSpec);
 
-System.getModule("com.vmware.library.vc.basic").vim3WaitTaskEnd(task, true, 1.0);
+System.getModule("com.vmware.library.vc.basic").vim3WaitTaskEnd(reconfigTask, true, 1.0);
+
+return null;
 
 /**
  * Returns the appropriate SCSI controller object based on the type string.
- * @private
  */
 function getSCSIControllerObject(controllerType) {
-    var controller = null;
+    var ctrl = null;
     switch (controllerType) {
         case "BusLogicParallel":
-            controller = new VcVirtualBusLogicController();
+            ctrl = new VcVirtualBusLogicController();
             break;
         case "LSILogic":
-            controller = new VcVirtualLsiLogicController();
+            ctrl = new VcVirtualLsiLogicController();
             break;
         case "ParaVirtual":
-            controller = new VcParaVirtualSCSIController();
+            ctrl = new VcParaVirtualSCSIController();
             break;
         case "LSILogicSAS":
-            controller = new VcVirtualLsiLogicSASController();
+            ctrl = new VcVirtualLsiLogicSASController();
             break;
         default:
             throw "Unknown SCSI Controller Type: " + controllerType;
     }
-    return controller;
+    return ctrl;
 }
 
 /**
  * Determines the SCSI controller type string for a given controller object.
- * @private
  */
 function getSCSIControllerType(controllerObject) {
-    var controllerType = null;
+    var typeStr = null;
     if (controllerObject instanceof VcVirtualBusLogicController) {
-        controllerType = "BusLogicParallel";
+        typeStr = "BusLogicParallel";
     } else if (controllerObject instanceof VcVirtualLsiLogicController) {
-        controllerType = "LSILogic";
+        typeStr = "LSILogic";
     } else if (controllerObject instanceof VcParaVirtualSCSIController) {
-        controllerType = "ParaVirtual";
+        typeStr = "ParaVirtual";
     } else if (controllerObject instanceof VcVirtualLsiLogicSASController) {
-        controllerType = "LSILogicSAS";
+        typeStr = "LSILogicSAS";
     }
-    return controllerType;
+    return typeStr;
 }

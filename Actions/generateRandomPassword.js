@@ -5,17 +5,17 @@
  * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
  * 
  * @author Mayank Goyal
- * @param {number} passLength The desired length of the generated password.
- * @returns {string} The generated random password.
+ * @param {number} desiredLength The desired length of the generated password.
+ * @returns {string} generatedPassword - The generated random password.
  */
 
-var charSet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-var passWord = "";
+var characterSet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+var generatedPassword = "";
 
-for (var i = 0; i < passLength; i++) {
-    var charPos = Math.floor(Math.random() * charSet.length);
-    var passChar = charSet.charAt(charPos);
-    passWord += passChar;
+var i;
+for (i = 0; i < desiredLength; i++) {
+    var randomIndex = Math.floor(Math.random() * characterSet.length);
+    generatedPassword += characterSet.charAt(randomIndex);
 }
 
-return passWord;
+return generatedPassword;

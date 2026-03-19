@@ -5,32 +5,46 @@
  * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
  * 
  * @author Mayank Goyal
- * @param {vCACCAFE:Subtenant} businessGroup The Business Group (Subtenant) object.
- * @param {string} entitlementName The name of the entitlement to update.
- * @param {string} newStatus The new status to apply ("ACTIVE" or "INACTIVE").
+ * @param {vCACCAFE:Subtenant} cafeBusinessGroup - The Business Group (Subtenant) object.
+ * @param {string} targetEntitlementName - The name of the entitlement to update.
+ * @param {string} newEntitlementStatus - The new status to apply ("ACTIVE" or "INACTIVE").
  * @returns {void}
  */
 
-var host = vCACCAFEEntitiesFinder.getHostForEntity(businessGroup);
-var catalogClient = host.createCatalogClient();
-var entitlementService = catalogClient.getCatalogEntitlementService();
+var cafeHost = vCACCAFEEntitiesFinder.getHostForEntity(cafeBusinessGroup);
+var cafeCatalogClient = cafeHost.createCatalogClient();
+var cafeEntitlementSvc = cafeCatalogClient.getCatalogEntitlementService();
 
-var filter = vCACCAFEFilterParam.equal("organization/subTenant/id", vCACCAFEFilterParam.string(businessGroup.id));
-var query = vCACCAFEOdataQuery.query().addFilter([filter]);
-var odataRequest = new vCACCAFEPageOdataRequest(query);
-var entitlements = entitlementService.get(host.tenant, odataRequest);
+System.log("Quering entitlements for Business Group ID: " + cafeBusinessGroup.id);
 
-var updated = false;
-for each (var item in entitlements) {
-    if (item.name == entitlementName) {
-        System.log("Updating entitlement '" + item.name + "' from '" + item.status.value() + "' to '" + newStatus + "'");
-        item.setStatus(vCACCAFEEntitlementStatus.fromValue(newStatus));
-        entitlementService.update(item);
-        updated = true;
-        break; // Assuming unique name per BG
+var orgFilter = vCACCAFEFilterParam.equal("organization/subTenant/id", vCACCAFEFilterParam.string(cafeBusinessGroup.id));
+var cafeQuery = vCACCAFEOdataQuery.query().addFilter([orgFilter]);
+var cafeOdataRequest = new vCACCAFEPageOdataRequest(cafeQuery);
+var entitlementsList = cafeEntitlementSvc.get(cafeHost.tenant, cafeOdataRequest);
+
+var isEntitlementFound = false;
+var i;
+for (i = 0; i < entitlementsList.length; i++) {
+    var entitlementItem = entitlementsList[i];
+    
+    if (entitlementItem.name === targetEntitlementName) {
+        System.log("Matched Entitlement: " + entitlementItem.name);
+        System.log("Current Status: " + entitlementItem.status.value() + " -> Transitioning to: " + newEntitlementStatus);
+        
+        try {
+            entitlementItem.setStatus(vCACCAFEEntitlementStatus.fromValue(newEntitlementStatus));
+            cafeEntitlementSvc.update(entitlementItem);
+            isEntitlementFound = true;
+            System.log("Successfully updated entitlement status.");
+        } catch (updateEx) {
+            System.error("Failed to update entitlement " + targetEntitlementName + ". Error: " + updateEx);
+        }
+        break; 
     }
 }
 
-if (!updated) {
-    System.warn("Entitlement '" + entitlementName + "' not found for Business Group '" + businessGroup.name + "'");
+if (!isEntitlementFound) {
+    System.warn("Entitlement '" + targetEntitlementName + "' was not found for Business Group '" + cafeBusinessGroup.name + "'. No changes made.");
 }
+
+return null;

@@ -5,32 +5,31 @@
  * 
  * @version 1.0.0
  * @author Mayank Goyal
- * @param {VC:ClusterComputeResource} cluster The cluster to process.
+ * @param {VC:ClusterComputeResource} vcCluster The cluster to process.
  * @returns {void}
  */
-function exitMaintenanceModeCluster(cluster) {
-    var hosts = cluster.host;
-    if (hosts.length == 0) {
-        System.warn("No hosts found in cluster " + cluster.name);
-    } else {
-        System.log("Found " + hosts.length + " hosts in cluster " + cluster.name);
-    }
-        
-    for (var i in hosts) {
-        var host = hosts[i];
-        if (host.runtime) {
-            if (host.runtime.inMaintenanceMode) {
-                System.log("Host " + host.name + " found in maintenance mode. Exiting it...");
-                var task = host.exitMaintenanceMode_Task(0);
-                System.getModule("com.vmware.library.vc.basic").vim3WaitTaskEnd(task, true, 1);
-            } else {
-                System.warn("Host " + host.name + " is not in maintenance mode. Skipping!");
-            }
+
+var hostsList = vcCluster.host;
+if (!hostsList || hostsList.length === 0) {
+    System.warn("No hosts found in cluster: " + vcCluster.name);
+} else {
+    System.log("Found " + hostsList.length + " hosts in cluster: " + vcCluster.name);
+}
+    
+var i;
+for (i = 0; i < hostsList.length; i++) {
+    var hostSystem = hostsList[i];
+    if (hostSystem.runtime) {
+        if (hostSystem.runtime.inMaintenanceMode) {
+            System.log("Host " + hostSystem.name + " is in maintenance mode. Attempting to exit...");
+            var exitTask = hostSystem.exitMaintenanceMode_Task(0);
+            System.getModule("com.vmware.library.vc.basic").vim3WaitTaskEnd(exitTask, true, 1);
         } else {
-            throw "Critical Error in Host! Runtime attribute not found for " + host.name;
+            System.debug("Host " + hostSystem.name + " is not in maintenance mode. Skipping.");
         }
+    } else {
+        System.error("Runtime information not available for host: " + hostSystem.name);
     }
 }
 
-// Execute the action (typically actions in vRO return a value or are called as functions)
-return exitMaintenanceModeCluster(cluster);
+return null;

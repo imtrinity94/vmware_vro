@@ -5,10 +5,18 @@
  * 
  * @author Mayank Goyal
  * @param {VAPI:VAPIEndpoint} endpoint VAPI Endpoint.
- * @param {string} categoryId ID of the vCenter Tag Category.
+ * @param {string} categoryUuid ID of the vCenter Tag Category.
  * @returns {void}
  */
 
-var client = endpoint.client();
-var catService = new com_vmware_cis_tagging_category(client);
-catService.delete(categoryId);
+var vapiClient = endpoint.client();
+var taggingCategoryService = new com_vmware_cis_tagging_category(vapiClient);
+
+try {
+    taggingCategoryService.delete(categoryUuid);
+    System.log("Successfully deleted tag category with ID: " + categoryUuid);
+} catch (e) {
+    System.error("Failed to delete tag category " + categoryUuid + ": " + e);
+}
+
+return null;
