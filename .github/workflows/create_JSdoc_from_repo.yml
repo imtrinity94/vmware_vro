@@ -31,11 +31,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "24"
-          cache: "npm"
 
       # ── 3. Install JSDoc + docdash theme ───────────────────────────────────
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       # ── 4. Generate JSDoc HTML from Actions/ ───────────────────────────────
       - name: Generate JSDoc site
