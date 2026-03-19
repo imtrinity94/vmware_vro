@@ -1,33 +1,43 @@
 /**
- * @description Sets the DCUI (Direct Console User Interface) trusted users list and timeout
- *              on an ESXi host. Appends "root" to the trusted users and updates the DCUI
- *              timeout to 600 seconds.
- * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
- *
- * @param {VC:HostSystem} host - The ESXi host to configure DCUI settings on.
- * @param {string[]} dcuiTrustedUsers - Array of usernames to add as DCUI trusted users.
+ * Configures DCUI (Direct Console User Interface) trusted users and timeout on an ESXi host.
+ * Adds specified users to the DCUI access list and appends "root".
+ * Sets the DCUI idle timeout to 600 seconds.
+ * 
+ * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
+ * 
+ * @author Mayank Goyal
+ * @param {VC:HostSystem} host The ESXi host to configure.
+ * @param {string[]} dcuiTrustedUsers Array of usernames to add to the trusted list.
  * @returns {void}
  */
 
-// Set DCUI Trusted Users
-// input host typeof(host : VC:HostSystem)
-optionManager = host.configManager.advancedOption;
-var trustedUsers = optionManager.queryOptions('DCUI.Access');
-var userUpdate = "";
+if (!host) {
+    throw "No host provided";
+}
 
-if (dcuiTrustedUsers.length > 0) {
-    for (i = 0; i < dcuiTrustedUsers.length; i++) {
-        userUpdate = userUpdate + dcuiTrustedUsers[i] + ",";
+var optionManager = host.configManager.advancedOption;
+
+// Set DCUI Trusted Users
+if (dcuiTrustedUsers && dcuiTrustedUsers.length > 0) {
+    var trustedUsersResult = optionManager.queryOptions('DCUI.Access');
+    var userUpdate = "";
+    
+    for (var i = 0; i < dcuiTrustedUsers.length; i++) {
+        userUpdate += dcuiTrustedUsers[i] + ",";
     }
-    userUpdate = userUpdate + "root";
-    trustedUsers[0].value = userUpdate;
-    optionManager.updateOptions(trustedUsers);
+    userUpdate += "root";
+    
+    System.log("Updating DCUI.Access to: " + userUpdate);
+    trustedUsersResult[0].value = userUpdate;
+    optionManager.updateOptions(trustedUsersResult);
 }
 
 // Set DCUI Timeout
-optionManager = host.configManager.advancedOption;
-var DcuiTimeout = optionManager.queryOptions('UserVars.DcuiTimeOut');
-
-DcuiTimeout[0].value_IntValue = 600;
-
-optionManager.updateOptions(DcuiTimeout);
+var dcuiTimeoutResult = optionManager.queryOptions('UserVars.DcuiTimeOut');
+if (dcuiTimeoutResult && dcuiTimeoutResult.length > 0) {
+    System.log("Updating UserVars.DcuiTimeOut to 600 seconds");
+    dcuiTimeoutResult[0].value = 600; // Use .value for standard options, .value_IntValue is some plugins
+    optionManager.updateOptions(dcuiTimeoutResult);
+} else {
+    System.warn("UserVars.DcuiTimeOut option not found on host: " + host.name);
+}

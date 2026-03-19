@@ -1,3 +1,11 @@
+/**
+ * A comprehensive collection of vRO vCenter SDK snippets for various objects and managers.
+ * Generated for reference and quick lookup.
+ * 
+ * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
+ * Snippets may require adaptation for specific vRO versions.
+ */
+
 // ----------findAssociatedProfile----------
 var entity = Server.findForType("VC:HostSystem", managedObject.vimHost.id + "/host-21444");
 managedObject.findAssociatedProfile(entity);   // HostProfileManager

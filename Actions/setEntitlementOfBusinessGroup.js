@@ -1,31 +1,36 @@
-// VMware vRealize Orchestrator (vRO) action sample
-//
-// Updates the named Catalog Entitlement associated with a BusinessGroup 
-// to either Active or Inactive
-// 
-// For vRO/vRA 7.0+
-//
-// Action Inputs:
-//  businessGroup  - vCACCAFE:Subtenant
-//  entitlementName - string
-//  newStatus = string (ACTIVE or INACTIVE - DRAFT is not allowed)
-//
-// Return type: void
+/**
+ * Updates the status of a named Catalog Entitlement associated with a Business Group in vRealize Automation.
+ * Sets the status to either "ACTIVE" or "INACTIVE". "DRAFT" is not allowed.
+ * 
+ * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
+ * 
+ * @author Mayank Goyal
+ * @param {vCACCAFE:Subtenant} businessGroup The Business Group (Subtenant) object.
+ * @param {string} entitlementName The name of the entitlement to update.
+ * @param {string} newStatus The new status to apply ("ACTIVE" or "INACTIVE").
+ * @returns {void}
+ */
+
 var host = vCACCAFEEntitiesFinder.getHostForEntity(businessGroup);
-var cc = host.createCatalogClient();
-var ces = cc.getCatalogEntitlementService();
+var catalogClient = host.createCatalogClient();
+var entitlementService = catalogClient.getCatalogEntitlementService();
 
-var filters = [vCACCAFEFilterParam.equal("organization/subTenant/id", vCACCAFEFilterParam.string(businessGroup.id))];
-
-var query = vCACCAFEOdataQuery.query().addFilter(filters);
+var filter = vCACCAFEFilterParam.equal("organization/subTenant/id", vCACCAFEFilterParam.string(businessGroup.id));
+var query = vCACCAFEOdataQuery.query().addFilter([filter]);
 var odataRequest = new vCACCAFEPageOdataRequest(query);
-var entitlements = ces.get(host.tenant, odataRequest);
+var entitlements = entitlementService.get(host.tenant, odataRequest);
 
+var updated = false;
 for each (var item in entitlements) {
-	if(item.name == entitlementName)
-	{
-		System.log("Updating entitlement '"+item.name+"' from '"+item.status.value()+"' to '"+newStatus+"'");
-		item.setStatus(vCACCAFEEntitlementStatus.fromValue(newStatus));
-		ces.update(item);
-	}
+    if (item.name == entitlementName) {
+        System.log("Updating entitlement '" + item.name + "' from '" + item.status.value() + "' to '" + newStatus + "'");
+        item.setStatus(vCACCAFEEntitlementStatus.fromValue(newStatus));
+        entitlementService.update(item);
+        updated = true;
+        break; // Assuming unique name per BG
+    }
+}
+
+if (!updated) {
+    System.warn("Entitlement '" + entitlementName + "' not found for Business Group '" + businessGroup.name + "'");
 }

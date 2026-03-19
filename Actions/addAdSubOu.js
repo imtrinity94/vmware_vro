@@ -1,6 +1,15 @@
 /**
+ * Creates Active Directory Sub Organizational Units (OUs) if they do not already exist.
+ * Specifically ensures "Groups", "Computers", and "Servers" sub-OUs exist under a target parent OU.
+ * 
+ * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
+ * 
+ * @author Mayank Goyal
+ */
+
+/**
  * Creates an Active Directory Sub Organizational Unit (OU) if it does not already exist.
- * @param {object} item The parent OU object to create the sub OU under.
+ * @param {ActiveDirectory:OrganizationalUnit} item The parent OU object to create the sub OU under.
  * @param {string} substring The name of the sub OU to create.
  * @returns {void}
  */
@@ -16,6 +25,7 @@ function performAction(item, substring) {
 
 /**
  * Main execution function
+ * @returns {string} Status message.
  */
 function main() {
     // Set the parent OU value (e.g., application name)
@@ -66,4 +76,4 @@ function main() {
 }
 
 // Execute the main function
-main();
+return main();

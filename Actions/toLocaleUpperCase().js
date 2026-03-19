@@ -1,8 +1,10 @@
 /**
- * @description Demonstrates the use of `String.prototype.toLocaleUpperCase()` in vRO
- *              with various locale identifiers, including Turkish locale-specific casing.
- * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
- *
+ * Demonstrates the use of `String.prototype.toLocaleUpperCase()` in vRO
+ * with various locale identifiers, including Turkish locale-specific casing.
+ * 
+ * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
+ * 
+ * @author Mayank Goyal
  * @returns {void}
  */
 
@@ -10,17 +12,18 @@
 
 var city = 'istanbul';
 
-System.log(city.toLocaleUpperCase('en-US'));
+System.log("Default UpperCase: " + city.toUpperCase());
+System.log("English UpperCase: " + city.toLocaleUpperCase('en-US'));
 // expected output: "ISTANBUL"
 
-System.log(city.toLocaleUpperCase('TR'));
+System.log("Turkish UpperCase: " + city.toLocaleUpperCase('TR'));
 // expected output: "İSTANBUL"
 
-'alphabet'.toLocaleUpperCase(); // 'ALPHABET'
+System.log("Alphabet: " + 'alphabet'.toLocaleUpperCase()); 
 
-'Gesäß'.toLocaleUpperCase(); // 'GESÄSS'
+System.log("German: " + 'Gesäß'.toLocaleUpperCase()); 
 
-'i\u0307'.toLocaleUpperCase('lt-LT'); // 'I'
+System.log("Lithuanian special case: " + 'i\u0307'.toLocaleUpperCase('lt-LT')); 
 
 var locales = ['lt', 'LT', 'lt-LT', 'lt-u-co-phonebk', 'lt-x-lietuva'];
-'i\u0307'.toLocaleUpperCase(locales); // 'I'
+System.log("Lithuanian batch locales: " + 'i\u0307'.toLocaleUpperCase(locales)); 

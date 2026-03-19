@@ -1,6 +1,8 @@
 /**
  * Converts a CSV file retrieved from a URL into a JSON object.
  * 
+ * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
+ * 
  * @author Mayank Goyal
  * @version 1.0.0
  * 

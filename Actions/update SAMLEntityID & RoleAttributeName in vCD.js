@@ -1,52 +1,43 @@
-//in vCD 9.1, RoleAttributeName is missing from the vRO class properties. However, these is still a way 
-You will need to generate an object, convert it to xml then execute a rest query against the organization to update; you can build the xml from an object, then post against the correct url.
+/**
+ * Updates SAML Entity ID and Role Attribute Name in vCloud Director Organization Federation Settings.
+ * This action demonstrates using REST queries to update properties missing from the standard vRO class implementation.
+ * 
+ * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
+ * 
+ * @author Mayank Goyal
+ * @param {vCloud:Host} vclHost The vCloud host object.
+ * @param {vCloud:AdminOrganization} vclAdminOrg The Admin Organization object to update.
+ * @param {string} samlMetadata The SAML metadata XML string.
+ * @param {string} roleAttributeName The role attribute name (e.g., 'test234').
+ * @param {string} samlSPEntityId The SAML SP Entity ID (e.g., 'test').
+ * @returns {void}
+ */
 
-// this is quick and dirty to illustrate, expectations are you provide the organization, find the uri, retrieve the saml metadata etc
+System.debug("Current Role Attribute Name: " + vclAdminOrg.settings.orgFederationSettings.roleAttributeName);
 
- 
+// Initialize a new Federation Settings object to hold updates
+var orgFederationSettings = new VclOrgFederationSettings();
 
-var orgFederationSettings = new VclOrgFederationSettings
+orgFederationSettings.enabled = true;
+orgFederationSettings.sAMLMetadata = samlMetadata;
+orgFederationSettings.certificateExpiration = null;
+orgFederationSettings.roleAttributeName = roleAttributeName;
+orgFederationSettings.samlSPEntityId = samlSPEntityId;
+orgFederationSettings.samlSPKeyAndCertificateChain = null;
 
- 
+var settingsUrl = vclAdminOrg.settings.orgFederationSettings.href;
+System.log("Updating SAML settings at URL: " + settingsUrl);
 
-System.debug(vclAdminOrg.settings.orgFederationSettings.roleAttributeName)
+// Execute PUT request with the XML representation of the settings
+vclHost.executeRestQueries(
+    null,
+    settingsUrl,
+    "application/vnd.vmware.admin.organizationFederationSettings+xml",
+    "PUT",
+    orgFederationSettings.toXml()
+);
 
- 
+// Refresh internal state of the organization
+vclAdminOrg.updateInternalState();
 
-orgFederationSettings.enabled = true
-
- 
-
-orgFederationSettings.sAMLMetadata = "XML file goes here";
-
- 
-
-orgFederationSettings.certificateExpiration = null
-
-orgFederationSettings.roleAttributeName = 'test234'
-
-orgFederationSettings.samlSPEntityId = 'test'
-
-orgFederationSettings.samlSPKeyAndCertificateChain = null
-
- 
-
-System.debug(vclAdminOrg.settings.orgFederationSettings.href)
-
- 
-
-vclHost.executeRestQueries(null,vclAdminOrg.settings.orgFederationSettings.href,"application/vnd.vmware.admin.organizationFederationSettings+xml","PUT",orgFederationSettings.toXml()) // change to post if creating the org federation settings
-
- 
-
-vclAdminOrg.updateInternalState()
-
- 
-
-System.debug(vclAdminOrg.settings.orgFederationSettings.roleAttributeName)
-
- 
-
-//This methodology works for basically anything where the data set is missing from the object implementation, you can build the body based on the object and merely post it.
-
- 
+System.debug("Updated Role Attribute Name: " + vclAdminOrg.settings.orgFederationSettings.roleAttributeName);

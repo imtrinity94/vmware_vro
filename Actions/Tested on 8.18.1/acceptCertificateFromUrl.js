@@ -1,10 +1,11 @@
 /**
  * Accepts a certificate for a given URL in vRO.
  * 
+ * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
+ * 
  * @author Mayank Goyal
  * @version 1.0.0
- * 
- * @param {string} url - The URL for which the certificate needs to be accepted.
+ * @param {string} url The URL for which the certificate needs to be accepted.
  * @returns {void}
  */
 

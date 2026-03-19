@@ -1,61 +1,52 @@
-var objModule;
-	objModule = System.getModule("com.vcoflow");
+/**
+ * @description Upgrades VMware Tools and virtual hardware version for all VMs within
+ *              a specified compute resource's resource pool. Checks current tools
+ *              status and hardware version before initiating upgrade tasks.
+ * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
+ *
+ * @param {VC:ComputeResource} objVcComputeResource - The compute resource containing the VMs to upgrade.
+ * @returns {void}
+ */
 
-var objVcComputeResource;
+var objModule = System.getModule("com.vcoflow");
 
-var objVcResourcePool;
-	objVcResourcePool = objVcComputeResource.resourcePool;
+var objVcResourcePool = objVcComputeResource.resourcePool;
 
-var arrVcVirtualMachine;
-	arrVcVirtualMachine = objVcResourcePool.vm;
+var arrVcVirtualMachine = objVcResourcePool.vm;
 
-for ( var i = 0; i < arrVcVirtualMachine.length; i++ )
-{
-	var objVcVirtualMachine;
-		objVcVirtualMachine = arrVcVirtualMachine[i];
-	
-	var objVcEnvironmentBrowser;
-		objVcEnvironmentBrowser = objVcVirtualMachine.environmentBrowser;
+for (var i = 0; i < arrVcVirtualMachine.length; i++) {
+    var objVcVirtualMachine = arrVcVirtualMachine[i];
 
-	var objVcVirtualMachineSummary;
-		objVcVirtualMachineSummary = objVcVirtualMachine.summary;
+    var objVcEnvironmentBrowser = objVcVirtualMachine.environmentBrowser;
 
-	var objVcVirtualMachineGuestSummary;
-		objVcVirtualMachineGuestSummary = objVcVirtualMachineSummary.guest;
+    var objVcVirtualMachineSummary = objVcVirtualMachine.summary;
 
-	var strVMwareToolsVersionStatus;
-		strVMwareToolsVersionStatus = objVcVirtualMachineGuestSummary.toolsVersionStatus;
-	
-	var strVMwareToolsVersionStatus2;
-		strVMwareToolsVersionStatus2 = objVcVirtualMachineGuestSummary.toolsVersionStatus2;
+    var objVcVirtualMachineGuestSummary = objVcVirtualMachineSummary.guest;
 
-//	if ( ( strVMwareToolsVersionStatus == "guestToolsNeedUpgrade" ) || ( strVMwareToolsVersionStatus == "guestToolsNotInstalled" ) )
-	if ( ( strVMwareToolsVersionStatus2 == "guestToolsNeedUpgrade" ) || ( strVMwareToolsVersionStatus2 == "guestToolsNotInstalled" ) )
-	{
-		objVcVirtualMachine.mountToolsInstaller();
-		
-		var objVcTask;
-			objVcTask = objVcVirtualMachine.upgradeTools_Task('/s /v"/qn REBOOT=ReallySuppress"');
-		
-		objModule.WaitForVcTask(objVcTask);
-		
-		objVcVirtualMachine.unmountToolsInstaller();
-	}
+    var strVMwareToolsVersionStatus = objVcVirtualMachineGuestSummary.toolsVersionStatus;
 
-	var objVirtualMachineConfigOption;
-		objVirtualMachineConfigOption = objVcEnvironmentBrowser.queryConfigOption();
+    var strVMwareToolsVersionStatus2 = objVcVirtualMachineGuestSummary.toolsVersionStatus2;
 
-	var objVcVirtualHardwareOption;
-		objVcVirtualHardwareOption = objVirtualMachineConfigOptionhardwareOptions;
-	
-	var intHardwareVersion;
-		intHardwareVersion = objVcVirtualHardwareOption.hwVersion;
+    //	if ( ( strVMwareToolsVersionStatus == "guestToolsNeedUpgrade" ) || ( strVMwareToolsVersionStatus == "guestToolsNotInstalled" ) )
+    if ((strVMwareToolsVersionStatus2 == "guestToolsNeedUpgrade") || (strVMwareToolsVersionStatus2 == "guestToolsNotInstalled")) {
+        objVcVirtualMachine.mountToolsInstaller();
 
-	if ( intHardwareVersion < 9 ) 
-	{
-		var objVcTask;
-			objVcTask = objVcVirtualMachine.upgradeVM_Task("vmx-09");
+        var objVcTask = objVcVirtualMachine.upgradeTools_Task('/s /v"/qn REBOOT=ReallySuppress"');
 
-		objModule.WaitForVcTask(objVcTask);
-	}
+        objModule.WaitForVcTask(objVcTask);
+
+        objVcVirtualMachine.unmountToolsInstaller();
+    }
+
+    var objVirtualMachineConfigOption = objVcEnvironmentBrowser.queryConfigOption();
+
+    var objVcVirtualHardwareOption = objVirtualMachineConfigOption.hardwareOptions;
+
+    var intHardwareVersion = objVcVirtualHardwareOption.hwVersion;
+
+    if (intHardwareVersion < 9) {
+        var objVcTask = objVcVirtualMachine.upgradeVM_Task("vmx-09");
+
+        objModule.WaitForVcTask(objVcTask);
+    }
 }

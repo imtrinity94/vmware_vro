@@ -1,24 +1,16 @@
-/*
-Goal : 
-As the Rhino JavaScript compilation is not really recent (1.1), a lot of wonderfull modern Javascript features are missing.
-To use modern features, as map or filter, simply invoke this action and use the variable directly.
-Sample : 
-Package : fr.numaneo.library
-Action : lodashLibrary (with return type Properties)
-Script in Workflow :
-
-####
-var _ = System.getModule("fr.numaneo.library").lodashLibrary();
-
-var myarr = [1,2,3];
-var myarr2 = [4,5,6];
-var concatarr = _.concat(myarr, myarr2);
-System.log(concatarr); // [1,2,3,4,5,6];
-####
-
-Please see more functions on lodash website (https://lodash.com/).
-
-*/
+/**
+ * Lo-Dash library module for vRO.
+ * Provides modern JavaScript features (map, filter, concat, etc.) for the Rhino engine.
+ * 
+ * Usage in vRO:
+ * var _ = System.getModule("fr.numaneo.library").lodashModuleforvRO();
+ * var result = _.concat([1, 2], [3, 4]);
+ * 
+ * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
+ * 
+ * @author Mayank Goyal
+ * @returns {Properties} The Lo-Dash (_) instance.
+ */
 
 var global = {};
 

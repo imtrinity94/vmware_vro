@@ -1,17 +1,28 @@
 /**
- * @description Retrieves the email address and other LDAP attributes of the currently logged-in
- *              vRO user by looking up their account in Active Directory.
- * @note JSDoc generated via Antigravity AI IDE and may be reasonably incorrect.
- *
- * @returns {void}
+ * Retrieves the email address and other LDAP attributes of the currently logged-in
+ * vRO user by looking up their account in Active Directory.
+ * 
+ * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
+ * 
+ * @author Mayank Goyal
+ * @returns {void} Logs the user attributes.
  */
 
-requesterLogin = Server.getCurrentLdapUser().loginName;
-targetUser = ActiveDirectory.searchExactMatch("User", requesterLogin);
-System.log(targetUser[0].getAttribute("mail")); // Main line of Code
+var requesterLogin = Server.getCurrentLdapUser().loginName;
+var targetUser = ActiveDirectory.searchExactMatch("User", requesterLogin);
 
-System.log(targetUser[0].accountName);
-System.log(targetUser[0].distinguishedName);
-System.log(targetUser[0].id);
-System.log(targetUser[0].userPrincipalName);
-for each (i in targetUser[0].allAttributes) System.log(i);
+if (targetUser && targetUser.length > 0) {
+    var user = targetUser[0];
+    System.log("Email: " + user.getAttribute("mail")); // Main line of Code
+
+    System.log("Account Name: " + user.accountName);
+    System.log("DN: " + user.distinguishedName);
+    System.log("ID: " + user.id);
+    System.log("UPN: " + user.userPrincipalName);
+    
+    for each (var attr in user.allAttributes) {
+        System.log(attr);
+    }
+} else {
+    System.warn("User '" + requesterLogin + "' not found in Active Directory search.");
+}

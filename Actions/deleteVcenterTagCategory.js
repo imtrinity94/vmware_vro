@@ -1,14 +1,13 @@
-// VMware vRealize Orchestrator action sample
-//
-// This sample deletes a vCenter Tag Category given its ID
-// 
-// For vRO/VAPI 7.0+
-//
-// Action Inputs:
-// endpoint - VAPIEndpoint - VAPI Endpoint
-// categoryId - string - ID of the vCenter Tag Category
-//
-// Return type: void
+/**
+ * Deletes a vCenter Tag Category given its ID.
+ * 
+ * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
+ * 
+ * @author Mayank Goyal
+ * @param {VAPI:VAPIEndpoint} endpoint VAPI Endpoint.
+ * @param {string} categoryId ID of the vCenter Tag Category.
+ * @returns {void}
+ */
 
 var client = endpoint.client();
 var catService = new com_vmware_cis_tagging_category(client);
