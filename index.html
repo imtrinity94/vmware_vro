@@ -204,22 +204,19 @@
             <!-- Side-by-Side Content -->
             <div class="flex-grow flex overflow-hidden">
                 <!-- Metadata Side Column -->
-                <div
-                    class="w-96 border-r border-slate-800/50 p-6 overflow-y-auto space-y-8 flex-shrink-0 bg-slate-900/5">
+                <div class="w-72 border-r border-slate-800/50 p-4 overflow-y-auto space-y-5 flex-shrink-0 bg-slate-900/5">
                     <section>
-                        <h3
-                            class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">
+                        <h3 class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-2 border-b border-slate-800 pb-1">
                             Description</h3>
                         <p class="text-slate-300 text-sm leading-relaxed italic">{{ currentAction.description }}</p>
                     </section>
 
                     <section v-if="currentAction.params && currentAction.params.length">
-                        <h3
-                            class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-4 border-b border-slate-800 pb-1">
+                        <h3 class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">
                             Parameters</h3>
-                        <div class="space-y-6">
+                        <div class="space-y-4">
                             <div v-for="param in currentAction.params" class="space-y-2">
-                                <div class="block space-y-1.5">
+                                <div class="block space-y-1">
                                     <div class="text-sm font-mono text-orange-300 font-bold tracking-tight">{{ param.name
                                         }}</div>
                                     <div
