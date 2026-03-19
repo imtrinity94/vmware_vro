@@ -2,7 +2,11 @@
   "source": {
     "include": ["./Actions"],
     "includePattern": ".+\\.js$",
-    "excludePattern": "(node_modules/|docs/)"
+    "excludePattern": "(node_modules/|docs/)",
+    "exclude": [
+      "./Actions/demonstrateXmlUsageInVro.js",
+      "./Actions/demonstrateXmlNamespaceUsage.js"
+    ]
   },
   "opts": {
     "destination": "./docs",
