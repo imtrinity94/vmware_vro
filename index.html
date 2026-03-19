@@ -7,6 +7,8 @@
     <link rel="icon" type="image/png" href="logo.png">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GitHub Monaspace Font for code -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/githubnext/monaspace@v1.0.0/fonts/webfonts/monaspace.css">
     <!-- Metropolis Font (VMware-style) -->
     <link rel="stylesheet" href="https://unpkg.com/@vmware/metropolis/dist/css/metropolis.min.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -355,9 +357,10 @@
                             theme: 'vs-dark',
                             readOnly: false,
                             automaticLayout: true,
-                            fontFamily: 'Metropolis, sans-serif',
+                            fontFamily: "'Monaspace Neon', monospace",
                             fontSize: 14,
                             fontWeight: 'normal',
+                            fontLigatures: true,
                             minimap: { enabled: true },
                             scrollBeyondLastLine: false,
                             lineNumbers: 'on',
