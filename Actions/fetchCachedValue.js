@@ -12,9 +12,9 @@
  * @returns {any} resultValue - The cached or freshly retrieved result.
  */
 
-var logDebug = function(message) {
+var logDebug = function (message) {
     // Set to true to enable debug logs in vRO
-    if (false) {
+    if (true) {
         System.debug("[Cache] " + message);
     }
 };
@@ -40,7 +40,7 @@ if (!cacheUuidMap) {
 /**
  * Stores a value in the internal UUID cache.
  */
-var persistToUuidCache = function(value) {
+var persistToUuidCache = function (value) {
     var newUuid = System.nextUUID();
     // Using string representation to decouple objects from their original SDK connection if necessary
     var serializedValue = Server.toStringRepresentation(value);
@@ -53,7 +53,7 @@ var persistToUuidCache = function(value) {
 /**
  * Retrieves a value from the internal UUID cache.
  */
-var fetchFromUuidCache = function(uuid) {
+var fetchFromUuidCache = function (uuid) {
     var cachedData = cacheUuidMap[uuid];
     if (!cachedData) return null;
     var serialized = Server.toStringRepresentation(cachedData);
@@ -63,10 +63,10 @@ var fetchFromUuidCache = function(uuid) {
 /**
  * Calls the target action dynamically.
  */
-var executeTargetAction = function(mod, act, actionArgs) {
+var executeTargetAction = function (mod, act, actionArgs) {
     var actionObject = System.getModule(mod);
     var requiredParamCount = 0;
-    
+
     var descriptions = actionObject.actionDescriptions;
     var i;
     for (i = 0; i < descriptions.length; i++) {
@@ -76,7 +76,7 @@ var executeTargetAction = function(mod, act, actionArgs) {
             break;
         }
     }
-    
+
     // Ensure arg count matches expectations (append nulls if missing)
     if (actionArgs.length < requiredParamCount) {
         var missingCount = requiredParamCount - actionArgs.length;
@@ -105,9 +105,9 @@ var executeTargetAction = function(mod, act, actionArgs) {
 /**
  * Executes action and refreshes cache.
  */
-var updateAndCacheResult = function(key, mod, act, actionArgs) {
+var updateAndCacheResult = function (key, mod, act, actionArgs) {
     var resultObj = executeTargetAction(mod, act, actionArgs);
-    
+
     var cacheMetadata = new Properties();
     cacheMetadata.put("moduleName", mod);
     cacheMetadata.put("actionName", act);
@@ -157,7 +157,7 @@ if (metaFromCache) {
         logDebug("Hit: Retrieving from cache...");
         resultValue = fetchFromUuidCache(metaFromCache.uuid);
     }
-    
+
     if (resultValue && System.getObjectId(resultValue) !== originalHash) {
         System.error("Integrity check failed for cached object '" + moduleName + "." + actionName + "'. Hash mismatch.");
         resultValue = null;
