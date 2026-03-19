@@ -1,54 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>vRO Actions Reference</title>
     <link rel="icon" type="image/png" href="logo.png">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #0f172a; color: #f8fafc; margin: 0; height: 100vh; overflow: hidden; }
-        .sidebar { width: 320px; border-right: 1px solid #1e293b; height: 100vh; display: flex; flex-direction: column; flex-shrink: 0; background-color: #020617; }
-        .content { flex-grow: 1; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; background-color: #0f172a; }
-        #monaco-editor { flex-grow: 1; min-height: 400px; border-top: 1px solid #1e293b; background: #1e1e1e; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
-        .action-item { transition: all 0.2s; cursor: pointer; border-radius: 6px; padding: 6px 12px; margin: 2px 8px; }
-        .action-item:hover { background-color: #1e293b; }
-        .action-item.active { background-color: #3b82f6; color: white !important; }
-        .folder-header { font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; margin-top: 1rem; padding: 0 16px 4px; border-bottom: 1px solid #1e293b; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between; }
-        .param-badge { font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; padding: 2px 6px; border-radius: 4px; background: #1e293b; color: #94a3b8; }
-        .copy-success { background: #22c55e; color: white; display: none; padding: 4px 12px; border-radius: 4px; position: fixed; bottom: 20px; right: 20px; font-size: 0.85rem; z-index: 100; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 320px;
+            border-right: 1px solid #1e293b;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            background-color: #020617;
+        }
+
+        .content {
+            flex-grow: 1;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            background-color: #0f172a;
+        }
+
+        #monaco-editor {
+            flex-grow: 1;
+            min-height: 400px;
+            border-top: 1px solid #1e293b;
+            background: #1e1e1e;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        .action-item {
+            transition: all 0.2s;
+            cursor: pointer;
+            border-radius: 6px;
+            padding: 6px 12px;
+            margin: 2px 8px;
+        }
+
+        .action-item:hover {
+            background-color: #1e293b;
+        }
+
+        .action-item.active {
+            background-color: #3b82f6;
+            color: white !important;
+        }
+
+        .folder-header {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-top: 1rem;
+            padding: 0 16px 4px;
+            border-bottom: 1px solid #1e293b;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .param-badge {
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #1e293b;
+            color: #94a3b8;
+        }
+
+        .copy-success {
+            background: #22c55e;
+            color: white;
+            display: none;
+            padding: 4px 12px;
+            border-radius: 4px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 0.85rem;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
     </style>
 </head>
+
 <body>
     <div id="app" class="flex">
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="px-6 py-8">
                 <div class="flex items-center gap-3 mb-2">
-                    <img src="logo.png" class="h-10 w-10 object-contain brightness-110 drop-shadow-[0_0_8px_rgba(249,115,22,0.4)]">
-                    <h1 class="text-xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">vRO Portal</h1>
+                    <img src="logo.png"
+                        class="h-10 w-10 object-contain brightness-110 drop-shadow-[0_0_8px_rgba(249,115,22,0.4)]">
+                    <h1
+                        class="text-xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                        vRO Portal</h1>
                 </div>
                 <div class="mt-6 relative">
-                    <input type="text" v-model="searchQuery" placeholder="Search actions..." 
-                           class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-200">
+                    <input type="text" v-model="searchQuery" placeholder="Search actions..."
+                        class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-200">
                 </div>
             </div>
-            
+
             <div class="flex-grow overflow-y-auto pb-8">
                 <div v-for="(actions, folder) in groupedActions" :key="folder">
                     <div class="folder-header">
                         <span>{{ folder }}</span>
                         <span class="text-[0.6rem] bg-slate-800 px-1.5 rounded">{{ actions.length }}</span>
                     </div>
-                    <div v-for="action in actions" :key="action.id" 
-                         @click="selectAction(action)"
-                         :class="['action-item text-sm text-slate-400 flex items-center gap-2', { 'active': currentAction?.id === action.id }]">
-                         <svg class="h-4 w-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    <div v-for="action in actions" :key="action.id" @click="selectAction(action)"
+                        :class="['action-item text-sm text-slate-400 flex items-center gap-2', { 'active': currentAction?.id === action.id }]">
+                        <svg class="h-4 w-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
                         {{ action.name }}
                     </div>
                 </div>
@@ -60,7 +160,8 @@
             <!-- Header -->
             <div class="px-8 py-4 border-b border-slate-800/80 bg-slate-900/10 flex justify-between items-center">
                 <div>
-                    <div class="text-[0.6rem] text-blue-400 font-bold mb-0.5 uppercase tracking-[0.2em]">{{ currentAction.folder }}</div>
+                    <div class="text-[0.6rem] text-blue-400 font-bold mb-0.5 uppercase tracking-[0.2em]">{{
+                        currentAction.folder }}</div>
                     <h2 class="text-xl font-bold text-white tracking-tight">{{ currentAction.name }}</h2>
                 </div>
                 <div class="flex items-center gap-4">
@@ -68,8 +169,12 @@
                         <span class="text-[0.55rem] text-slate-500 font-bold uppercase tracking-wider">Returns</span>
                         <span class="text-blue-400 font-mono text-[0.7rem]">{{ currentAction.returns }}</span>
                     </div>
-                    <button @click="copyCode" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-md text-xs font-semibold transition-all flex items-center gap-2 shadow-lg shadow-blue-900/20 active:scale-95">
-                        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
+                    <button @click="copyCode"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-md text-xs font-semibold transition-all flex items-center gap-2 shadow-lg shadow-blue-900/20 active:scale-95">
+                        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                        </svg>
                         Copy Source
                     </button>
                 </div>
@@ -78,23 +183,31 @@
             <!-- Side-by-Side Content -->
             <div class="flex-grow flex overflow-hidden">
                 <!-- Metadata Side Column -->
-                <div class="w-96 border-r border-slate-800/50 p-6 overflow-y-auto space-y-8 flex-shrink-0 bg-slate-900/5">
+                <div
+                    class="w-96 border-r border-slate-800/50 p-6 overflow-y-auto space-y-8 flex-shrink-0 bg-slate-900/5">
                     <section>
-                        <h3 class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">Description</h3>
+                        <h3
+                            class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">
+                            Description</h3>
                         <p class="text-slate-300 text-sm leading-relaxed italic">{{ currentAction.description }}</p>
                     </section>
-                    
+
                     <section v-if="currentAction.params && currentAction.params.length">
-                        <h3 class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-4 border-b border-slate-800 pb-1">Parameters</h3>
+                        <h3
+                            class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-4 border-b border-slate-800 pb-1">
+                            Parameters</h3>
                         <div class="space-y-6">
                             <div v-for="param in currentAction.params" class="space-y-2">
                                 <div class="block space-y-1.5">
-                                    <div class="text-sm font-mono text-blue-300 font-bold tracking-tight">{{ param.name }}</div>
-                                    <div class="inline-block text-[0.65rem] text-slate-500 font-mono bg-slate-800 px-2 py-0.5 rounded border border-slate-700/50 uppercase tracking-wide">
+                                    <div class="text-sm font-mono text-blue-300 font-bold tracking-tight">{{ param.name
+                                        }}</div>
+                                    <div
+                                        class="inline-block text-[0.65rem] text-slate-500 font-mono bg-slate-800 px-2 py-0.5 rounded border border-slate-700/50 uppercase tracking-wide">
                                         {{ param.type }}
                                     </div>
                                 </div>
-                                <div class="text-[0.8rem] text-slate-400 border-l-2 border-slate-800 pl-3 ml-1 leading-relaxed">
+                                <div
+                                    class="text-[0.8rem] text-slate-400 border-l-2 border-slate-800 pl-3 ml-1 leading-relaxed">
                                     {{ param.description || '—' }}
                                 </div>
                             </div>
@@ -102,8 +215,11 @@
                     </section>
 
                     <section>
-                        <h3 class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">File Path</h3>
-                        <div class="text-[0.7rem] font-mono text-slate-500 bg-slate-950/50 p-3 rounded break-all border border-slate-900 leading-normal">
+                        <h3
+                            class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">
+                            File Path</h3>
+                        <div
+                            class="text-[0.7rem] font-mono text-slate-500 bg-slate-950/50 p-3 rounded break-all border border-slate-900 leading-normal">
                             {{ currentAction.path }}
                         </div>
                     </section>
@@ -111,17 +227,22 @@
 
                 <!-- Code Block Area -->
                 <div class="flex-grow bg-slate-950 p-4 overflow-hidden flex flex-col">
-                    <div class="flex-grow relative border border-slate-800 rounded-xl overflow-hidden shadow-2xl bg-[#1e1e1e]">
+                    <div
+                        class="flex-grow relative border border-slate-800 rounded-xl overflow-hidden shadow-2xl bg-[#1e1e1e]">
                         <div id="monaco-editor" class="absolute inset-0"></div>
                     </div>
                 </div>
             </div>
         </main>
-        
+
         <main v-else class="content flex items-center justify-center p-8 bg-slate-950">
             <div class="text-center">
-                <div class="h-24 w-24 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-500/20">
-                    <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+                <div
+                    class="h-24 w-24 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-500/20">
+                    <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                            d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
                 </div>
                 <h2 class="text-2xl font-bold text-slate-300">Select an action to view its documentation</h2>
                 <p class="text-slate-500 mt-2">Use the sidebar to explore your action library.</p>
@@ -147,7 +268,7 @@
                     try {
                         const response = await fetch('actions.json');
                         actionsData.value = await response.json();
-                        
+
                         // Default selection if available
                         if (actionsData.value.length > 0) {
                             // selectAction(actionsData.value[0]);
@@ -160,10 +281,11 @@
                 const filteredActions = computed(() => {
                     const query = searchQuery.value.toLowerCase().trim();
                     if (!query) return actionsData.value;
-                    return actionsData.value.filter(a => 
-                        a.name.toLowerCase().includes(query) || 
+                    return actionsData.value.filter(a =>
+                        a.name.toLowerCase().includes(query) ||
                         a.folder.toLowerCase().includes(query) ||
-                        a.description.toLowerCase().includes(query)
+                        a.description.toLowerCase().includes(query) ||
+                        a.code.toLowerCase().includes(query)
                     );
                 });
 
@@ -186,11 +308,11 @@
                 };
 
                 const initMonaco = (code) => {
-                    require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs' }});
-                    require(['vs/editor/editor.main'], function() {
+                    require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs' } });
+                    require(['vs/editor/editor.main'], function () {
                         const container = document.getElementById('monaco-editor');
                         if (!container) return;
-                        
+
                         if (editor) {
                             editor.dispose();
                         }
@@ -202,7 +324,7 @@
                             readOnly: false,
                             automaticLayout: true,
                             fontFamily: 'Consolas, "Courier New", monospace',
-                            fontSize: 12.5,
+                            fontSize: 13,
                             fontWeight: 'normal',
                             minimap: { enabled: true },
                             scrollBeyondLastLine: false,
@@ -243,4 +365,5 @@
         }).mount('#app');
     </script>
 </body>
+
 </html>
