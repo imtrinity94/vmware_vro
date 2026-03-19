@@ -258,11 +258,11 @@
                             Live Editor Mode
                         </div>
                         <div class="text-[0.6rem] text-slate-600 italic">
-                            💡 You can edit this code live before copying
+                            💡 You can edit this code locally before copying
                         </div>
                     </div>
                     <div
-                        class="flex-grow relative border border-slate-800 rounded-xl overflow-hidden shadow-2xl bg-[#1e1e1e]">
+                        class="flex-grow relative border border-slate-800 rounded-xl overflow-hidden shadow-2xl bg-white">
                         <div id="monaco-editor" class="absolute inset-0"></div>
                     </div>
                 </div>
@@ -354,10 +354,10 @@
                         editor = monaco.editor.create(container, {
                             value: code,
                             language: 'javascript',
-                            theme: 'vs-dark',
+                            theme: 'vs',
                             readOnly: false,
                             automaticLayout: true,
-                            fontFamily: "'Monaspace Neon', monospace",
+                            fontFamily: "'Monaspace Krypton', monospace",
                             fontSize: 14,
                             fontWeight: 'normal',
                             fontLigatures: true,
