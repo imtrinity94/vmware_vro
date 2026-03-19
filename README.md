@@ -10,14 +10,12 @@ The entire library is searchable and documented with source code previews in our
 
 ---
 
-## 📂 Project Structure
+### 📂 vRO Project Hierarchy
 
-- `Actions/`: Supplementary vRO action scripts, task-specific utilities, and plugin demonstrations.
-- `Library/`: Comprehensive core library of vRO actions for vSphere, vRA, NSX, and external integrations.
-- `JS Modules/`: External JavaScript libraries (e.g., **Lodash**, **Moment.js**) optimized for vRO script modules.
-- `Binaries/`: Java source code and backend assets for high-performance operations and direct SDK interactions.
-- `scripts/`: Custom documentation build system and responsive portal assets.
-- `.github/workflows/`: Automated CI/CD pipelines for JSDoc extraction and portal deployments.
+- **[Actions/](https://github.com/imtrinity94/vmware_vro/tree/master/Actions)**: Supplementary vRO action scripts, task-specific utilities, and custom plugin demonstrations for VMware Aria Automation.
+- **[Library/](https://github.com/imtrinity94/vmware_vro/tree/master/Library)**: Comprehensive core library of vRO actions. Organised into subfolders that represent specific **vRO Workflow Names** and specialized plugin modules (e.g., vSphere, NSX, vRA).
+- **[JS Modules/](https://github.com/imtrinity94/vmware_vro/tree/master/JS%20Modules)**: External JavaScript utility libraries (e.g., **Lodash**, **Moment.js**) that are modularized and performance-tuned for the vRO scripting engine.
+- **[Binaries/](https://github.com/imtrinity94/vmware_vro/tree/master/Binaries)**: Java source code, backend assets, and compiled components for high-performance vRO operations and direct SDK interactions.
 
 ---
 *Created and maintained by [Mayank Goyal](https://github.com/imtrinity94).*
