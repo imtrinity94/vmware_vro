@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const ACTIONS_DIR = path.join(__dirname, '../Actions');
 const OUTPUT_DIR = path.join(__dirname, '../dist');
 const DATA_FILE = path.join(OUTPUT_DIR, 'actions.json');
 
@@ -37,29 +36,35 @@ function getFiles(dir) {
     let results = [];
     const list = fs.readdirSync(dir);
     list.forEach(file => {
-        file = path.join(dir, file);
-        const stat = fs.statSync(file);
+        const filePath = path.join(dir, file);
+        const stat = fs.statSync(filePath);
         if (stat && stat.isDirectory()) {
-            results = results.concat(getFiles(file));
+            results = results.concat(getFiles(filePath));
         } else if (file.endsWith('.js')) {
-            results.push(file);
+            results.push(filePath);
         }
     });
     return results;
 }
 
-const allFiles = getFiles(ACTIONS_DIR);
-const actionsData = allFiles.map(filePath => {
+const actionFiles = getFiles(path.join(__dirname, '../Actions')).map(f => ({ path: f, root: 'Actions' }));
+const libraryFiles = getFiles(path.join(__dirname, '../Library')).map(f => ({ path: f, root: 'Library' }));
+const allFiles = [...actionFiles, ...libraryFiles];
+
+const actionsData = allFiles.map(fileMeta => {
+    const filePath = fileMeta.path;
     const content = fs.readFileSync(filePath, 'utf8');
-    const relativePath = path.relative(ACTIONS_DIR, filePath).replace(/\\/g, '/');
+    const relativePath = path.relative(path.join(__dirname, '..'), filePath).replace(/\\/g, '/');
     const fileName = path.basename(filePath);
-    const folder = path.dirname(relativePath);
     const metadata = parseJSDoc(content);
+
+    // Grouping by "Library/.../..." or "Actions/.../..."
+    const folder = path.dirname(relativePath);
 
     return {
         id: relativePath.replace(/\//g, '_').replace(/\.js$/, ''),
         name: fileName.replace(/\.js$/, ''),
-        folder: folder === '.' ? 'Root' : folder,
+        folder: folder === '.' ? fileMeta.root : folder,
         path: relativePath,
         code: content,
         ...metadata
