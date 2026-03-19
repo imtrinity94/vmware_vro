@@ -1,0 +1,53 @@
+{
+  "source": {
+    "include": ["./Actions"],
+    "includePattern": ".+\\.js$",
+    "excludePattern": "(node_modules/|docs/)"
+  },
+  "opts": {
+    "destination": "./docs",
+    "recurse": true,
+    "readme": "./README.md",
+    "template": "./node_modules/docdash",
+    "encoding": "utf8"
+  },
+  "plugins": ["plugins/markdown"],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "default": {
+      "outputSourceFiles": true,
+      "includeDate": true,
+      "useLongnameInNav": false
+    }
+  },
+  "docdash": {
+    "static": true,
+    "sort": true,
+    "sectionOrder": [
+      "Modules",
+      "Namespaces",
+      "Classes",
+      "Externals",
+      "Events",
+      "Interfaces",
+      "Mixins",
+      "Tutorials",
+      "Global"
+    ],
+    "search": true,
+    "collapse": false,
+    "wrap": true,
+    "typedefs": true,
+    "removeQuotes": "none",
+    "scripts": [],
+    "menu": {
+      "GitHub Repo": {
+        "href": "https://github.com/imtrinity94/vmware_vro",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "github-link"
+      }
+    }
+  }
+}

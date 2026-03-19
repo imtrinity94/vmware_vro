@@ -1,0 +1,13 @@
+{
+  "name": "vmware-vro-actions",
+  "version": "1.0.0",
+  "description": "vRealize Orchestrator JavaScript Action Library — JSDoc Reference",
+  "private": true,
+  "scripts": {
+    "docs": "jsdoc -c jsdoc.json"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.3",
+    "docdash": "^2.0.2"
+  }
+}

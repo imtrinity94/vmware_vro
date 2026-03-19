@@ -1,0 +1,9 @@
+# Node dependencies
+node_modules/
+
+# JSDoc output (built by CI — do not commit locally)
+docs/
+
+# OS noise
+.DS_Store
+Thumbs.db
