@@ -72,4 +72,13 @@ const actionsData = allFiles.map(fileMeta => {
 });
 
 fs.writeFileSync(DATA_FILE, JSON.stringify(actionsData, null, 2));
+
+// Copy brand logo to dist
+const logoSource = path.join(__dirname, 'image.png');
+const logoDest = path.join(OUTPUT_DIR, 'logo.png');
+if (fs.existsSync(logoSource)) {
+    fs.copyFileSync(logoSource, logoDest);
+    console.log('Logo copied to dist.');
+}
+
 console.log(`Generated documentation metadata for ${actionsData.length} actions.`);
