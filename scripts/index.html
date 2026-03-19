@@ -21,7 +21,7 @@
         }
 
         .sidebar {
-            width: 320px;
+            width: 380px;
             border-right: 1px solid #1e293b;
             height: 100vh;
             display: flex;
@@ -67,8 +67,12 @@
             transition: all 0.2s;
             cursor: pointer;
             border-radius: 6px;
-            padding: 6px 12px;
+            padding: 8px 12px;
             margin: 2px 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.4;
         }
 
         .action-item:hover {
@@ -78,6 +82,11 @@
         .action-item.active {
             background-color: #3b82f6;
             color: white !important;
+        }
+
+        .action-icon {
+            flex-shrink: 0;
+            margin-top: 2px;
         }
 
         .folder-header {
