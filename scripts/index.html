@@ -149,20 +149,30 @@
             </div>
 
             <div class="flex-grow overflow-y-auto pb-8">
-                <div v-for="(actions, folder) in groupedActions" :key="folder">
-                    <div class="folder-header">
-                        <span>{{ folder }}</span>
-                        <span class="text-[0.6rem] bg-slate-800 px-1.5 rounded">{{ actions.length }}</span>
+                <div v-for="(actions, folder) in groupedActions" :key="folder" class="select-none">
+                    <div @click="toggleFolder(folder)" 
+                         class="folder-header cursor-pointer hover:bg-slate-900 transition-colors group">
+                        <div class="flex items-center gap-2">
+                            <svg class="h-3 w-3 transition-transform duration-200" 
+                                 :class="{ '-rotate-90 opacity-40': collapsedFolders.has(folder) }"
+                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+                            </svg>
+                            <span>{{ folder }}</span>
+                        </div>
+                        <span class="text-[0.6rem] bg-slate-800 px-1.5 rounded opacity-60">{{ actions.length }}</span>
                     </div>
-                    <div v-for="action in actions" :key="action.id" @click="selectAction(action)"
-                        :class="['action-item', { 'active': currentAction?.id === action.id }]"
-                        class="text-xs text-slate-400 group">
-                        <svg class="action-icon h-3 w-3 mt-0.5 text-orange-500/60 group-hover:text-orange-400" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        <span class="flex-grow break-all">{{ action.name }}</span>
+                    <div v-if="!collapsedFolders.has(folder)" class="mt-1">
+                        <div v-for="action in actions" :key="action.id" @click="selectAction(action)"
+                            :class="['action-item', { 'active': currentAction?.id === action.id }]"
+                            class="text-xs text-slate-400 group">
+                            <svg class="action-icon h-3.5 w-3.5 mt-0.5 text-orange-500/60 group-hover:text-orange-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <span class="flex-grow break-all">{{ action.name }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -296,17 +306,13 @@
                 const actionsData = ref([]);
                 const searchQuery = ref('');
                 const currentAction = ref(null);
+                const collapsedFolders = ref(new Set());
                 let editor = null;
 
                 onMounted(async () => {
                     try {
                         const response = await fetch('actions.json');
                         actionsData.value = await response.json();
-
-                        // Default selection if available
-                        if (actionsData.value.length > 0) {
-                            // selectAction(actionsData.value[0]);
-                        }
                     } catch (e) {
                         console.error('Failed to load actions.json', e);
                     }
@@ -318,8 +324,8 @@
                     return actionsData.value.filter(a =>
                         a.name.toLowerCase().includes(query) ||
                         a.folder.toLowerCase().includes(query) ||
-                        a.description.toLowerCase().includes(query) ||
-                        a.code.toLowerCase().includes(query)
+                        (a.description && a.description.toLowerCase().includes(query)) ||
+                        (a.code && a.code.toLowerCase().includes(query))
                     );
                 });
 
@@ -329,11 +335,18 @@
                         if (!groups[a.folder]) groups[a.folder] = [];
                         groups[a.folder].push(a);
                     });
-                    // Sort folders
                     const sortedGroups = {};
                     Object.keys(groups).sort().forEach(key => sortedGroups[key] = groups[key]);
                     return sortedGroups;
                 });
+
+                const toggleFolder = (folder) => {
+                    if (collapsedFolders.value.has(folder)) {
+                        collapsedFolders.value.delete(folder);
+                    } else {
+                        collapsedFolders.value.add(folder);
+                    }
+                };
 
                 const selectAction = async (action) => {
                     currentAction.value = action;
@@ -393,6 +406,8 @@
                     searchQuery,
                     currentAction,
                     groupedActions,
+                    collapsedFolders,
+                    toggleFolder,
                     selectAction,
                     copyCode
                 };
