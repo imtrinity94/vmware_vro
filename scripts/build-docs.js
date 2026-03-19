@@ -69,9 +69,8 @@ folders.forEach(folder => {
             const fileName = path.basename(file);
             const metadata = parseJSDoc(content);
             
-            // Determine grouping folder
-            const dirName = path.dirname(relativePath);
-            const folderLabel = dirName === '.' ? folder : dirName;
+            // Group only by the top-level folder name
+            const folderLabel = relativePath.split('/')[0];
 
             actions.push({
                 id: relativePath.replace(/\//g, '_').replace(/\.js$/, ''),
