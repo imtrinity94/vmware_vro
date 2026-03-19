@@ -4,7 +4,8 @@
   "description": "vRealize Orchestrator JavaScript Action Library — JSDoc Reference",
   "private": true,
   "scripts": {
-    "docs": "jsdoc -c jsdoc.json"
+    "docs": "node scripts/build-docs.js",
+    "build:docs": "node scripts/build-docs.js && cp scripts/index.html dist/index.html"
   },
   "devDependencies": {
     "jsdoc": "^4.0.3",

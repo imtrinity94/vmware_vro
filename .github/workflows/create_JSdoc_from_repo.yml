@@ -36,28 +36,28 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # ── 4. Generate JSDoc HTML from Actions/ ───────────────────────────────
-      - name: Generate JSDoc site
-        run: npm run docs
+      # ── 4. Generate Portal Metadata + Assets ──────────────────────────────
+      - name: Build custom documentation portal
+        run: npm run build:docs
 
-      # ── 5. Verify output was created ───────────────────────────────────────
-      - name: Verify docs/ output
+      # ── 5. Verify dist/ output ─────────────────────────────────────────────
+      - name: Verify dist/ output
         run: |
-          echo "=== Generated files ==="
-          find docs/ -name "*.html" | head -30
-          echo "Total HTML files: $(find docs/ -name '*.html' | wc -l)"
+          echo "=== Generated artifacts ==="
+          ls -R dist/
+          echo "Portal is ready for deployment."
 
       # ── 6. Add .nojekyll so GitHub Pages serves all files as-is ────────────
       - name: Add .nojekyll
-        run: touch docs/.nojekyll
+        run: touch dist/.nojekyll
 
       # ── 7. Deploy to GitHub Pages (gh-pages branch) ────────────────────────
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          publish_dir: ./dist
           publish_branch: gh-pages
-          commit_message: "docs: regenerate JSDoc [skip ci]"
+          commit_message: "docs: update actions portal [skip ci]"
           user_name: "github-actions[bot]"
           user_email: "github-actions[bot]@users.noreply.github.com"
