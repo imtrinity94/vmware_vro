@@ -1,24 +1,31 @@
 /**
- * Retrieves vRA tags filtered by a specific key and returns them as a colon-separated array.
+ * Retrieves vRA tags filtered by a specific key and returns them as an array of "key:value" strings.
  * 
  * Note: JSDoc is generated via Antigravity AI IDE and can be reasonably incorrect.
  * 
  * @author Mayank Goyal
- * @param {string} vraHost The vRA host identifier.
- * @param {string} tagKey The key to filter tags by.
- * @returns {string[]} Array of "key:value" strings for the matching tags.
+ * @param {string} vraHostId - The vRA host identifier.
+ * @param {string} searchTagKey - The key to filter tags by.
+ * @returns {string[]} tagResultArray - Array of "key:value" strings for matching tags.
  */
 
-var url = "/iaas/api/tags"; 
-var parameters = encodeURI("$filter=key eq '" + tagKey + "'"); 
+var iaasTagsUrl = "/iaas/api/tags"; 
+var queryFilterParams = encodeURI("$filter=key eq '" + searchTagKey + "'"); 
 
-var tags = System.getModule("com.vmware.vra.extensibility.plugin.rest").getObjects(vraHost, url, parameters); 
+// Use the standard IaaS API helper module for REST object retrieval
+var fetchedTagsList = System.getModule("com.vmware.vra.extensibility.plugin.rest").getObjects(vraHostId, iaasTagsUrl, queryFilterParams); 
 
-var tagArray = new Array(); 
-if (tags) {
-    for each (var tag in tags) { 
-        tagArray.push(tag.key + ":" + tag.value); 
+var tagResultArray = []; 
+if (fetchedTagsList && fetchedTagsList.length > 0) {
+    System.debug("Processing " + fetchedTagsList.length + " tags for key: " + searchTagKey);
+    
+    var i;
+    for (i = 0; i < fetchedTagsList.length; i++) {
+        var currentTagObj = fetchedTagsList[i];
+        tagResultArray.push(currentTagObj.key + ":" + currentTagObj.value); 
     } 
+} else {
+    System.log("No tags discovered for key: '" + searchTagKey + "'");
 }
   
-return tagArray;
+return tagResultArray;
